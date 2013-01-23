@@ -1,0 +1,19 @@
+export EDITOR=vi
+
+source ~/.git-completion.bash
+
+export PATH=/usr/local/heroku/bin:/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# When cd'ing into a folder look for .venv file with the name of the virtualenv to workon. Implemented to work like an .rvmrc file.
+has_virtualenv() {
+    if [ -e .venv ]; then
+        workon `cat .venv`
+    fi
+}
+venv_cd () {
+    cd "$@" && has_virtualenv
+}
+alias cd="venv_cd"
+
