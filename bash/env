@@ -1,6 +1,6 @@
 export EDITOR=vi
 
-source ~/.git-completion.bash
+source $HOME/.dotfiles/.git-completion.bash
 
 export PATH=/usr/local/heroku/bin:/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH
 
