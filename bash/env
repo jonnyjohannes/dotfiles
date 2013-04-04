@@ -3,6 +3,7 @@ export EDITOR=vi
 source $HOME/.dotfiles/.git-completion.bash
 
 export PATH=/usr/local/heroku/bin:/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH
+export PATH=~/ucalgary/iqst/qmmm/tao/bin:$PATH ### TAO executables path ###
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
