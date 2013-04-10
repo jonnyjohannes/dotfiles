@@ -19,7 +19,7 @@ Installation
 ------------
     
     git clone git://github.com/jonnyjohannes/dotfiles.git ~/.dotfiles
-    cd dotfiles
+    cd .dotfiles
     source install.sh
 
 Uninstall
