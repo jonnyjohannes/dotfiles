@@ -1,2 +1,9 @@
-alias ls='ls -G'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   alias ls='ls --color'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+   alias ls='ls -G'
+fi
+
 alias ipython='ipython --pylab'
+
