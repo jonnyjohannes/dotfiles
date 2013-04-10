@@ -5,6 +5,6 @@ export PATH=~/ucalgary/iqst/qmmm/tao/bin:$PATH ### TAO executables path ###
 export PATH=/usr/local/share/python:$PATH ### Homebrew Python ###
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-source /usr/local/share/python/virtualenvwrapper.sh # Load Virtualenv
-source $HOME/.dotfiles/.git-completion.bash # Extra git autocomplete scripts
+[[ -s $HOME/.virtualenvs/virtualenvwrapper.sh ]] && source $HOME/.virtualenvs/virtualenvwrapper.sh # Load Virtualenv
+source $HOME/.dotfiles/git/git-completion.bash # Extra git autocomplete scripts
 
