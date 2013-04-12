@@ -67,4 +67,8 @@ map <leader>tm :tabmove
 " Automatic fold settings for specific files. Uncomment to use.
 " autocmd FileType ruby setlocal foldmethod=syntax
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
+set foldlevel=99
+
+au BufRead,BufNewFile *.inp set filetype=charmm
+au! Syntax charmm source $HOME/.vim/syntax/charmm.vim
 
