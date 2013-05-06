@@ -69,6 +69,6 @@ map <leader>tm :tabmove
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 set foldlevel=99
 
-au BufRead,BufNewFile *.inp set filetype=charmm
+au BufRead,BufNewFile *charmm.* set filetype=charmm
 au! Syntax charmm source $HOME/.vim/syntax/charmm.vim
 
