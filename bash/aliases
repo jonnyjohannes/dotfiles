@@ -3,6 +3,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
    alias ls='ls --color'
 elif [[ "$unamestr" == 'Darwin' ]]; then
    alias ls='ls -G'
+   alias vmd='/Applications/VMD\ 1.9.1.app/Contents/MacOS/startup.command'
 fi
 
 alias ipython='ipython --pylab'
