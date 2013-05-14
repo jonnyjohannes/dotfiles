@@ -2,14 +2,14 @@
 
 echo "Working on .bashrc file"
 if [ -f ~/.bashrc ]; then
-        echo "source ~/.dotfiles/bashrc" >> ~/.bashrc
+        echo "source ~/.dotfiles/bashrc" > ~/.bashrc
 else
         ln -s ~/.dotfiles/bashrc ~/.bashrc
 fi
 
 echo "Working on .bash_profile file"
 if [ -f ~/.bash_profile ]; then
-        echo "source ~/.dotfiles/bashrc" >> ~/.bash_profile
+        echo "source ~/.dotfiles/bashrc" > ~/.bash_profile
 else
         ln -s ~/.dotfiles/bashrc ~/.bash_profile
 fi
