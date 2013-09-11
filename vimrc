@@ -72,3 +72,6 @@ set foldlevel=99
 au BufRead,BufNewFile *charmm.* set filetype=charmm
 au! Syntax charmm source $HOME/.vim/syntax/charmm.vim
 
+au BufRead,BufNewFile *deMon.* set filetype=deMon
+au! Syntax deMon source $HOME/.vim/syntax/demon.vim
+
