@@ -1,5 +1,5 @@
-"AM: BEGIN OF .vim/syntax/charmm.vim
-" Created by Zhiguo Liu, based on the work of malevanets, Feb 12, 2009
+"AM: BEGIN OF .vim/syntax/demon.vim
+" Created by Jonny Johannes, based on the work of charmm.vim, September 30, 2013
 
 syn sync clear
 syn sync fromstart
@@ -98,5 +98,5 @@ highlight Statement ctermfg=Brown
 
 let b:current_syntax = "deMon"
 colorscheme vividchalk
-"AM: END OF .vim/syntax/charmm.vim
+"AM: END OF .vim/syntax/demon.vim
 
