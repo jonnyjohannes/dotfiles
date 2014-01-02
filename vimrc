@@ -35,6 +35,8 @@ set visualbell                    " No beeping.
 "set shiftwidth=2                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2
+autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
+autocmd FileType coffee setlocal tabstop=2 shiftwidth=2
 autocmd FileType python setlocal tabstop=4 shiftwidth=4
 autocmd FileType php setlocal tabstop=4 shiftwidth=4
 
@@ -74,4 +76,8 @@ au! Syntax charmm source $HOME/.vim/syntax/charmm.vim
 
 au BufRead,BufNewFile *deMon.* set filetype=deMon
 au! Syntax deMon source $HOME/.vim/syntax/demon.vim
+
+au BufRead,BufNewFile *.coffee set filetype=coffee
+au! Syntax coffee source $HOME/.vim/syntax/coffee.vim
+
 
