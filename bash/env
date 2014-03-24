@@ -1,8 +1,11 @@
 export EDITOR=vi
 
-export PATH=/usr/local/bin:/usr/local/heroku/bin:/opt/local/bin:/opt/local/sbin:$PATH
+# Development PATHs
+export PATH=/usr/local/heroku/bin:$HOME/.rvm/bin:$PATH
+# MolSim PATHs
+export PATH=$HOME/src/deMon/bin:$HOME/src/charmm/bin:$HOME/src/cuby:$PATH
 
+source $HOME/.dotfiles/git/git-completion.bash # Load Git autocomplete script 
+[[ -s "$HOME/.venvburrito/startup.sh" ]] && source "$HOME/.venvburrito/startup.sh" # Load Virtualenv
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-[[ -s $HOME/.virtualenvs/virtualenvwrapper.sh ]] && source $HOME/.virtualenvs/virtualenvwrapper.sh # Load Virtualenv
-source $HOME/.dotfiles/git/git-completion.bash # Extra git autocomplete scripts
 
