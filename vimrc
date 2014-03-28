@@ -3,6 +3,7 @@
 
 set nocompatible                  " Must come first because it changes other options.
 
+execute pathogen#infect()
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
 
@@ -79,5 +80,4 @@ au! Syntax deMon source $HOME/.vim/syntax/demon.vim
 
 au BufRead,BufNewFile *.coffee set filetype=coffee
 au! Syntax coffee source $HOME/.vim/syntax/coffee.vim
-
 
