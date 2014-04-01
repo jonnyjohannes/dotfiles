@@ -4,7 +4,12 @@
 set nocompatible                  " Must come first because it changes other options.
 
 execute pathogen#infect()
+
 syntax enable                     " Turn on syntax highlighting.
+set background=dark
+colorscheme solarized
+let g:solarized_termcolors=256
+
 filetype plugin indent on         " Turn on file type detection.
 
 set showcmd                       " Display incomplete commands.
@@ -45,7 +50,6 @@ set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
-colorscheme vividchalk 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
 map <leader>te :tabedit
