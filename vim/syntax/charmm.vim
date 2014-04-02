@@ -193,6 +193,5 @@ highlight charmmParameter ctermfg=DarkCyan
 "syn region CursorLine start="-\s*\([!].*\)\=$" end="\<" contains=Comment
 
 let b:current_syntax = "charmm"
-colorscheme vividchalk
 "AM: END OF .vim/syntax/charmm.vim
 

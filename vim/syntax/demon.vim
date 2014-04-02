@@ -98,6 +98,5 @@ highlight Statement ctermfg=Brown
 "syn region CursorLine start="-\s*\([!].*\)\=$" end="\<" contains=Comment
 
 let b:current_syntax = "deMon"
-colorscheme vividchalk
 "AM: END OF .vim/syntax/demon.vim
 

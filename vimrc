@@ -7,8 +7,8 @@ execute pathogen#infect()
 
 syntax enable                     " Turn on syntax highlighting.
 set background=dark
-colorscheme solarized
 let g:solarized_termcolors=256
+colorscheme solarized
 
 filetype plugin indent on         " Turn on file type detection.
 
