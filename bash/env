@@ -2,8 +2,8 @@ export EDITOR=vi
 
 # Development PATHs
 export PATH=/usr/local/bin:/usr/local/heroku/bin:$HOME/.rvm/bin:$PATH
-# MolSim PATHs
-export PATH=$HOME/src/deMon/bin:$HOME/src/charmm/bin:$HOME/src/cuby:$PATH
+# Comiled PATHs
+export PATH=$HOME/src/bin:$HOME/src/cuby:$PATH
 
 source $HOME/.dotfiles/git/git-completion.bash # Load Git autocomplete script 
 [[ -s "$HOME/.venvburrito/startup.sh" ]] && source "$HOME/.venvburrito/startup.sh" # Load Virtualenv

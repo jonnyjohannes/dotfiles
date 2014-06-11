@@ -3,11 +3,8 @@
 
 set nocompatible                  " Must come first because it changes other options.
 
-execute pathogen#infect()
-
 syntax enable                     " Turn on syntax highlighting.
 set background=dark
-let g:solarized_termcolors=256
 colorscheme solarized
 
 filetype plugin indent on         " Turn on file type detection.
@@ -40,9 +37,8 @@ set visualbell                    " No beeping.
 "set tabstop=2                    " Global tab width.
 "set shiftwidth=2                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2
+autocmd FileType *ruby setlocal tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
-autocmd FileType coffee setlocal tabstop=2 shiftwidth=2
 autocmd FileType python setlocal tabstop=4 shiftwidth=4
 autocmd FileType php setlocal tabstop=4 shiftwidth=4
 

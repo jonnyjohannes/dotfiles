@@ -188,7 +188,7 @@ highlight Statement ctermfg=Brown
 syn match charmmParameter "[$@?]\h\+"
 syn match charmmParameter "[$@?][{]\h\+[}]"
 "highlight def link charmmParameter ModeMsg
-highlight charmmParameter ctermfg=DarkCyan
+"highlight charmmParameter ctermfg=DarkCyan
 
 "syn region CursorLine start="-\s*\([!].*\)\=$" end="\<" contains=Comment
 
