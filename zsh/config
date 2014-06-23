@@ -4,6 +4,9 @@ git_prompt_info() {
     echo "(%{$fg[green]%}${ref#refs/heads/}%{$reset_color%})"
   fi
 }
+
+precmd () {print -Pn "\e]0;%m\a"}
+
 setopt promptsubst
 export PS1='[%~]$(git_prompt_info)$ '
 
