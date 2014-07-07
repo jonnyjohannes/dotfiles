@@ -38,6 +38,7 @@ set visualbell                    " No beeping.
 "set shiftwidth=2                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
 autocmd FileType *ruby setlocal tabstop=2 shiftwidth=2
+autocmd FileType tex setlocal tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
 autocmd FileType python setlocal tabstop=4 shiftwidth=4
 autocmd FileType php setlocal tabstop=4 shiftwidth=4
