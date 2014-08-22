@@ -1,12 +1,21 @@
+# tab titles
+precmd () {print -Pn "\e]0;%m\a"}
+
+# prompt information 
 git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null)
   if [[ -n $ref ]]; then
     echo "(%{$fg[green]%}${ref#refs/heads/}%{$reset_color%})"
   fi
 }
-
-precmd () {print -Pn "\e]0;%m\a"}
-
 setopt promptsubst
-export PS1='[%~]$(git_prompt_info)$ '
+export PS1='[%{$fg_bold[blue]%}%~%{$reset_color%}]$(git_prompt_info)> '
+
+# enable colours
+autoload -U colors
+colors
+export CLICOLOR=1
+
+# keybindings
+bindkey -v
 

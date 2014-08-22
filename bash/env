@@ -1,4 +1,6 @@
+# set vim as default
 export EDITOR=vi
+export VISUAL=$EDITOR
 
 # Development PATHs
 export PATH=/usr/local/bin:/usr/local/heroku/bin:$HOME/.rvm/bin:$PATH
@@ -8,7 +10,4 @@ export PATH=$HOME/src/bin:$HOME/src/cuby:$PATH
 source $HOME/.dotfiles/git/git-completion.bash # Load Git autocomplete script 
 [[ -s "$HOME/.venvburrito/startup.sh" ]] && source "$HOME/.venvburrito/startup.sh" # Load Virtualenv
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# ENV variables gitignored
-source $HOME/.dotfiles/bash/sensitive_data
 

@@ -19,11 +19,15 @@ Installation
 ------------
     
     git clone git://github.com/jonnyjohannes/dotfiles.git ~/.dotfiles
-    cd .dotfiles
-    source install.sh
+    ln -s ~/.dotfiles/vim ~/.vim
+    ln -s ~/.dotfiles/vimrc ~/.vimrc
+    ln -s ~/.dotfiles/zshrc ~/.zshrc
+    ln -s ~/.dotfiles/bashrc ~/.bashrc
+    ln -s ~/.dotfiles/bashrc ~/.bash_profile
+    ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 
 Uninstall
 ---------
-  
-    source uninstall.sh 
-  
+
+  remove symlinks 
+
