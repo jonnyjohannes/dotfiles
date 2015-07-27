@@ -3,7 +3,7 @@ export EDITOR=vi
 export VISUAL=$EDITOR
 
 # Development PATHs
-export PATH=/usr/local/bin:/usr/local/heroku/bin:$HOME/.rvm/bin:$PATH
+export PATH=/usr/local/bin:$HOME/.rvm/bin:$PATH
 # Comiled PATHs
 export PATH=$HOME/src/bin:$HOME/src/cuby:$PATH
 
