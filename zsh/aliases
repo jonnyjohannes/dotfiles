@@ -6,5 +6,6 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
    alias molden='/Applications/molden5.0/molden'
 fi
 
+alias vi='vim'
 alias ipython='ipython --pylab'
 
