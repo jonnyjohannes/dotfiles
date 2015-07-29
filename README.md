@@ -13,7 +13,7 @@ Overview
   - bash: aliases, configuration, environment settings
   - vim: syntax highlighting, colour theme, etc
   - git: config file, autocomplete
-  - rvmrc (ruby) and virtualenv (python): the dotfiles will source these if they are present and installed already
+  - virtualenv (python): the dotfiles will source these if they are present and installed already
 
 Installation
 ------------
