@@ -9,6 +9,14 @@ syntax enable
 set background=dark
 colorscheme solarized
 
+" Vundle plugins
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-rails'
+
 filetype plugin indent on         " Turn on file type detection.
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
@@ -42,11 +50,8 @@ autocmd FileType php setlocal tabstop=4 shiftwidth=4
 " file type syntaxes
 au BufRead,BufNewFile *charmm.* set filetype=charmm
 au! Syntax charmm source $HOME/.vim/syntax/charmm.vim
-
 au BufRead,BufNewFile *deMon.* set filetype=deMon
 au! Syntax deMon source $HOME/.vim/syntax/demon.vim
-
 au BufRead,BufNewFile *.ejs set filetype=html
-
 au BufRead,BufNewFile *.json.jbuilder set filetype=ruby
 
