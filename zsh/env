@@ -9,4 +9,5 @@ export PATH=$HOME/src/bin:$HOME/src/cuby:$PATH
 
 source $HOME/.dotfiles/git/git-completion.bash # Load Git autocomplete script 
 [[ -s "$HOME/.venvburrito/startup.sh" ]] && source "$HOME/.venvburrito/startup.sh" # Load Virtualenv
+eval "$(rbenv init -)"
 
