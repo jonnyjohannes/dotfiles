@@ -1,4 +1,15 @@
-vim/.netrwhist
-*.swp
+# vim tmp files
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+# vim plugins
+!bin
+vim/bundle/
+
+# local dotfiles
 *.local
 
