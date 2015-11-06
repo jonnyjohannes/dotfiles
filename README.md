@@ -14,6 +14,7 @@ Overview
   - vim: syntax highlighting, colour theme, etc
   - git: config file, autocomplete
   - virtualenv (python): the dotfiles will source these if they are present and installed already
+  - tmux, tmuxinator: terminal multiplexer
 
 Installation
 ------------
@@ -25,6 +26,7 @@ Installation
     ln -s ~/.dotfiles/bashrc ~/.bashrc
     ln -s ~/.dotfiles/bashrc ~/.bash_profile
     ln -s ~/.dotfiles/gitconfig ~/.gitconfig
+    ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
 
 Uninstall
 ---------
