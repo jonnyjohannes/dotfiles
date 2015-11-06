@@ -12,5 +12,5 @@ eval "$(rbenv init -)"
 
 # autocomplete scripts
 source $HOME/.dotfiles/git/git-completion.bash
-source $HOME/.dotfiles/tmux/tmuxinator.bash
+source $HOME/.dotfiles/tmux/tmuxinator.zsh
 
