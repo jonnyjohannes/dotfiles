@@ -2,12 +2,15 @@
 export EDITOR=vi
 export VISUAL=$EDITOR
 
-# Development PATHs
+# Homebrew and custom compiled PATHs
 export PATH=/usr/local/bin:$PATH
-# Comiled PATHs
 export PATH=$HOME/src/bin:$HOME/src/cuby:$PATH
 
-source $HOME/.dotfiles/git/git-completion.bash # Load Git autocomplete script 
-[[ -s "$HOME/.venvburrito/startup.sh" ]] && source "$HOME/.venvburrito/startup.sh" # Load Virtualenv
+# rbenv and virtualenv
 eval "$(rbenv init -)"
+[[ -s "$HOME/.venvburrito/startup.sh" ]] && source "$HOME/.venvburrito/startup.sh"
+
+# autocomplete
+source $HOME/.dotfiles/git/git-completion.bash
+source $HOME/.dotfiles/tmux/tmuxinator.bash
 
