@@ -1,23 +1,24 @@
 " Vim configuration.
 " Copy or symlink to ~/.vimrc or ~/_vimrc.
-
-" must come first because it changes other options
+"
 set nocompatible
-
-" syntax highlighting
-syntax enable 
-set background=dark
-colorscheme solarized
 
 " Vundle plugins
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rails'
+Plugin 'kien/ctrlp.vim'
+call vundle#end()
+
+" syntax highlighting
+syntax enable 
+set background=dark
+colorscheme solarized
 
 filetype plugin indent on         " Turn on file type detection.
+
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
 set backspace=indent,eol,start    " Intuitive backspacing.
@@ -37,7 +38,6 @@ set laststatus=2                  " Show the status line all the time
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 set splitbelow                    " split horizontal pane to the bottom
 set splitright                    " split vertical pane to the right
-
 " tabs and spacing: default of softtabs, 2 spaces 
 set tabstop=2
 set shiftwidth=2
