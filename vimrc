@@ -38,6 +38,7 @@ set laststatus=2                  " Show the status line all the time
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 set splitbelow                    " split horizontal pane to the bottom
 set splitright                    " split vertical pane to the right
+set clipboard=unnamed
 " tabs and spacing: default of softtabs, 2 spaces 
 set tabstop=2
 set shiftwidth=2
