@@ -2,15 +2,15 @@
 export EDITOR=vi
 export VISUAL=$EDITOR
 
-# Homebrew and custom compiled PATHs
+# PATHs
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/src/bin:$HOME/src/cuby:$PATH
+export PATH=/usr/local/heroku/bin:$PATH
 
-# rbenv and pyenv
+# rbenv and pyenv initialization
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 
-# autocomplete scripts
+# autocompletion scripts
 source $HOME/.dotfiles/git/git-completion.bash
-source $HOME/.dotfiles/tmux/tmuxinator.zsh
 
