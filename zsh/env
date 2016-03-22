@@ -5,7 +5,6 @@ export VISUAL=$EDITOR
 # PATHs
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/src/bin:$HOME/src/cuby:$PATH
-export PATH=/usr/local/heroku/bin:$PATH
 
 # rbenv and pyenv initialization
 eval "$(rbenv init -)"
