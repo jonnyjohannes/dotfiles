@@ -1,5 +1,5 @@
 " Vim configuration.
-" Copy or symlink to ~/.vimrc or ~/_vimrc.
+" Copy or symlink to ~/.vimrc.
 "
 set nocompatible
 
@@ -38,13 +38,13 @@ set laststatus=2                  " Show the status line all the time
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 set splitbelow                    " split horizontal pane to the bottom
 set splitright                    " split vertical pane to the right
-set clipboard=unnamed
-" tabs and spacing: default of softtabs, 2 spaces 
-set tabstop=2
-set shiftwidth=2
-set shiftround
-set expandtab
+set clipboard=unnamed             " Share system clipboard
+set tabstop=2                     " tab size: 2
+set shiftwidth=2                  " tab size with `<<`/`>>`: 2
+set shiftround                    " use multiple of shiftwidth
+set expandtab                     " use softtabs
 
+" file type indentations != 2
 autocmd FileType python setlocal tabstop=4 shiftwidth=4
 autocmd FileType php setlocal tabstop=4 shiftwidth=4
 
