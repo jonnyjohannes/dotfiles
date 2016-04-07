@@ -12,6 +12,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'kien/ctrlp.vim'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'jonnyjohannes/vim-charmm'
+Plugin 'jonnyjohannes/vim-demon'
 call vundle#end()
 
 " syntax highlighting
@@ -51,8 +52,6 @@ autocmd FileType python setlocal tabstop=4 shiftwidth=4
 autocmd FileType php setlocal tabstop=4 shiftwidth=4
 
 " file type syntaxes
-au BufRead,BufNewFile *deMon.* set filetype=deMon
-au! Syntax deMon source $HOME/.vim/syntax/demon.vim
 au BufRead,BufNewFile *.ejs set filetype=html
 au BufRead,BufNewFile *.json.jbuilder set filetype=ruby
 
