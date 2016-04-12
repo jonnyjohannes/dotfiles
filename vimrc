@@ -8,11 +8,12 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-rails'
-Plugin 'kien/ctrlp.vim'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'jonnyjohannes/vim-charmm'
+Plugin 'jonnyjohannes/vim-colors-solarized'
 Plugin 'jonnyjohannes/vim-demon'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-rails'
 call vundle#end()
 
 " syntax highlighting
