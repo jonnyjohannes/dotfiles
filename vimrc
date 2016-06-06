@@ -13,11 +13,13 @@ Plugin 'jonnyjohannes/vim-charmm'
 Plugin 'jonnyjohannes/vim-colors-solarized'
 Plugin 'jonnyjohannes/vim-demon'
 Plugin 'kien/ctrlp.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-rails'
 call vundle#end()
 
 " syntax highlighting
-syntax enable 
+syntax enable
 set background=dark
 colorscheme solarized
 
