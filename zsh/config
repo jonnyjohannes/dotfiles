@@ -1,6 +1,11 @@
 # tab titles
 precmd () {print -Pn "\e]0;%m\a"}
 
+# enable colours
+autoload -U colors
+colors
+export CLICOLOR=1
+
 # prompt information 
 git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null)
@@ -9,12 +14,7 @@ git_prompt_info() {
   fi
 }
 setopt promptsubst
-export PS1='[%{$fg_bold[blue]%}%~%{$reset_color%}]$(git_prompt_info)> '
-
-# enable colours
-autoload -U colors
-colors
-export CLICOLOR=1
+export PS1='[%{$fg_bold[magenta]%}%~%{$reset_color%}]$(git_prompt_info)> '
 
 # keybindings
 bindkey -v
