@@ -1,13 +1,9 @@
 [user]
-  name = Jonny Johannes
+  name  = Jonny Johannes
   email = jonny@jonnyjohannes.com
 [color]
   ui = true
 [core]
-  editor=/usr/local/bin/vim
+  editor       = /usr/local/bin/vim
   excludesfile = ~/.dotfiles/git/gitignore
 
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
