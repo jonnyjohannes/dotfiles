@@ -40,5 +40,5 @@ export EDITOR=vi
 export VISUAL=$EDITOR
 
 # local config file
-[[ -s ~/.dotfiles/zsh/zsh.local ]] && source ~/.dotfiles/zsh.local
+[[ -s ~/.dotfiles/zsh.local ]] && source ~/.dotfiles/zsh.local
 
