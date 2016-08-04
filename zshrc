@@ -1,5 +1,5 @@
 # tab titles
-precmd () {print -Pn "\e]0;%m\a"}
+precmd() {print -Pn "\e]0;%m\a"}
 
 # prompt information
 git_prompt_info() {
@@ -36,7 +36,7 @@ alias ipython='ipython --pylab'
 bindkey -v
 
 # set vim as default
-export EDITOR=vi
+export EDITOR=vim
 export VISUAL=$EDITOR
 
 # local config file

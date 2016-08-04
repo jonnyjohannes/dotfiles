@@ -31,5 +31,5 @@ export EDITOR=vi
 export VISUAL=$EDITOR
 
 # local config file
-[[ -s ~/.dotfiles/bash/bash.local ]] && source ~/.dotfiles/bash/bash.local
+[[ -s ~/.dotfiles/bash.local ]] && source ~/.dotfiles/bash.local
 
