@@ -8,6 +8,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'jonnyjohannes/vim-charmm'
 Plugin 'jonnyjohannes/vim-colors-solarized'
@@ -16,6 +17,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'lervag/vimtex'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rails'
 call vundle#end()
 
