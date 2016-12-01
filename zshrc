@@ -9,7 +9,7 @@ git_prompt_info() {
   fi
 }
 setopt promptsubst
-export PS1='[%{$fg_bold[magenta]%}%~%{$reset_color%}]$(git_prompt_info)> '
+export PS1='[%{$fg_bold[cyan]%}%~%{$reset_color%}]$(git_prompt_info)> '
 
 # enable colours
 autoload -U colors
