@@ -46,11 +46,11 @@ set shiftround                    " use multiple of shiftwidth
 set expandtab                     " use softtabs
 
 " airline config
+let g:airline_theme='quantum'
 let g:airline_extensions = []
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline_theme='quantum'
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_x = ''
 let g:airline_section_y = ''
 let g:airline_section_z = '%l/%L : %c'
+
