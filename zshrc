@@ -20,9 +20,10 @@ export CLICOLOR=1
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/src/bin:$HOME/src/cuby:$PATH
 
-# rbenv and pyenv initialization
+# environment managers
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
+eval "$(nodenv init -)"
 
 # autocompletion scripts
 source $HOME/.dotfiles/git/git-completion.bash
