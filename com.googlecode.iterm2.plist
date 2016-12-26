@@ -743,7 +743,7 @@
 	<key>NSColorPickerPageableNameListDefaults</key>
 	<string>1Apple</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/documents</string>
+	<string>~</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -791,11 +791,11 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>972 768 620 392 0 0 2560 1417 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>789 508 796 473 0 0 2560 1417 </string>
+	<string>503 357 796 473 0 0 1920 1177 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1920 1178 0 0 1920 1177 </string>
+	<string>4 0 1780 1176 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>31 1 1780 1176 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1105,7 +1105,8 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
-			<string></string>
+			<string>tmux attach -t base || tmux new -s base
+tmux attach -t base || tmux new -s base</string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -2494,6 +2495,10 @@ tmux attach -t base || tmux new -s base</string>
 	<string>6F103F25-4B32-4E49-BCE6-A7415E47515D</string>
 	<key>NoSyncLastTipTime</key>
 	<real>481567261.68693697</real>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>1</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<true/>
 	<key>NoSyncSuppressAnnyoingBellOffer</key>
@@ -2596,7 +2601,7 @@ tmux attach -t base || tmux new -s base</string>
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/carbon/documents</string>
+	<string>/Users/carbon/.dotfiles/</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnQuit</key>
@@ -2618,7 +2623,7 @@ tmux attach -t base || tmux new -s base</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-12-20T17:03:32Z</date>
+	<date>2016-12-26T21:26:24Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>
