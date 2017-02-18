@@ -1,0 +1,15 @@
+# ~/.tmuxinator/manuscript.yml
+
+name: manuscript
+root: ~/molsim/manuscript
+
+pre: open citations.bib; open manuscript.pdf
+
+windows:
+  - manuscript:
+      layout: tiled
+      panes:
+        -
+        - 
+        -
+

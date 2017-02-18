@@ -1,0 +1,33 @@
+# ~/.tmuxinator/phoenix
+#
+
+<%
+  @projects = {
+    connect: '~/sites/appcolony/makeshift/connect'
+  }
+
+  @name = @args[0]
+  @root = @projects[@name.to_sym]
+  @port = @args[1] || 4040
+  @pre = if @root.include?('appcolony')
+    "heroku accounts:set appcolony; open /Applications/Slack.app; open /Applications/Google\\ Chrome.app;"
+  else
+    "heroku accounts:set jonnyjohannes; open /Applications/Google\\ Chrome.app;"
+  end
+%>
+
+name: <%= @name %>
+
+root: <%= @root %>
+
+pre: <%= @pre %>
+
+windows:
+  - <%= @name %>:
+      layout: f44d,425x115,0,0{212x115,0,0,1,212x115,213,0[212x57,213,0,5,212x57,213,58{106x57,213,58,6,105x57,320,58,7}]}
+      panes:
+        -
+        -
+        - iex -S mix
+        - PORT=<%= @port %> mix phoenix.server
+

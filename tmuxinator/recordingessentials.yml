@@ -1,0 +1,16 @@
+# ~/.tmuxinator/recordingessentials.yml
+
+name: recordingessentials
+root: ~/sites/recordingessentials/recordingessentials
+
+windows:
+  - recordingessentials:
+      layout: main-vertical
+      panes:
+        -
+        -
+  - recordingessentials-logs:
+      layout: even-horizontal
+      panes:
+        - tail -n 100 -f /var/log/apache2/access_log
+        -
