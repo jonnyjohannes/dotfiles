@@ -3,15 +3,15 @@
 
 <%
   @projects = {
-    makeshift: '~/sites/appcolony/makeshift/web',
-    vandelay: '~/sites/appcolony/makeshift/vandelay',
-    id: '~/sites/appcolony/makeshift/id',
-    hattrick: '~/sites/appcolony/hockeycanada/hat-trick-api',
-    teamcanada: '~/sites/appcolony/hockeycanada/team-canada-api',
-    pintpass: '~/sites/appcolony/pintpass/beer-passport',
-    lydiahol: '~/sites/lydiahol/lydia',
-    turningpoint: '~/sites/turningpoint/turningpoint',
-    phas: '~/sites/archive/phas/symposium',
+    makeshift: '~/src/appcolony/makeshift/web',
+    vandelay: '~/src/appcolony/makeshift/vandelay',
+    id: '~/src/appcolony/makeshift/id',
+    hattrick: '~/src/appcolony/hockeycanada/hat-trick-api',
+    teamcanada: '~/src/appcolony/hockeycanada/team-canada-api',
+    pintpass: '~/src/appcolony/pintpass/beer-passport',
+    lydiahol: '~/src/lydiahol/lydia',
+    turningpoint: '~/src/turningpoint/turningpoint',
+    phas: '~/src/archive/phas/symposium',
   }
 
   @name = @args[0]

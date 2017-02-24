@@ -1,7 +1,7 @@
 # ~/.tmuxinator/recordingessentials.yml
 
 name: recordingessentials
-root: ~/sites/recordingessentials/recordingessentials
+root: ~/src/recordingessentials/recordingessentials
 
 windows:
   - recordingessentials:

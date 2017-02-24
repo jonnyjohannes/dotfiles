@@ -3,7 +3,7 @@
 
 <%
   @projects = {
-    connect: '~/sites/appcolony/makeshift/connect'
+    connect: '~/src/appcolony/makeshift/connect'
   }
 
   @name = @args[0]
