@@ -12,6 +12,7 @@
     lydiahol: '~/src/lydiahol/lydia',
     turningpoint: '~/src/turningpoint/turningpoint',
     phas: '~/src/archive/phas/symposium',
+    monstercards: '~/src/monstercards',
   }
 
   @name = @args[0]
