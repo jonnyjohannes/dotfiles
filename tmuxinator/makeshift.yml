@@ -1,0 +1,58 @@
+# ~/.tmuxinator/makeshift
+#
+
+name: 'makeshift'
+
+pre: "heroku accounts:set appcolony; open /Applications/Slack.app; open /Applications/Google\\ Chrome.app;"
+
+windows:
+  - admin:
+      root: '~/src/appcolony/makeshift/web'
+      layout: 5b73,278x82,0,0{139x82,0,0,1,138x82,140,0[138x41,140,0,5,138x40,140,42{69x40,140,42,6,68x40,210,42,7}]}
+      panes:
+        -
+        -
+        - rails c
+        - rails s --port=3000
+
+  - employee:
+      root: '~/src/appcolony/makeshift/employee-web'
+      layout: 5b73,278x82,0,0{139x82,0,0,1,138x82,140,0[138x41,140,0,5,138x40,140,42{69x40,140,42,6,68x40,210,42,7}]}
+      panes:
+        -
+        -
+        - middleman console
+        - middleman server --port=4567
+
+  - vandelay:
+      root: '~/src/appcolony/makeshift/vandelay'
+      layout: 5b73,278x82,0,0{139x82,0,0,1,138x82,140,0[138x41,140,0,5,138x40,140,42{69x40,140,42,6,68x40,210,42,7}]}
+      panes:
+        -
+        -
+        - rails c
+        - rails s --port=3070
+
+  - id:
+      root: '~/src/appcolony/makeshift/id'
+      layout: 5b73,278x82,0,0{139x82,0,0,1,138x82,140,0[138x41,140,0,5,138x40,140,42{69x40,140,42,6,68x40,210,42,7}]}
+      panes:
+        -
+        -
+        - rails c
+        - rails s --port=3001
+
+  - hr:
+      root: '~/src/appcolony/makeshift/hr'
+      layout: 5b73,278x82,0,0{139x82,0,0,1,138x82,140,0[138x41,140,0,5,138x40,140,42{69x40,140,42,6,68x40,210,42,7}]}
+      panes:
+        -
+        -
+        - rails c
+        - rails s --port=3002
+
+ 
+ 
+ 
+ 
+ 
