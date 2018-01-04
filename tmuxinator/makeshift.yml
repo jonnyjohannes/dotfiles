@@ -3,12 +3,12 @@
 
 name: 'makeshift'
 
-pre: "heroku accounts:set appcolony; open /Applications/Slack.app; open /Applications/Google\\ Chrome.app;"
+on_project_start: "heroku accounts:set appcolony; open /Applications/Slack.app; open /Applications/Google\\ Chrome.app;"
 
 windows:
   - admin:
       root: '~/src/appcolony/makeshift/web'
-      layout: 5b73,278x82,0,0{139x82,0,0,1,138x82,140,0[138x41,140,0,5,138x40,140,42{69x40,140,42,6,68x40,210,42,7}]}
+      layout: 9fe6,425x114,0,0{212x114,0,0,0,212x114,213,0[212x57,213,0,2,212x56,213,58{106x56,213,58,3,105x56,320,58,4}]}
       panes:
         -
         -
@@ -17,7 +17,7 @@ windows:
 
   - employee:
       root: '~/src/appcolony/makeshift/employee-web'
-      layout: 5b73,278x82,0,0{139x82,0,0,1,138x82,140,0[138x41,140,0,5,138x40,140,42{69x40,140,42,6,68x40,210,42,7}]}
+      layout: dfe5,425x114,0,0{212x114,0,0,0,212x114,213,0[212x57,213,0,1,212x56,213,58{106x56,213,58,2,105x56,320,58,3}]}
       panes:
         -
         -
@@ -26,7 +26,7 @@ windows:
 
   - vandelay:
       root: '~/src/appcolony/makeshift/vandelay'
-      layout: 5b73,278x82,0,0{139x82,0,0,1,138x82,140,0[138x41,140,0,5,138x40,140,42{69x40,140,42,6,68x40,210,42,7}]}
+      layout: dfe5,425x114,0,0{212x114,0,0,0,212x114,213,0[212x57,213,0,1,212x56,213,58{106x56,213,58,2,105x56,320,58,3}]}
       panes:
         -
         -
@@ -35,7 +35,7 @@ windows:
 
   - id:
       root: '~/src/appcolony/makeshift/id'
-      layout: 5b73,278x82,0,0{139x82,0,0,1,138x82,140,0[138x41,140,0,5,138x40,140,42{69x40,140,42,6,68x40,210,42,7}]}
+      layout: dfe5,425x114,0,0{212x114,0,0,0,212x114,213,0[212x57,213,0,1,212x56,213,58{106x56,213,58,2,105x56,320,58,3}]}
       panes:
         -
         -
@@ -44,15 +44,10 @@ windows:
 
   - hr:
       root: '~/src/appcolony/makeshift/hr'
-      layout: 5b73,278x82,0,0{139x82,0,0,1,138x82,140,0[138x41,140,0,5,138x40,140,42{69x40,140,42,6,68x40,210,42,7}]}
+      layout: dfe5,425x114,0,0{212x114,0,0,0,212x114,213,0[212x57,213,0,1,212x56,213,58{106x56,213,58,2,105x56,320,58,3}]}
       panes:
         -
         -
         - rails c
         - rails s --port=3002
 
- 
- 
- 
- 
- 

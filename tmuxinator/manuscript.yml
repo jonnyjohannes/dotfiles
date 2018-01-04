@@ -3,7 +3,7 @@
 name: manuscript
 root: ~/molsim/manuscript
 
-pre: open citations.bib; open manuscript.pdf
+on_project_start: open citations.bib; open manuscript.pdf
 
 windows:
   - manuscript:

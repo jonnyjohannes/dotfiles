@@ -29,7 +29,7 @@ name: <%= @name %>
 
 root: <%= @root %>
 
-pre: <%= @pre %>
+on_project_start: <%= @pre %>
 
 windows:
   - <%= @name %>:
