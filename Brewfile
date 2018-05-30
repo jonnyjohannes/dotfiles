@@ -7,6 +7,7 @@ tap "homebrew/services"
 tap "caskroom/cask"
 brew "autoconf"
 brew "awscli"
+brew "aws-elasticbeanstalk"
 brew "cmake"
 brew "doxygen"
 brew "elasticsearch", restart_service: true
