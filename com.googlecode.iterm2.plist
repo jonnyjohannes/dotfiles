@@ -791,9 +791,11 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 126 606 469 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>683 578 796 473 0 0 2560 1417 </string>
+	<string>683 622 770 429 0 0 2560 1417 </string>
+	<key>NSWindow Frame UKCrashReporter</key>
+	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 2560 1418 0 0 2560 1417 </string>
+	<string>0 0 1680 1028 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>4 239 1780 1178 0 0 2560 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_00E224DE-CE0A-42AE-ABC0-695004B73FFD</key>
@@ -2549,7 +2551,7 @@ tmux attach -t base || tmux new -s base</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-03-29T20:24:49Z</date>
+	<date>2018-05-29T18:55:17Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -2578,6 +2580,8 @@ tmux attach -t base || tmux new -s base</string>
 	<integer>10</integer>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
+	<key>UKCrashReporterLastCrashReportDate</key>
+	<real>1525962624</real>
 	<key>URLHandlersByGuid</key>
 	<dict/>
 	<key>UseBorder</key>
@@ -2598,6 +2602,8 @@ tmux attach -t base || tmux new -s base</string>
 	<string>][='o90y6 e3w21</string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
