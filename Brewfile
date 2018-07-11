@@ -29,6 +29,7 @@ brew "postgresql", restart_service: true, link: false
 brew "postgresql@9.6", restart_service: true, link: true
 brew "pyenv"
 brew "sqlite"
+brew "redis"
 brew "ruby-build"
 brew "rbenv"
 brew "rbenv-gemset"
