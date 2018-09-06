@@ -14,8 +14,8 @@ Plugin 'jonnyjohannes/vim-charmm'
 Plugin 'jonnyjohannes/vim-demon'
 Plugin 'kien/ctrlp.vim'
 Plugin 'lervag/vimtex'
-Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rails'
 Plugin 'tyrannicaltoucan/vim-quantum'
@@ -25,8 +25,14 @@ call vundle#end()
 " syntax highlighting
 syntax enable
 set background=dark
+let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+set termguicolors
+let g:quantum_black=1
 colorscheme quantum
-hi Normal ctermbg=232
+hi! Normal guibg=NONE
+hi! Search guibg=HotPink
+hi! IncSearch guibg=HotPink
 
 filetype plugin indent on         " Turn on file type detection.
 
