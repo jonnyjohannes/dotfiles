@@ -31,8 +31,8 @@ set termguicolors
 let g:quantum_black=1
 colorscheme quantum
 hi! Normal guibg=NONE
-hi! Search guibg=HotPink
-hi! IncSearch guibg=HotPink
+hi! Search guibg=#f25fa8
+hi! IncSearch guibg=#f25fa8
 
 filetype plugin indent on         " Turn on file type detection.
 
