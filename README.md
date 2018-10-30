@@ -4,7 +4,6 @@ JonnyJohannes's Dotfiles
 Overview
 --------
 
-  - bash: aliases, configuration, environment settings
   - input: vim bindings for general inputs
   - git: config file, autocomplete script
   - tmux: terminal multiplexer configurations
@@ -15,7 +14,6 @@ Installation
 ------------
     
     git clone git://github.com/jonnyjohannes/dotfiles.git ~/.dotfiles
-    ln -s ~/.dotfiles/bashrc ~/.bashrc
     ln -s ~/.dotfiles/inputrc ~/.inputrc
     ln -s ~/.dotfiles/gitconfig ~/.gitconfig
     ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
