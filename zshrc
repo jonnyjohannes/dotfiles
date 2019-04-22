@@ -17,13 +17,14 @@ colors
 export CLICOLOR=1
 
 # PATHs
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=$HOME/src/bin:$HOME/src/cuby:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/src/bin:$PATH
 
 # environment managers
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 eval "$(nodenv init -)"
+eval "$(jenv init -)"
 
 # autocompletion scripts
 source $HOME/.dotfiles/git/git-completion.bash
@@ -31,7 +32,6 @@ source $HOME/.dotfiles/git/git-completion.bash
 # aliases
 alias ls='ls -G'
 alias vi='vim'
-alias ipython='ipython --pylab'
 
 # keybindings
 bindkey -v
