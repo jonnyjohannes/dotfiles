@@ -30,6 +30,7 @@ eval "$(jenv init -)"
 source $HOME/.dotfiles/git/git-completion.bash
 
 # aliases
+alias grep='grep --color'
 alias ls='ls -G'
 alias vi='vim'
 
