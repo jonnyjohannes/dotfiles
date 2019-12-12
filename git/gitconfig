@@ -7,4 +7,4 @@
   editor       = /usr/local/bin/vim
   excludesfile = ~/.dotfiles/git/gitignore
 [include]
-  path = ~/.dotfiles/gitconfig.local
+  path = ~/.dotfiles/git/gitconfig.local
