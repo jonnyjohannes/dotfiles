@@ -1,6 +1,5 @@
 # vim plugins
 !bin
-vim
 
 # local dotfiles
 *.local
