@@ -8,3 +8,5 @@
   excludesfile = ~/.dotfiles/git/gitignore
 [include]
   path = ~/.dotfiles/git/gitconfig.local
+[pull]
+  ff = only
