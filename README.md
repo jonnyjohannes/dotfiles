@@ -1,11 +1,12 @@
 Jonny Johannes's Dotfiles
-========================
+=========================
 
 Overview
 --------
 
   - brew: homebrew base hacking essentials
   - git: gitconfig, gitignore, git autocomplete
+  - iterm2: iterm2 plist
   - tmux: tmux.conf
   - vim: vimrc
   - zsh: inputrc, zshrc
