@@ -1,23 +1,22 @@
-JonnyJohannes's Dotfiles
+Jonny Johannes's Dotfiles
 ========================
-  
+
 Overview
 --------
 
-  - input: vim bindings for general inputs
-  - git: config file, autocomplete script
-  - tmux: terminal multiplexer configurations
-  - vim: syntax highlighting, colour theme, etc
-  - zsh: aliases, configuration, environment settings
+  - brew: homebrew base hacking essentials
+  - git: gitconfig, gitignore, git autocomplete
+  - tmux: tmux.conf
+  - vim: vimrc
+  - zsh: inputrc, zshrc
 
 Usage
 -----
-    
+
     git clone git://github.com/jonnyjohannes/dotfiles.git ~/.dotfiles
-    ln -s ~/.dotfiles/zsh/inputrc ~/.inputrc
     ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
-    ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
     ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
+    ln -s ~/.dotfiles/zsh/inputrc ~/.inputrc
     ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
     vim +PluginInstall +qall
 
