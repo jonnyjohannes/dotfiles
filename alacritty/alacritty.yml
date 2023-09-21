@@ -1,0 +1,37 @@
+window:
+  decorations: none
+  padding:
+    x: 10
+    y: 10
+  startup_mode: Maximized
+
+font:
+  normal:
+    family: Source Code Pro 
+  size: 10.0
+
+colors:
+  primary:
+    background: '0x2D2A2E'
+    foreground: '0xfff1f3'
+  normal:
+    black:   '0x2c2525'
+    red:     '0xfd6883'
+    green:   '0xadda78'
+    yellow:  '0xf9cc6c'
+    blue:    '0xf38d70'
+    magenta: '0xa8a9eb'
+    cyan:    '0x85dacc'
+    white:   '0xfff1f3'
+  bright:
+    black:   '0x72696a'
+    red:     '0xfd6883'
+    green:   '0xadda78'
+    yellow:  '0xf9cc6c'
+    blue:    '0xf38d70'
+    magenta: '0xa8a9eb'
+    cyan:    '0x85dacc'
+    white:   '0xfff1f3'
+
+selection:
+  save_to_clipboard: true

@@ -16,6 +16,7 @@ Usage
 
     git clone git://github.com/jonnyjohannes/dotfiles.git ~/.dotfiles
     ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
+    ln -s ~/.dotfiles/alacritty/alacritty.yml ~/.alacritty.yml
     ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
     ln -s ~/.dotfiles/zsh/inputrc ~/.inputrc
     ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
