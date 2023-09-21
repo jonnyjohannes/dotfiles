@@ -10,9 +10,12 @@ font:
     family: Source Code Pro 
   size: 10.0
 
+selection:
+  save_to_clipboard: true
+
 colors:
   primary:
-    background: '0x2D2A2E'
+    background: '0x000000'
     foreground: '0xfff1f3'
   normal:
     black:   '0x2c2525'
@@ -32,6 +35,9 @@ colors:
     magenta: '0xa8a9eb'
     cyan:    '0x85dacc'
     white:   '0xfff1f3'
+  cursor:
+    text: CellBackground
+    cursor: '0xe068a5'
+  selection:
+    background: '0xfdf9a4'
 
-selection:
-  save_to_clipboard: true
