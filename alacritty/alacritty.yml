@@ -8,7 +8,10 @@ window:
 font:
   normal:
     family: Source Code Pro 
-  size: 10.0
+  size: 12.0
+  offset:
+    x: 1
+    y: 2
 
 selection:
   save_to_clipboard: true
