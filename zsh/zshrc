@@ -32,13 +32,16 @@ source $HOME/.dotfiles/git/git-completion.bash
 # aliases
 alias grep='grep --color'
 alias ls='ls -G'
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
 
 # keybindings
 bindkey -v
+bindkey '^R' history-incremental-search-backward
 
-# set vim as default
-export EDITOR=vim
+
+# set nvim as default
+export EDITOR=vi
 export VISUAL=$EDITOR
 
 # local config file
