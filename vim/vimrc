@@ -9,18 +9,10 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'jonnyjohannes/vim-charmm'
-Plugin 'jonnyjohannes/vim-demon'
 Plugin 'kien/ctrlp.vim'
-Plugin 'lervag/vimtex'
-Plugin 'mxw/vim-jsx'
-Plugin 'pangloss/vim-javascript'
 Plugin 'sainnhe/sonokai'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
 Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
 
 " colours
@@ -56,5 +48,4 @@ let g:airline_section_z = '%l/%L : %c'
 
 " filetypes
 filetype plugin indent on
-au BufRead,BufNewFile *.hql* set filetype=sql
 let g:markdown_fenced_languages = ['java', 'python', 'sh']
