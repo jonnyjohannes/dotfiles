@@ -18,7 +18,7 @@ call vundle#end()
 " colours
 syntax enable
 set termguicolors
-let g:sonokai_style = 'maia'
+let g:sonokai_style = 'shusia'
 colorscheme sonokai
 
 " commands
