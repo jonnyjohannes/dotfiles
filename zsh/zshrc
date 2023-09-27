@@ -26,9 +26,6 @@ if command -v nodenv &> /dev/null; then eval "$(nodenv init -)"; fi
 if command -v pyenv  &> /dev/null; then eval "$(pyenv init -)"; fi
 if command -v jenv   &> /dev/null; then eval "$(jenv init -)"; fi
 
-# autocompletion scripts
-source $HOME/.dotfiles/git/git-completion.bash
-
 # aliases
 alias grep='grep --color'
 alias ls='ls -G'
@@ -39,6 +36,14 @@ alias vim='nvim'
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+# hombrew zsh autocompletion
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
 
 # set nvim as default
 export EDITOR=vi
