@@ -1,0 +1,7 @@
+# application shortcuts
+
+alt + cmd - a : open -a Arc
+alt + cmd - l : open -a ScreenSaverEngine
+alt + cmd - s : open -a Slack
+alt + cmd - t : open -a Alacritty
+cmd - space : open -a Alfred\ 5
