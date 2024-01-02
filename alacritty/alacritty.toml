@@ -1,0 +1,52 @@
+[colors.bright]
+black = "0x72696a"
+blue = "0xf38d70"
+cyan = "0x85dacc"
+green = "0xadda78"
+magenta = "0xa8a9eb"
+red = "0xfd6883"
+white = "0xfff1f3"
+yellow = "0xf9cc6c"
+
+[colors.cursor]
+cursor = "0xe068a5"
+text = "CellBackground"
+
+[colors.normal]
+black = "0x2c2525"
+blue = "0xf38d70"
+cyan = "0x85dacc"
+green = "0xadda78"
+magenta = "0xa8a9eb"
+red = "0xfd6883"
+white = "0xfff1f3"
+yellow = "0xf9cc6c"
+
+[colors.primary]
+background = "0x000000"
+foreground = "0xfff1f3"
+
+[colors.selection]
+background = "0x4c4c00"
+text = "CellForeground"
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "Source Code Pro"
+
+[font.offset]
+x = 1
+y = 2
+
+[selection]
+save_to_clipboard = true
+
+[window]
+decorations = "none"
+startup_mode = "Maximized"
+
+[window.padding]
+x = 10
+y = 10
