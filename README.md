@@ -4,21 +4,27 @@ Jonny Johannes's Dotfiles
 Overview
 --------
 
-  - brew: homebrew base hacking essentials
-  - git: gitconfig, gitignore, git autocomplete
-  - iterm2: iterm2 plist
+  - brew: homebrew hacking essentials
+  - git: gitconfig, gitignore
   - tmux: tmux.conf
-  - vim: vimrc
-  - zsh: inputrc, zshrc
+  - vim: (neo)vimrc
+  - zsh: zshrc
 
 Usage
 -----
 
+```sh
     git clone git://github.com/jonnyjohannes/dotfiles.git ~/.dotfiles
-    ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
-    ln -s ~/.dotfiles/alacritty/alacritty.yml ~/.alacritty.yml
+
+    ## $XDG
+    ln -s ~/.dotfiles/alacritty ~/.config
+    ln -s ~/.dotfiles/vim/vimrc ~/.config/nvim/init.vim
+    ln -s ~/.dotfiles/skhd ~/.config
+    ln -s ~/.dotfiles/tmux ~/.config
+
+    ## $HOME
+    ln -s ~/.dotfiles/git ~/.gitconfig
     ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
-    ln -s ~/.dotfiles/zsh/inputrc ~/.inputrc
     ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
     vim +PluginInstall +qall
-
+```

@@ -40,7 +40,6 @@ bindkey '^R' history-incremental-search-backward
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-
   autoload -Uz compinit
   compinit
 fi
