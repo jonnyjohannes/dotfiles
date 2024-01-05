@@ -20,6 +20,7 @@ Usage
     ln -s ~/.dotfiles/alacritty ~/.config
     ln -s ~/.dotfiles/vim/vimrc ~/.config/nvim/init.vim
     ln -s ~/.dotfiles/skhd ~/.config
+    ln -s ~/.dotfiles/starship/starship.toml ~/.config/starship.toml
     ln -s ~/.dotfiles/tmux ~/.config
 
     ## $HOME
