@@ -15,16 +15,12 @@ style = "blue"
 truncate_to_repo = false
 truncation_length = 0
 
-[character]
-success_symbol = "[❯](purple)"
-error_symbol = "[❯](red)"
-
 [fill]
 symbol = ' '
 
 [git_branch]
 format = "[$branch]($style)"
-style = "cyan"
+style = "purple"
 
 [git_status]
 style = "bright-black"
@@ -34,6 +30,6 @@ style = "bright-black"
 
 [time]
 disabled = false
-format = '[$time]($style) '
+format = '[$time]($style)'
 style = 'yellow'
 time_format = '%F %T'
