@@ -1,7 +1,10 @@
 # application shortcuts
 
 alt + cmd - a : open -a Arc
+alt + cmd - i : open -a IntelliJ\ IDEA\ CE
 alt + cmd - l : open -a ScreenSaverEngine
 alt + cmd - s : open -a Slack
 alt + cmd - t : open -a Alacritty
+
+# alfred override spotlight
 cmd - space : open -a Alfred\ 5
