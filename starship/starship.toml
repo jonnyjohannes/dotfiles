@@ -12,7 +12,7 @@ style = 'blue'
 
 [git_status]
 format = '[\[$all_status$ahead_behind\]]($style) '
-style = 'bright-black'
+style = 'purple'
 
 [time]
 disabled = false
