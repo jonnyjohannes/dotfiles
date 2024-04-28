@@ -17,7 +17,10 @@ if command -v pyenv  &> /dev/null; then eval "$(pyenv init -)"; fi
 if command -v jenv   &> /dev/null; then eval "$(jenv init -)"; fi
 
 # aliases
-alias grep='grep --color'
+export FZF_DEFAULT_OPTS='--reverse'
+export BAT_THEME='ansi'
+alias grep='rg'
+alias cat='bat'
 alias ls='ls -G'
 alias vi='nvim'
 alias vim='nvim'
@@ -35,7 +38,7 @@ then
 fi
 
 # set nvim as default
-export EDITOR=vi
+export EDITOR=nvim
 export VISUAL=$EDITOR
 
 # local config file
