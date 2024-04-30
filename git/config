@@ -1,0 +1,5 @@
+[user]
+  name  = jonnyjohannes
+  email = jonny@jonnyjohannes.com
+[pull]
+  ff = only
