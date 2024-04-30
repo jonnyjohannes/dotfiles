@@ -11,35 +11,32 @@ export PATH=$HOME/src/bin:$PATH
 eval "$(starship init zsh)"
 
 # environment managers
-if command -v rbenv  &> /dev/null; then eval "$(rbenv init -)"; fi
-if command -v nodenv &> /dev/null; then eval "$(nodenv init -)"; fi
-if command -v pyenv  &> /dev/null; then eval "$(pyenv init -)"; fi
-if command -v jenv   &> /dev/null; then eval "$(jenv init -)"; fi
+# if command -v rbenv  &> /dev/null; then eval "$(rbenv init -)"; fi
+# if command -v nodenv &> /dev/null; then eval "$(nodenv init -)"; fi
+# if command -v pyenv  &> /dev/null; then eval "$(pyenv init -)"; fi
+# if command -v jenv   &> /dev/null; then eval "$(jenv init -)"; fi
 
 # aliases
-export FZF_DEFAULT_OPTS='--reverse'
-export BAT_THEME='ansi'
-alias grep='rg'
-alias cat='bat'
+alias grep='grep --color'
 alias ls='ls -G'
 alias vi='nvim'
-alias vim='nvim'
 
 # keybindings
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+export FZF_DEFAULT_OPTS='--reverse --border --height 60%'
+
 # hombrew zsh autocompletion
 if type brew &>/dev/null
 then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-  autoload -Uz compinit
-  compinit
+   autoload -Uz compinit
+   compinit
 fi
 
 # set nvim as default
 export EDITOR=nvim
-export VISUAL=$EDITOR
+export VISUAL=nvim
 
 # local config file
 [[ -s ~/.dotfiles/zsh/zsh.local ]] && source ~/.dotfiles/zsh/zsh.local

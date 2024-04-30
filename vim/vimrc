@@ -8,8 +8,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'junegunn/fzf.vim'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'sainnhe/sonokai'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'tpope/vim-fugitive'
@@ -48,18 +49,8 @@ let g:airline_section_y = ''
 let g:airline_section_z = '%l/%L : %c'
 
 " fzf
-nnoremap <C-p> :Rg<CR>
-set rtp+=/opt/homebrew/opt/fzf
-let $FZF_DEFAULT_OPTS = '--reverse'
-let g:fzf_layout = {
-  \ 'window': {
-    \ 'width': 0.9,
-    \ 'height': 0.6,
-    \ 'absolute': v:true,
-    \ 'yoffset': 0.0,
-    \ 'border': 'sharp'
-  \ }
-\ }
+nnoremap <C-t> :Files<CR>
+nnoremap <c-/> :Rg<CR>
 
 " filetypes
 filetype plugin indent on
