@@ -1,5 +1,9 @@
 [user]
   name  = Jonny Johannes
   email = jonny@jonnyjohannes.com
+[color]
+  ui = true
+[include]
+  path = ~/.dotfiles/git/config.local
 [pull]
   ff = only
