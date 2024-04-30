@@ -1,6 +1,6 @@
-" Vim configuration.
-" Copy or symlink to ~/.vimrc.
-"
+" (neo)vim configuration
+" for vanilla vim:
+"   ln -s ~/.dotfiles/nvim/init.vim ~/.vimrc
 set nocompatible
 
 " plugins
