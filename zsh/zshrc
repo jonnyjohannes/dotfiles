@@ -8,6 +8,7 @@ export PATH=/opt/homebrew/bin:$PATH
 export PATH=$HOME/src/bin:$PATH
 
 # init starship.toml configs
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
 # environment managers
