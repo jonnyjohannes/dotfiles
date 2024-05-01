@@ -24,22 +24,18 @@ let g:sonokai_style = 'shusia'
 colorscheme sonokai
 hi Visual ctermbg=237 guibg=#4c4c00
 
-" commands
-set backspace=indent,eol,start    " Intuitive backspacing.
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
 set number                        " Show line numbers.
 set incsearch                     " Highlight matches as you type.
 set hlsearch                      " Highlight matches.
-set laststatus=2                  " Show the status line all the time
 set splitbelow                    " split horizontal pane to the bottom
 set splitright                    " split vertical pane to the right
 set clipboard=unnamed             " Share system clipboard
-set tabstop=2                     " tab size: 2
-set shiftwidth=2                  " tab size with `<<`/`>>`: 2
 set shiftround                    " use multiple of shiftwidth
 set expandtab                     " use softtabs
 set mouse=v
+set startofline
 
 " airline
 let g:airline_theme='sonokai'
@@ -50,9 +46,4 @@ let g:airline_section_z = '%l/%L : %c'
 
 " fzf
 nnoremap <C-t> :Files<CR>
-nnoremap <c-/> :Rg<CR>
-
-" filetypes
-filetype plugin indent on
-let g:markdown_fenced_languages = ['java', 'python', 'sh', 'sql']
-
+nnoremap <C-f> :Rg<CR>
