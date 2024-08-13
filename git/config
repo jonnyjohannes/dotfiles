@@ -4,6 +4,6 @@
 [color]
   ui = true
 [include]
-  path = ~/.dotfiles/git/config.local
+  path = config.local
 [pull]
   ff = only
