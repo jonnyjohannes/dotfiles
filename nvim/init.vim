@@ -3,6 +3,9 @@
 "   ln -s ~/.dotfiles/nvim/init.vim ~/.vimrc
 set nocompatible
 
+" Leader keymap
+let mapleader = ','
+
 " plugins
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -45,5 +48,5 @@ let g:airline_section_y = ''
 let g:airline_section_z = '%l/%L : %c'
 
 " fzf
-nnoremap <C-t> :Files<CR>
-nnoremap <C-f> :Rg<CR>
+nnoremap <Leader>t :GFiles<CR>
+nnoremap <Leader>f :Rg<CR>
