@@ -1,15 +1,16 @@
-# vim ctrl arrows
-ctrl - h : skhd -k "left"
-ctrl - j : skhd -k "down"
-ctrl - k : skhd -k "up"
-ctrl - l : skhd -k "right"
-
 # application shortcuts
 alt + cmd - a : open -a Arc
-alt + cmd - i : open -a IntelliJ\ IDEA\ CE
 alt + cmd - l : open -a ScreenSaverEngine
 alt + cmd - s : open -a Slack
 alt + cmd - t : open -a Alacritty
+cmd + shift - s : open -a /System/Applications/Utilities/Screenshot.app
+
+# vim ctrl arrows
+ctrl + cmd - h : skhd -k "left"
+ctrl + cmd - j : skhd -k "down"
+ctrl + cmd - k : skhd -k "up"
+ctrl + cmd - l : skhd -k "right"
 
 # alfred override spotlight
 cmd - space : open -a Alfred\ 5
+
