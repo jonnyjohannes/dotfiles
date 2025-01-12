@@ -7,8 +7,8 @@ export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
 # environment managers
-if command -v rbenv  &> /dev/null; then eval "$(rbenv init -)"; fi
-if command -v nodenv &> /dev/null; then eval "$(nodenv init -)"; fi
+# if command -v rbenv  &> /dev/null; then eval "$(rbenv init -)"; fi
+# if command -v nodenv &> /dev/null; then eval "$(nodenv init -)"; fi
 if command -v pyenv  &> /dev/null; then eval "$(pyenv init -)"; fi
 if command -v jenv   &> /dev/null; then eval "$(jenv init -)"; fi
 
@@ -17,20 +17,19 @@ alias grep='grep --color'
 alias ls='ls -G'
 alias vi='nvim'
 
+# fzf
+source $HOME/.config/zsh/fzf.zsh
+
 # keybindings
 bindkey -v
-
-# fzf
-eval "$(fzf --zsh)"
-export FZF_DEFAULT_OPTS='--reverse --border --height=60%'
 
 # autocompletion
 autoload -U compinit
 compinit
 
-# set nvim as default
-export EDITOR=nvim
-export VISUAL=nvim
+# set vim as default
+export EDITOR=vim
+export VISUAL=vim
 
 # local config file
 [[ -s ~/.config/zsh/zsh.local ]] && source ~/.config/zsh/zsh.local
