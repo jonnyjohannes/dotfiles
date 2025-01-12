@@ -34,7 +34,8 @@ require('lazy').setup({
     { 'mrjones2014/smart-splits.nvim' },
     { 'neovim/nvim-lspconfig' },
     { 'nvim-lualine/lualine.nvim' },
-    { "nvim-tree/nvim-web-devicons" },
+    { 'nvim-tree/nvim-tree.lua' },
+    { 'nvim-tree/nvim-web-devicons' },
     { 'nvim-treesitter/nvim-treesitter' },
     { 'sheerun/vim-polyglot' },
     { 'tpope/vim-fugitive' },
@@ -141,3 +142,7 @@ require'nvim-treesitter.configs'.setup({
   },
 })
 
+-- nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+require("nvim-tree").setup()
