@@ -25,4 +25,7 @@ Session.vim
 tags
 
 # jetbrains
-.idea
+.idea/
+
+# node
+node_modules/
