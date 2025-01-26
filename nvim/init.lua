@@ -56,8 +56,8 @@ fzfLua.setup({
 vim.keymap.set('n', '<Leader>t', fzfLua.files, { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>f', fzfLua.grep_project, { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>b', fzfLua.buffers, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>x', fzfLua.builtin, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>c', fzfLua.commands, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>x', fzfLua.command_history, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>/', fzfLua.search_history, { noremap = true, silent = true })
 
 -- splits
 local smartSplits = require('smart-splits')
@@ -80,7 +80,7 @@ vim.keymap.set('n', '<leader><leader>k', smartSplits.swap_buf_up)
 vim.keymap.set('n', '<leader><leader>l', smartSplits.swap_buf_right)
 
 -- lualine
-require('lualine').setup {
+require('lualine').setup({
   options = {
     theme = 'monokai-pro',
     section_separators = {},
@@ -102,7 +102,7 @@ require('lualine').setup {
     lualine_y = {},
     lualine_z = {},
   },
-}
+})
 
 -- alpha
 local alpha = require('alpha')
@@ -130,12 +130,12 @@ alpha.setup(dashboard.opts)
 require'nvim-treesitter.configs'.setup({
   ensure_installed = {
     "java",
-    "python",
-    "vim",
-    "lua",
     "javascript",
+    "lua",
     "markdown",
     "markdown_inline",
+    "python",
+    "vim",
   },
   highlight = {
     enable = true,
@@ -146,3 +146,4 @@ require'nvim-treesitter.configs'.setup({
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup()
+
