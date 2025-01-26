@@ -23,7 +23,7 @@ white = "0xfff1f3"
 yellow = "0xf9cc6c"
 
 [colors.primary]
-background = "0x1c1c1c"
+background = "0x131313"
 foreground = "0xfff1f3"
 
 [colors.selection]
@@ -37,7 +37,7 @@ size = 12
 family = "SauceCodePro Nerd Font Mono"
 
 [font.offset]
-x = 1
+x = 2
 y = 2
 
 [selection]
