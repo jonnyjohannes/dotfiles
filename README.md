@@ -1,31 +1,38 @@
 Jonny Johannes's Dotfiles
 =========================
 
-Overview
---------
+Hacking Essentials
+------------------
 
-  - brew: homebrew hacking essentials
-  - git: gitconfig, gitignore
-  - tmux: tmux.conf
-  - vim: (neo)vimrc
-  - zsh: zshrc
+    - alacritty: terminal emulator
+    - brew: homebrew
+    - git: global config, ignore
+    - nvim: (neo)vim configs
+    - skhd: hotkey daemon
+    - starship: prompt
+    - tmux: terminal multiplexer
+    - zsh: zshrc
 
-Usage
------
+Installation
+------------
 
-```sh
+```zsh
     git clone git://github.com/jonnyjohannes/dotfiles.git ~/.dotfiles
 
-    ## $XDG
-    ln -s ~/.dotfiles/alacritty ~/.config
-    ln -s ~/.dotfiles/vim/vimrc ~/.config/nvim/init.vim
-    ln -s ~/.dotfiles/skhd ~/.config
-    ln -s ~/.dotfiles/starship/starship.toml ~/.config/starship.toml
-    ln -s ~/.dotfiles/tmux ~/.config
+    # $XDG
+    #   - alacritty 
+    #   - brew
+    #   - git
+    #   - nvim
+    #   - skhd
+    #   - starship
+    #   - tmux
+    ln -s ~/.dotfiles/ ~/.config
 
-    ## $HOME
-    ln -s ~/.dotfiles/git ~/.gitconfig
-    ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
-    ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
+    # $HOME
+    #   - vim 
+    #   - zsh
+    ln -s ~/.dotfiles/nvim/vimrc ~/.vimrc
     vim +PluginInstall +qall
+    ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 ```
