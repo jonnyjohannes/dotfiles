@@ -42,9 +42,13 @@ set nofixendofline                " no newlines at the end of files
 " airline
 let g:airline_theme='sonokai'
 let g:airline_extensions = ['branch']
-let g:airline_section_x = ''
-let g:airline_section_y = ''
-let g:airline_section_z = '%l/%L : %c'
+let g:airline_section_a = ''
+let g:airline_section_a = '%{airline#util#wrap(airline#parts#mode(),0)}'
+let g:airline_section_b = ''
+let g:airline_section_c = '%f'
+let g:airline_section_x = '%{&filetype}'
+let g:airline_section_y = '%l:%c'
+let g:airline_section_z = ''
 
 " fzf
 nnoremap <leader>b :Buffers<cr>

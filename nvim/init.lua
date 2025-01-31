@@ -87,20 +87,38 @@ require('lualine').setup({
     component_separators = '',
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'filetype'},
-    lualine_y = {'location'},
-    lualine_z = {},
+    lualine_a = {
+    },
+    lualine_b = {
+      'mode'
+    },
+    lualine_c = {
+      'filename'
+    },
+    lualine_x = {
+      'filetype'
+    },
+    lualine_y = {
+      'location'
+    },
+    lualine_z = {
+    },
   },
   inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'filetype'},
-    lualine_y = {},
-    lualine_z = {},
+    lualine_a = {
+    },
+    lualine_b = {
+    },
+    lualine_c = {
+      'filename'
+    },
+    lualine_x = {
+      'filetype'
+    },
+    lualine_y = {
+    },
+    lualine_z = {
+    },
   },
   tabline = {
     lualine_a = {
@@ -110,11 +128,17 @@ require('lualine').setup({
         symbols = '',
       }
     },
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {},
+    lualine_b = {
+    },
+    lualine_c = {
+    },
+    lualine_x = {
+    },
+    lualine_y = {
+      'branch'
+    },
+    lualine_z = {
+    },
   },
 })
 
