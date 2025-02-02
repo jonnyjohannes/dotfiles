@@ -13,6 +13,7 @@ Plugin 'sainnhe/sonokai'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vimpostor/vim-tpipeline'
 call vundle#end()
 
 " colours
@@ -39,18 +40,23 @@ set mouse=v                       " enable mouse in visual mode
 set nofixeol                      " no newlines at the end of files
 set nofixendofline                " no newlines at the end of files
 
-" airline
+" airline + tpipeline
+let g:tpipeline_autoembed = 0
+autocmd BufNew * set laststatus=0 showtabline=0 noshowmode noruler noshowcmd
+
 let g:airline_theme='sonokai'
 let g:airline_extensions = ['branch']
-let g:airline_section_a = ''
-let g:airline_section_a = '%{airline#util#wrap(airline#parts#mode(),0)}'
+let g:airline_section_a = '%f'
 let g:airline_section_b = ''
-let g:airline_section_c = '%f'
+let g:airline_section_c = ''
 let g:airline_section_x = '%{&filetype}'
-let g:airline_section_y = '%l:%c'
-let g:airline_section_z = ''
+let g:airline_section_y = '' " TODO: figure out fugitive here
+let g:airline_section_z = '%{airline#util#wrap(airline#parts#mode(),0)}'
 
 " fzf
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>f :Rg<cr>
 nnoremap <leader>t :Files<cr>
+nnoremap <leader>x :History:<cr>
+nnoremap <leader>/ :History/<cr>
+
