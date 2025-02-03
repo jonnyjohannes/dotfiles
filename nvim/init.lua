@@ -52,7 +52,7 @@ vim.cmd('hi Visual ctermbg=237 guibg=#4c4c00')
 -- fzf
 local fzfLua = require('fzf-lua')
 fzfLua.setup({
-  "borderless_full",
+  'borderless_full',
 })
 vim.keymap.set('n', '<Leader>b', fzfLua.buffers, { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>f', fzfLua.grep_project, { noremap = true, silent = true })
@@ -119,6 +119,27 @@ require('lualine').setup({
   inactive_sections = { },
 })
 
+-- treesitter
+require('nvim-treesitter.configs').setup({
+  ensure_installed = {
+    'java',
+    'javascript',
+    'lua',
+    'markdown',
+    'markdown_inline',
+    'python',
+    'vim',
+  },
+  highlight = {
+    enable = true,
+  },
+})
+
+-- nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+require('nvim-tree').setup()
+
 -- alpha
 local alpha = require('alpha')
 local dashboard = require('alpha.themes.dashboard')
@@ -142,20 +163,6 @@ dashboard.section.buttons.val = {
 }
 alpha.setup(dashboard.opts)
 
--- treesitter
-require('nvim-treesitter.configs').setup({
-  ensure_installed = {
-    "java",
-    "javascript",
-    "lua",
-    "markdown",
-    "markdown_inline",
-    "python",
-    "vim",
-  },
-  highlight = {
-    enable = true,
-  },
 })
 
 -- nvim-tree

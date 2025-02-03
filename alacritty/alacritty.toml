@@ -1,40 +1,36 @@
-[colors.bright]
-black = "0x72696a"
-blue = "0xf38d70"
-cyan = "0x85dacc"
-green = "0xadda78"
-magenta = "0xa8a9eb"
-red = "0xfd6883"
-white = "0xfff1f3"
-yellow = "0xf9cc6c"
-
-[colors.cursor]
-cursor = "0xe068a5"
-text = "CellBackground"
+[colors.primary]
+background = '#111111'
+foreground = '#fff1f3'
 
 [colors.normal]
-black = "0x2c2525"
-blue = "0xf38d70"
-cyan = "0x85dacc"
-green = "0xadda78"
-magenta = "0xa8a9eb"
-red = "0xfd6883"
-white = "0xfff1f3"
-yellow = "0xf9cc6c"
+black   = '#2c2525'
+red     = '#fd6883'
+green   = '#adda78'
+yellow  = '#f9cc6c'
+blue    = '#f38d70'
+magenta = '#a8a9eb'
+cyan    = '#85dacc'
+white   = '#fff1f3'
 
-[colors.primary]
-background = "0x131313"
-foreground = "0xfff1f3"
+[colors.bright]
+black   = '#72696a'
+red     = '#fd6883'
+green   = '#adda78'
+yellow  = '#f9cc6c'
+blue    = '#f38d70'
+magenta = '#a8a9eb'
+cyan    = '#85dacc'
+white   = '#fff1f3'
 
-[colors.selection]
-background = "0x4c4c00"
-text = "CellForeground"
+[colors.cursor]
+cursor = '#e068a5'
+text   = 'CellBackground'
 
 [font]
 size = 12
 
 [font.normal]
-family = "SauceCodePro Nerd Font Mono"
+family = 'SauceCodePro Nerd Font Mono'
 
 [font.offset]
 x = 2
@@ -44,9 +40,9 @@ y = 2
 save_to_clipboard = true
 
 [window]
-decorations = "none"
-startup_mode = "Maximized"
-option_as_alt = "Both"
+decorations   = 'none'
+startup_mode  = 'Maximized'
+option_as_alt = 'Both'
 
 [window.padding]
 x = 10
