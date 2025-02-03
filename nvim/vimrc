@@ -21,7 +21,6 @@ syntax enable
 set termguicolors
 let g:sonokai_style = 'shusia'
 colorscheme sonokai
-hi Visual ctermbg=237 guibg=#4c4c00
 
 " basics
 let mapleader = ','
@@ -40,6 +39,13 @@ set mouse=v                       " enable mouse in visual mode
 set nofixeol                      " no newlines at the end of files
 set nofixendofline                " no newlines at the end of files
 
+" fzf
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>f :Rg<cr>
+nnoremap <leader>t :Files<cr>
+nnoremap <leader>x :History:<cr>
+nnoremap <leader>/ :History/<cr>
+
 " airline + tpipeline
 let g:tpipeline_autoembed = 0
 autocmd BufNew * set laststatus=0 showtabline=0 noshowmode noruler noshowcmd
@@ -52,11 +58,4 @@ let g:airline_section_c = ''
 let g:airline_section_x = '%{&filetype}'
 let g:airline_section_y = '%{FugitiveHead()}'
 let g:airline_section_z = '%{airline#util#wrap(airline#parts#mode(),0)}'
-
-" fzf
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>f :Rg<cr>
-nnoremap <leader>t :Files<cr>
-nnoremap <leader>x :History:<cr>
-nnoremap <leader>/ :History/<cr>
 
