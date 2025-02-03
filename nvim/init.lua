@@ -44,41 +44,20 @@ require('lazy').setup({
 
 -- color scheme
 require('monokai-pro').setup({
-  filter = 'spectrum'
+  filter = 'spectrum',
 })
 vim.cmd('colorscheme monokai-pro')
-vim.cmd('hi Visual ctermbg=237 guibg=#4c4c00')
 
 -- fzf
 local fzfLua = require('fzf-lua')
 fzfLua.setup({
   'borderless_full',
 })
-vim.keymap.set('n', '<Leader>b', fzfLua.buffers, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>f', fzfLua.grep_project, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>t', fzfLua.files, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>x', fzfLua.command_history, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>/', fzfLua.search_history, { noremap = true, silent = true })
-
--- splits
-local smartSplits = require('smart-splits')
-smartSplits.setup({
-})
--- resizing
-vim.keymap.set('n', '<A-h>', smartSplits.resize_left)
-vim.keymap.set('n', '<A-j>', smartSplits.resize_down)
-vim.keymap.set('n', '<A-k>', smartSplits.resize_up)
-vim.keymap.set('n', '<A-l>', smartSplits.resize_right)
--- moving between
-vim.keymap.set('n', '<C-h>', smartSplits.move_cursor_left)
-vim.keymap.set('n', '<C-j>', smartSplits.move_cursor_down)
-vim.keymap.set('n', '<C-k>', smartSplits.move_cursor_up)
-vim.keymap.set('n', '<C-l>', smartSplits.move_cursor_right)
--- swapping
-vim.keymap.set('n', '<leader><leader>h', smartSplits.swap_buf_left)
-vim.keymap.set('n', '<leader><leader>j', smartSplits.swap_buf_down)
-vim.keymap.set('n', '<leader><leader>k', smartSplits.swap_buf_up)
-vim.keymap.set('n', '<leader><leader>l', smartSplits.swap_buf_right)
+vim.keymap.set('n', '<Leader>b', fzfLua.buffers)
+vim.keymap.set('n', '<Leader>f', fzfLua.grep_project)
+vim.keymap.set('n', '<Leader>t', fzfLua.files)
+vim.keymap.set('n', '<Leader>x', fzfLua.command_history)
+vim.keymap.set('n', '<Leader>/', fzfLua.search_history)
 
 -- lualine + tpipeline
 vim.cmd('let g:tpipeline_autoembed = 0')
@@ -116,8 +95,29 @@ require('lualine').setup({
       'mode',
     },
   },
-  inactive_sections = {},
+  inactive_sections = {
+  },
 })
+
+-- splits
+local smartSplits = require('smart-splits')
+smartSplits.setup({
+})
+-- resizing
+vim.keymap.set('n', '<A-h>', smartSplits.resize_left)
+vim.keymap.set('n', '<A-j>', smartSplits.resize_down)
+vim.keymap.set('n', '<A-k>', smartSplits.resize_up)
+vim.keymap.set('n', '<A-l>', smartSplits.resize_right)
+-- moving between
+vim.keymap.set('n', '<C-h>', smartSplits.move_cursor_left)
+vim.keymap.set('n', '<C-j>', smartSplits.move_cursor_down)
+vim.keymap.set('n', '<C-k>', smartSplits.move_cursor_up)
+vim.keymap.set('n', '<C-l>', smartSplits.move_cursor_right)
+-- swapping
+vim.keymap.set('n', '<leader><leader>h', smartSplits.swap_buf_left)
+vim.keymap.set('n', '<leader><leader>j', smartSplits.swap_buf_down)
+vim.keymap.set('n', '<leader><leader>k', smartSplits.swap_buf_up)
+vim.keymap.set('n', '<leader><leader>l', smartSplits.swap_buf_right)
 
 -- treesitter
 require('nvim-treesitter.configs').setup({
@@ -138,7 +138,8 @@ require('nvim-treesitter.configs').setup({
 -- nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-require('nvim-tree').setup()
+require('nvim-tree').setup({
+})
 
 -- alpha
 local alpha = require('alpha')
