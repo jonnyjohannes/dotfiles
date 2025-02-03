@@ -6,10 +6,10 @@ alt + cmd - t : open -a Alacritty
 cmd + shift - s : open -a /System/Applications/Utilities/Screenshot.app
 
 # vim ctrl arrows
-ctrl + cmd - h : skhd -k "left"
-ctrl + cmd - j : skhd -k "down"
-ctrl + cmd - k : skhd -k "up"
-ctrl + cmd - l : skhd -k "right"
+ctrl + cmd - h : skhd -k 'left'
+ctrl + cmd - j : skhd -k 'down'
+ctrl + cmd - k : skhd -k 'up'
+ctrl + cmd - l : skhd -k 'right'
 
 # alfred override spotlight
 cmd - space : open -a Alfred\ 5
