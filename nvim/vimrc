@@ -50,7 +50,7 @@ let g:airline_section_a = '%f'
 let g:airline_section_b = ''
 let g:airline_section_c = ''
 let g:airline_section_x = '%{&filetype}'
-let g:airline_section_y = '' " TODO: figure out fugitive here
+let g:airline_section_y = '%{FugitiveHead()}'
 let g:airline_section_z = '%{airline#util#wrap(airline#parts#mode(),0)}'
 
 " fzf
