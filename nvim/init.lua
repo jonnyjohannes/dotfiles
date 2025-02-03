@@ -89,12 +89,11 @@ require('lualine').setup({
     theme = 'monokai-pro',
     section_separators = '',
     component_separators = '',
-    globalstatus = true,
   },
   sections = {
     lualine_a = {
       {
-        'buffers',
+        'windows',
         use_mode_colors = true,
         symbols = '',
       }
@@ -104,19 +103,20 @@ require('lualine').setup({
     lualine_c = {
     },
     lualine_x = {
+      'location',
       'filetype',
     },
     lualine_y = {
       {
         'FugitiveHead',
         icon = '',
-      }
+      },
     },
     lualine_z = {
       'mode',
     },
   },
-  inactive_sections = { },
+  inactive_sections = {},
 })
 
 -- treesitter
@@ -162,7 +162,4 @@ dashboard.section.buttons.val = {
     dashboard.button('q', '   > Exit', ':qa<CR>'),
 }
 alpha.setup(dashboard.opts)
-
-})
-
 
