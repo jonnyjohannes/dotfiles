@@ -23,7 +23,7 @@ let g:sonokai_style = 'shusia'
 colorscheme sonokai
 
 " basics
-let mapleader = ','
+let mapleader = ' '
 
 set ignorecase                    " case-insensitive searching
 set smartcase                     " but case-sensitive if expression contains a capital letter
