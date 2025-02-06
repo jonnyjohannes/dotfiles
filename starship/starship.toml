@@ -2,13 +2,14 @@ format = """
 $username\
 $hostname\
 $time\
+$line_break\
 $directory\
 $git_status\
 $line_break\
 $character"""
 
 [directory]
-style = 'blue'
+style = 'purple'
 
 [git_status]
 format = '[\[$all_status$ahead_behind\]]($style) '
@@ -17,5 +18,5 @@ style = 'purple'
 [time]
 disabled = false
 format = '[$time]($style) '
-style = 'yellow'
+style = 'bright-black'
 time_format = '%F %T'
