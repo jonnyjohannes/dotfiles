@@ -84,6 +84,7 @@ require('lualine').setup({
     lualine_x = {
       'location',
       'filetype',
+      'diff',
     },
     lualine_y = {
       {
