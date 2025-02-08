@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/src ~/src/j2 ~/src/wayfair -mindepth 1 -maxdepth 1 -type d | fzf --tmux)
+    selected=$(find ~/src -mindepth 2 -maxdepth 2 -type d | cut -d'/' -f5- | fzf --tmux --border sharp --prompt=" ")
 fi
 
 if [[ -z $selected ]]; then
@@ -11,24 +11,32 @@ if [[ -z $selected ]]; then
 fi
 
 session_name="boards"
-selected_name=$(basename "$selected" | tr . _)
-target="$session_name:$selected_name"
+board_name=$(basename "$selected" | tr . _)
+board_dir_path="$HOME/src/$selected"
+target="$session_name:$board_name"
+
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $session_name -c $selected
+    tmux new-session -s $session_name
     exit 0
 fi
 
 if ! tmux has-session -t $session_name 2> /dev/null; then
-    tmux new-session -ds $session_name -n $selected_name -c $selected
+    tmux new-session -ds $session_name -n $board_name
 fi
 
 if ! tmux has-session -t $target 2> /dev/null; then
-    tmux neww -dn $selected_name
+    tmux new-window -dn $board_name -c $board_dir_path
+
+    tmux select-window -t $target
+    tmux split-window -h -p 75 -c $board_dir_path
+    tmux select-pane -L
+    tmux split-window -v -p 30 -c $board_dir_path
+    tmux select-window -t $target
 
     shift
-    tmux send-keys -t $target "cd $selected"
+    tmux send-keys -t $target " "
 fi
 
 tmux switch-client -t $session_name
