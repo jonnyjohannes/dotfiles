@@ -24,6 +24,12 @@ fi
 
 if ! tmux has-session -t $session_name 2> /dev/null; then
     tmux new-session -ds $session_name -n $board_name
+
+    tmux select-window -t $target
+    tmux split-window -h -p 75 -c $board_dir_path
+    tmux select-pane -L
+    tmux split-window -v -p 30 -c $board_dir_path
+    tmux select-window -t $target
 fi
 
 if ! tmux has-session -t $target 2> /dev/null; then
