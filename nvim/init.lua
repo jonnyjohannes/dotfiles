@@ -85,10 +85,6 @@ require('lualine').setup({
     },
     lualine_y = {
       'mode',
-      -- {
-      --   'FugitiveHead',
-      --   icon = '',
-      -- },
     },
     lualine_z = {
     },
