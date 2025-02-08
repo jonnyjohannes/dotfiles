@@ -1,8 +1,8 @@
-# PATHs
+# exectuable PATHs
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=$HOME/src/bin:$PATH
 
-# init starship.toml configs
+# starship prompt configs
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
@@ -21,16 +21,16 @@ alias vi='nvim'
 source <(fzf --zsh)
 export FZF_DEFAULT_OPTS='--height 50% --layout reverse'
 
-# keybindings
+# vim keybindings
 bindkey -v
-
-# autocompletion
-autoload -U compinit
-compinit
 
 # set vim as default
 export EDITOR=vim
 export VISUAL=vim
+
+# autocompletion
+autoload -U compinit
+compinit
 
 # local config file
 [[ -s ~/.config/zsh/zsh.local ]] && source ~/.config/zsh/zsh.local

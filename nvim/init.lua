@@ -39,7 +39,6 @@ require('lazy').setup({
     { 'nvim-treesitter/nvim-treesitter' },
     { 'sheerun/vim-polyglot' },
     { 'tpope/vim-fugitive' },
-    { 'vimpostor/vim-tpipeline' },
 })
 
 -- color scheme
@@ -59,10 +58,8 @@ vim.keymap.set('n', '<Leader>t', fzfLua.files)
 vim.keymap.set('n', '<Leader>x', fzfLua.command_history)
 vim.keymap.set('n', '<Leader>/', fzfLua.search_history)
 
--- lualine + tpipeline
-vim.cmd('let g:tpipeline_autoembed = 0')
-vim.cmd('autocmd BufNew * set laststatus=0 showtabline=0 noshowmode noruler noshowcmd')
-
+-- lualine
+vim.cmd('autocmd BufNew * set laststatus=3 showtabline=0 noshowmode noruler noshowcmd')
 require('lualine').setup({
   options = {
     theme = 'monokai-pro',
@@ -87,13 +84,13 @@ require('lualine').setup({
       'diff',
     },
     lualine_y = {
-      {
-        'FugitiveHead',
-        icon = '',
-      },
+      'mode',
+      -- {
+      --   'FugitiveHead',
+      --   icon = '',
+      -- },
     },
     lualine_z = {
-      'mode',
     },
   },
   inactive_sections = {
