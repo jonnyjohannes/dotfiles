@@ -16,6 +16,7 @@ if command -v jenv   &> /dev/null; then eval "$(jenv init -)"; fi
 alias grep='grep --color'
 alias ls='ls -G'
 alias vi='nvim'
+alias hi='source $HOME/.config/tmux/tmux-layoutizer.sh'
 
 # fzf
 source <(fzf --zsh)
