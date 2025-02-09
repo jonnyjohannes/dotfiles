@@ -1,9 +1,9 @@
 # application shortcuts
-alt + cmd - a : open -a Arc
+cmd + shift - j : open -a Arc
+cmd + shift - k : open -a Alacritty
+cmd + shift - l : open -a Slack
+cmd + shift - s : open -a Screenshot
 alt + cmd - l : open -a ScreenSaverEngine
-alt + cmd - s : open -a Slack
-alt + cmd - t : open -a Alacritty
-cmd + shift - s : open -a /System/Applications/Utilities/Screenshot.app
 
 # vim ctrl arrows
 ctrl + cmd - h : skhd -k 'left'
