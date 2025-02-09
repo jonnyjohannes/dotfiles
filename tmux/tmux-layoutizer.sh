@@ -36,11 +36,12 @@ if ! tmux has-session -t $session 2> /dev/null; then
     create_tmux_layout $window $dir
 fi
 
+tmux switch-client -t $session
+
 if ! tmux has-session -t $target 2> /dev/null; then
     tmux new-window -dn $window -c $dir
     create_tmux_layout $window $dir
 fi
 
-tmux switch-client -t $session
 tmux select-window -t $target
 
