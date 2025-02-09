@@ -32,7 +32,8 @@ create_tmux_layout() {
 }
 
 if ! tmux has-session -t $session 2> /dev/null; then
-    tmux new-session -ds $session -n $window
+    tmux new-session -ds $session -n $window -c $dir
+    tmux switch-client -t $session -n $window
     create_tmux_layout $window $dir
 fi
 

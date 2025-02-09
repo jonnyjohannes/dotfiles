@@ -59,7 +59,7 @@ vim.keymap.set('n', '<Leader>x', fzfLua.command_history)
 vim.keymap.set('n', '<Leader>/', fzfLua.search_history)
 
 -- lualine
-vim.cmd('autocmd BufNew * set laststatus=3 showtabline=0 noshowmode noruler noshowcmd')
+vim.cmd('autocmd BufNew * set laststatus=3 showtabline=0')
 require('lualine').setup({
   options = {
     theme = 'monokai-pro',
