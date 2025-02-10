@@ -10,7 +10,7 @@ $character
 """
 
 [directory]
-style = '#66d9ef'
+style = 'blue'
 
 [git_status]
 format = '[\[$all_status$ahead_behind\]]($style) '
