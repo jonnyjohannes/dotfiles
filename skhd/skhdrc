@@ -1,8 +1,8 @@
 # application shortcuts
-cmd + shift - j : open -a Arc
-cmd + shift - k : open -a Alacritty
-cmd + shift - l : open -a Slack
-cmd + shift - s : open -a Screenshot
+cmd - tab : open -a Alacritty
+cmd - q : open -a Arc
+cmd + shift - tab : open -a Slack
+cmd - space : open -a Alfred\ 5
 alt + cmd - l : open -a ScreenSaverEngine
 
 # vim ctrl arrows
@@ -10,7 +10,4 @@ ctrl + cmd - h : skhd -k 'left'
 ctrl + cmd - j : skhd -k 'down'
 ctrl + cmd - k : skhd -k 'up'
 ctrl + cmd - l : skhd -k 'right'
-
-# alfred override spotlight
-cmd - space : open -a Alfred\ 5
 
