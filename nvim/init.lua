@@ -25,7 +25,6 @@ require('lazy').setup({
       opts = {},
     },
     { 'github/copilot.vim' },
-    { 'goolord/alpha-nvim' },
     { 'ibhagwan/fzf-lua' },
     { 'loctvl842/monokai-pro.nvim' },
     { 'mfussenegger/nvim-dap' },
@@ -62,7 +61,6 @@ vim.keymap.set('n', '<Leader>/', fzfLua.search_history)
 vim.cmd('autocmd BufNew * set laststatus=3 showtabline=0')
 require('lualine').setup({
   options = {
-    theme = 'monokai-pro',
     section_separators = '',
     component_separators = '',
   },
@@ -134,27 +132,4 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 require('nvim-tree').setup({
 })
-
--- alpha
-local alpha = require('alpha')
-local dashboard = require('alpha.themes.dashboard')
-local header = {
-  '    ██╗  ██╗██╗████████╗    ██╗████████╗    ',
-  '    ██║  ██║██║╚══██╔══╝    ██║╚══██╔══╝    ',  
-  '    ███████║██║   ██║       ██║   ██║       ',  
-  '    ██╔══██║██║   ██║       ██║   ██║       ',  
-  '    ██║  ██║██║   ██║       ██║   ██║       ',  
-  '    ╚═╝  ╚═╝╚═╝   ╚═╝       ╚═╝   ╚═╝       ',  
-  '                 ¯\\(°_o)/¯                 ',
-}
-dashboard.section.header.val = header
-dashboard.section.buttons.val = {
-    dashboard.button('t', '   > Files', ':lua require("fzf-lua").files()<CR>'),
-    dashboard.button('f', '   > Grep', ':lua require("fzf-lua").grep_project()<CR>'),
-    dashboard.button('g', '   > Git', ':tab Git<CR>'),
-    dashboard.button('e', '   > New file' , ':ene <BAR> startinsert <CR>'),
-    dashboard.button('s', '   > Settings' , ':e $MYVIMRC <CR>'),
-    dashboard.button('q', '   > Exit', ':qa<CR>'),
-}
-alpha.setup(dashboard.opts)
 
