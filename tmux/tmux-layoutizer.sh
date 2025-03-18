@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 # Inspired by ThePrimegean's tmux-sessionizer and tmux-windowizer
 
-selected=$(find ~/src -mindepth 2 -maxdepth 2 -type d | cut -d'/' -f5- | fzf --tmux --border sharp --prompt=" ")
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$(find ~/src -mindepth 2 -maxdepth 2 -type d | cut -d'/' -f5- | fzf --tmux --border sharp --prompt=" ")
+fi;
+
 
 if [[ -z $selected ]]; then
     exit 0
@@ -9,9 +14,7 @@ fi
 
 dir="$HOME/src/$selected"
 
-session=$(echo $selected | cut -d'/' -f1 | tr . _)
-window=$(echo $selected | cut -d'/' -f2 | tr . _)
-target="$session:$window"
+session=$(echo $selected | tr '/' '-' | tr . _)
 
 tmux_running=$(pgrep tmux)
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
@@ -20,10 +23,9 @@ if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
 fi
 
 create_tmux_layout() {
-    local window=$1
-    local dir=$2
+    local dir=$1
 
-    tmux select-window -t $window
+    tmux select-window
     tmux split-window -h -p 70 -c $dir
     tmux select-pane -L
     tmux split-window -v -p 30 -c $dir
@@ -32,17 +34,10 @@ create_tmux_layout() {
 }
 
 if ! tmux has-session -t $session 2> /dev/null; then
-    tmux new-session -ds $session -n $window -c $dir
-    tmux switch-client -t $session -n $window
-    create_tmux_layout $window $dir
+    tmux new-session -ds $session -c $dir
+    tmux switch-client -t $session
+    create_tmux_layout $dir
 fi
 
 tmux switch-client -t $session
-
-if ! tmux has-session -t $target 2> /dev/null; then
-    tmux new-window -dn $window -c $dir
-    create_tmux_layout $window $dir
-fi
-
-tmux select-window -t $target
 

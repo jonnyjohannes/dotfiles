@@ -1,0 +1,48 @@
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+##### Bar Appearance #####
+
+bar=(
+  color=0x00000000
+  display=all
+  height=40
+  padding_left=5
+  padding_right=5
+  position=top
+)
+
+##### Item Defaults #####
+
+default=(
+  background.color=0x00000000
+  padding_left=5
+  padding_right=5
+  icon.color=0xff000000
+  icon.font="SauceCodePro Nerd Font:Regular:20"
+  icon.padding_left=5
+  icon.padding_right=5
+  label.color=0xffe0e0e0
+  label.font="Helvetica Neue:Regular:16"
+  label.padding_left=5
+  label.padding_right=5
+)
+
+##### Items #####
+
+clock=(
+  script="$PLUGIN_DIR/clock.sh"
+  update_freq=1
+)
+
+sketchybar   --bar "${bar[@]}"                            \
+             --default "${default[@]}"                    \
+                                                          \
+             --add item clock.time right                  \
+             --add item clock.date right                  \
+             --add item clock.hour left                   \
+             --add item clock.minute left                 \
+             --set clock.date "${clock[@]}"               \
+  
+
+sketchybar --update
+

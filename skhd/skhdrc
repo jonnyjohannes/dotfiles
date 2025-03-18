@@ -1,9 +1,23 @@
-# application shortcuts
-cmd - tab : open -a Alacritty
-cmd - q : open -a Arc
-cmd + shift - tab : open -a Slack
+# alfred everything
+cmd - tab : open -a Alfred\ 5
+cmd + shift - tab : open -a Alfred\ 5
 cmd - space : open -a Alfred\ 5
+
+# applications
+cmd - q : open -a Alacritty
+cmd - w : open -a Arc
+cmd - e : open -a Obsidian
+
+# lock screen
+cmd + shift - l: skhd -k 'cmd - l'
 alt + cmd - l : open -a ScreenSaverEngine
+
+# rectangle overrides
+alt + shift - h : open -g "rectangle://execute-action?name=left-half"
+alt + shift - j : open -g "rectangle://execute-action?name=bottom-half"
+alt + shift - k : open -g "rectangle://execute-action?name=top-half"
+alt + shift - l : open -g "rectangle://execute-action?name=right-half"
+alt + shift - return : open -g "rectangle://execute-action?name=maximize"
 
 # vim ctrl arrows
 ctrl + cmd - h : skhd -k 'left'

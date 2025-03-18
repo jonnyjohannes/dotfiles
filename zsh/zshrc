@@ -1,19 +1,13 @@
 # exectuable PATHs
 export PATH=/opt/homebrew/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/src/bin:$PATH
 
 # starship prompt configs
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
-# environment managers
-# if command -v rbenv  &> /dev/null; then eval "$(rbenv init -)"; fi
-# if command -v nodenv &> /dev/null; then eval "$(nodenv init -)"; fi
-if command -v pyenv  &> /dev/null; then eval "$(pyenv init -)"; fi
-if command -v jenv   &> /dev/null; then eval "$(jenv init -)"; fi
-
 # aliases
-alias grep='grep --color'
 alias ls='ls -G'
 alias vi='nvim .'
 

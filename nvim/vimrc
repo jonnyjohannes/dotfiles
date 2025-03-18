@@ -54,8 +54,8 @@ let g:airline_extensions = ['branch']
 let g:airline_section_a = '%f'
 let g:airline_section_b = ''
 let g:airline_section_c = ''
-let g:airline_section_x = '%{&filetype}'
-let g:airline_section_x = '%l : %c %{&filetype}'
-let g:airline_section_y = '%{FugitiveHead()}'
+let g:airline_section_x = ''
+let g:airline_section_x = ''
+let g:airline_section_y = '%l : %c'
 let g:airline_section_z = '%{airline#util#wrap(airline#parts#mode(),0)}'
 

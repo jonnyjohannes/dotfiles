@@ -16,14 +16,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
     { 'CopilotC-Nvim/CopilotChat.nvim',
-      branch = 'canary',
       build = 'make tiktoken',
       dependencies = {
         { 'github/copilot.vim' },
         { 'nvim-lua/plenary.nvim' },
       },
-      opts = {},
+      opts = {
+        mappings = {
+          reset = {
+            normal = '<C-r>',
+            insert = '<C-r>',
+          },
+        },
+      },
     },
+    { 'gelguy/wilder.nvim' },
     { 'github/copilot.vim' },
     { 'ibhagwan/fzf-lua' },
     { 'loctvl842/monokai-pro.nvim' },
@@ -58,7 +65,7 @@ vim.keymap.set('n', '<Leader>x', fzfLua.command_history)
 vim.keymap.set('n', '<Leader>/', fzfLua.search_history)
 
 -- lualine
-vim.cmd('autocmd BufNew * set laststatus=3 showtabline=0')
+vim.cmd('set laststatus=3')
 require('lualine').setup({
   options = {
     section_separators = '',
@@ -77,14 +84,12 @@ require('lualine').setup({
     lualine_c = {
     },
     lualine_x = {
-      'location',
-      'filetype',
-      'diff',
     },
     lualine_y = {
-      'mode',
+      'location',
     },
     lualine_z = {
+      'mode',
     },
   },
   inactive_sections = {
@@ -131,5 +136,33 @@ require('nvim-treesitter.configs').setup({
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 require('nvim-tree').setup({
+})
+
+-- wilder
+local wilder = require('wilder')
+wilder.setup({
+  modes = {':', '/', '?'},
+  enable_cmdline_enter = 0,
+})
+wilder.set_option('renderer', wilder.popupmenu_renderer(
+  wilder.popupmenu_border_theme({
+    highlighter = wilder.basic_highlighter(),
+    min_width = '100%',
+    min_height = '20%',
+    max_height = '20%',
+    reverse = 0,
+  })
+))
+wilder.set_option('pipeline', {
+  wilder.branch(
+    wilder.cmdline_pipeline({
+      language = 'vim',
+      fuzzy = 2,
+    }),
+    wilder.search_pipeline({
+      language = 'vim',
+      fuzzy = 2,
+    })
+  )
 })
 

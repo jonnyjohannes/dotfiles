@@ -24,8 +24,6 @@ Session.vim
 *~
 tags
 
-# jetbrains
-.idea/
+# alfred
+Alfred.alfredpreferences/
 
-# node
-node_modules/
