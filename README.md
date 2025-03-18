@@ -24,6 +24,7 @@ Installation
     #   - brew
     #   - git
     #   - nvim
+    #   - sketchybar
     #   - skhd
     #   - starship
     #   - tmux

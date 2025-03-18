@@ -1,12 +1,9 @@
-# vim plugins
-!bin
-
-# local dotfiles
 *.local
-
-alfred
+Alfred.alfredpreferences
+automatic_backups
+ftplugin
 gcloud
 gh
 gh-copilot
+gh-dash
 github-copilot
-
