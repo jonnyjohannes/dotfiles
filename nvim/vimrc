@@ -24,10 +24,12 @@ colorscheme sonokai
 " basics
 let mapleader = ' '
 
+set cursorline                    " highlight current line
 set ignorecase                    " case-insensitive searching
 set smartcase                     " but case-sensitive if expression contains a capital letter
 set number                        " show line numbers
-set incsearch                     " highlight matches as you type.
+set relativenumber                " show relative line numbers
+set incsearch                     " highlight matches as you type
 set hlsearch                      " highlight matches.
 set splitbelow                    " split horizontal pane to the bottom
 set splitright                    " split vertical pane to the right

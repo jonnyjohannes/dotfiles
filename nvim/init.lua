@@ -53,6 +53,18 @@ require('monokai-pro').setup({
 })
 vim.cmd('colorscheme monokai-pro')
 
+-- require('rose-pine').setup({})
+-- vim.cmd('colorscheme rose-pine')
+
+-- remaps
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<C-f>", "<C-f>zz")
+vim.keymap.set("n", "<C-b>", "<C-b>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
 -- fzf
 local fzfLua = require('fzf-lua')
 fzfLua.setup({
@@ -84,9 +96,10 @@ require('lualine').setup({
     lualine_c = {
     },
     lualine_x = {
+      'location',
     },
     lualine_y = {
-      'location',
+      'filetype',
     },
     lualine_z = {
       'mode',
