@@ -1,4 +1,5 @@
 -- basics
+local vim = vim
 vim.cmd.source('~/.config/nvim/vimrc')
 
 -- lazy.nvim
@@ -28,6 +29,7 @@ require('lazy').setup({
             insert = '<C-r>',
           },
         },
+        model = 'claude-3.7-sonnet',
       },
     },
     { 'gelguy/wilder.nvim' },
