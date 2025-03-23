@@ -47,7 +47,6 @@ require('lazy').setup({
     { 'nvim-tree/nvim-tree.lua' },
     { 'nvim-tree/nvim-web-devicons' },
     { 'nvim-treesitter/nvim-treesitter' },
-    { 'rose-pine/neovim' },
     { 'sheerun/vim-polyglot' },
     { 'tpope/vim-fugitive' },
     { 'williamboman/mason.nvim' },
@@ -60,9 +59,6 @@ require('monokai-pro').setup({
 })
 vim.cmd('colorscheme monokai-pro')
 
--- require('rose-pine').setup({})
--- vim.cmd('colorscheme rose-pine')
-
 -- remaps
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-f>", "<C-f>zz")
@@ -71,6 +67,12 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+vim.keymap.set('t', '<leader><Esc>', [[<C-\><C-n>]])
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
 
 -- fzf
 local fzfLua = require('fzf-lua')
@@ -233,6 +235,23 @@ cmp.setup({
 
 mason.setup({})
 
+mason_lspconfig.setup({})
+mason_lspconfig.setup_handlers({
+  function(server_name)
+    require('lspconfig')[server_name].setup({
+    capabilities = capabilities,
+    on_attach = function()
+      vim.keymap.set("n", "<leader>gd", fzfLua.lsp_definitions)
+      vim.keymap.set("n", "<leader>gr", fzfLua.lsp_references)
+
+      -- dap mappings
+      vim.keymap.set("n", "<leader>db", require('dap').toggle_breakpoint)
+      vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
+    end,
+  })
+  end,
+})
+
 local dap = require('dap')
 dap.adapters.python = {
   type = 'executable',
@@ -275,21 +294,4 @@ dap.configurations.python = {
 --     end
 --   end
 -- })
-
-mason_lspconfig.setup({})
-mason_lspconfig.setup_handlers({
-  function(server_name)
-    require('lspconfig')[server_name].setup({
-    capabilities = capabilities,
-    on_attach = function()
-      vim.keymap.set("n", "<leader>gd", fzfLua.lsp_definitions)
-      vim.keymap.set("n", "<leader>gr", fzfLua.lsp_references)
-
-      -- dap mappings
-      vim.keymap.set("n", "<leader>db", require('dap').toggle_breakpoint)
-      vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
-    end,
-  })
-  end,
-})
 
