@@ -4,6 +4,7 @@ vim.cmd.source('~/.config/nvim/vimrc')
 
 -- lazy.nvim
 local lazypath = vim.fn.expand('~/.local/share/nvim/lazy/lazy.nvim')
+
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
         'git',
@@ -18,10 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
     { 'CopilotC-Nvim/CopilotChat.nvim',
       build = 'make tiktoken',
-      dependencies = {
-        { 'github/copilot.vim' },
-        { 'nvim-lua/plenary.nvim' },
-      },
       opts = {
         mappings = {
           reset = {
@@ -32,47 +29,78 @@ require('lazy').setup({
         model = 'claude-3.7-sonnet',
       },
     },
+    {
+      "yetone/avante.nvim",
+      dependencies = {
+        "nvim-tree/nvim-web-devicons",
+        "stevearc/dressing.nvim",
+        "nvim-lua/plenary.nvim",
+        "MunifTanjim/nui.nvim",
+        {
+          "MeanderingProgrammer/render-markdown.nvim",
+          opts = { file_types = { "markdown", "Avante" } },
+          ft = { "markdown", "Avante" },
+        },
+      },
+      build = "make",
+      opts = {
+        provider = "openai",
+        openai = {
+          model = "o3",
+        },
+      },
+    },
     { 'gelguy/wilder.nvim' },
-    { 'github/copilot.vim' },
+    -- { 'github/copilot.vim' },
+    { "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      event = "InsertEnter",
+      config = function()
+        require("copilot").setup({
+          suggestion = { enabled = false },
+          panel = { enabled = false },
+        })
+      end,
+    },
+    {
+      'zbirenbaum/copilot-cmp',
+      config = function()
+        require('copilot_cmp').setup({ })
+      end,
+    },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
     { 'ibhagwan/fzf-lua', commit = 'ed8761eaa58ff77312a877a4de63d016d58dfc58' },
-    { 'loctvl842/monokai-pro.nvim' },
     { 'mfussenegger/nvim-dap' },
     { 'mrjones2014/smart-splits.nvim' },
     { 'neovim/nvim-lspconfig' },
+    { 'nvim-java/nvim-java' },
+    { 'nvim-lua/plenary.nvim' },
     { 'nvim-lualine/lualine.nvim' },
     { 'nvim-tree/nvim-tree.lua' },
     { 'nvim-tree/nvim-web-devicons' },
     { 'nvim-treesitter/nvim-treesitter' },
     { 'sheerun/vim-polyglot' },
     { 'tpope/vim-fugitive' },
-    { 'williamboman/mason.nvim' },
-    { 'williamboman/mason-lspconfig.nvim' },
+    { 'mason-org/mason.nvim', version = '^1.0.0' },
+    { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
+    -- colorschemes
+    { 'catppuccin/nvim' },
+    { 'loctvl842/monokai-pro.nvim' },
+    { 'rose-pine/neovim' },
 })
 
 -- color scheme
 require('monokai-pro').setup({
   filter = 'spectrum',
 })
-vim.cmd('colorscheme monokai-pro')
-
--- remaps
-vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-f>", "<C-f>zz")
-vim.keymap.set("n", "<C-b>", "<C-b>zz")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-
-vim.keymap.set('t', '<leader><Esc>', [[<C-\><C-n>]])
-
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-
+require('catppuccin').setup({
+  flavour = 'mocha',
+}) require('rose-pine').setup({ variant = 'moon', })
+vim.opt.fillchars:append({ eob = " " })
+vim.cmd('colorscheme rose-pine')
 
 -- fzf
 local fzfLua = require('fzf-lua')
@@ -95,7 +123,7 @@ require('lualine').setup({
   sections = {
     lualine_a = {
       {
-        'windows',
+        'buffers',
         use_mode_colors = true,
         symbols = '',
       }
@@ -105,10 +133,23 @@ require('lualine').setup({
     lualine_c = {
     },
     lualine_x = {
+      'progress',
       'location',
     },
     lualine_y = {
-      'filetype',
+      {
+        'lsp_status',
+        icon = '',
+        symbols = {
+          spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+          done = '✓',
+          separator = ' ',
+        },
+        ignore_lsp = {
+          'Github Copilot',
+          'copilot',
+        },
+      }
     },
     lualine_z = {
       'mode',
@@ -123,20 +164,20 @@ local smartSplits = require('smart-splits')
 smartSplits.setup({
 })
 -- resizing
-vim.keymap.set('n', '<A-h>', smartSplits.resize_left)
-vim.keymap.set('n', '<A-j>', smartSplits.resize_down)
-vim.keymap.set('n', '<A-k>', smartSplits.resize_up)
-vim.keymap.set('n', '<A-l>', smartSplits.resize_right)
+vim.keymap.set({'n', 't'}, '<A-h>', smartSplits.resize_left)
+vim.keymap.set({'n', 't'}, '<A-j>', smartSplits.resize_down)
+vim.keymap.set({'n', 't'}, '<A-k>', smartSplits.resize_up)
+vim.keymap.set({'n', 't'}, '<A-l>', smartSplits.resize_right)
 -- moving between
-vim.keymap.set('n', '<C-h>', smartSplits.move_cursor_left)
-vim.keymap.set('n', '<C-j>', smartSplits.move_cursor_down)
-vim.keymap.set('n', '<C-k>', smartSplits.move_cursor_up)
-vim.keymap.set('n', '<C-l>', smartSplits.move_cursor_right)
+vim.keymap.set({'n', 't'}, '<C-h>', smartSplits.move_cursor_left)
+vim.keymap.set({'n', 't'}, '<C-j>', smartSplits.move_cursor_down)
+vim.keymap.set({'n', 't'}, '<C-k>', smartSplits.move_cursor_up)
+vim.keymap.set({'n', 't'}, '<C-l>', smartSplits.move_cursor_right)
 -- swapping
-vim.keymap.set('n', '<leader><leader>h', smartSplits.swap_buf_left)
-vim.keymap.set('n', '<leader><leader>j', smartSplits.swap_buf_down)
-vim.keymap.set('n', '<leader><leader>k', smartSplits.swap_buf_up)
-vim.keymap.set('n', '<leader><leader>l', smartSplits.swap_buf_right)
+vim.keymap.set({'n', 't'}, '<leader><leader>h', smartSplits.swap_buf_left)
+vim.keymap.set({'n', 't'}, '<leader><leader>j', smartSplits.swap_buf_down)
+vim.keymap.set({'n', 't'}, '<leader><leader>k', smartSplits.swap_buf_up)
+vim.keymap.set({'n', 't'}, '<leader><leader>l', smartSplits.swap_buf_right)
 
 -- treesitter
 require('nvim-treesitter.configs').setup({
@@ -158,6 +199,11 @@ require('nvim-treesitter.configs').setup({
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 require('nvim-tree').setup({
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    },
+  },
 })
 
 -- wilder
@@ -194,16 +240,9 @@ local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- nvim-cmp setup
 cmp.setup({
   completion = {
     autocomplete = false,
-  },
-  snippet = {
-    expand = function(args)
-      -- You'll need a snippet engine - add one to your dependencies if needed
-      -- e.g., luasnip: require('luasnip').lsp_expand(args.body)
-    end,
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
@@ -227,20 +266,39 @@ cmp.setup({
     end, { 'i', 's' }),
   }),
   sources = cmp.config.sources({
+    { name = 'copilot', group_index = 1 },
     { name = 'nvim_lsp' },
     { name = 'buffer' },
     { name = 'path' },
   }),
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+})
+
+require('java').setup({})
+
+vim.api.nvim_create_autocmd({"VimEnter"}, {
+  callback = function()
+    -- Check for project-specific j2de.lua file
+    local project_config = vim.fn.getcwd() .. "/j2de.lua"
+    if vim.fn.filereadable(project_config) == 1 then
+      -- Load the project-specific configuration
+      dofile(project_config)
+      print("j2de config loaded 🐞")
+    end
+  end
 })
 
 mason.setup({})
-
 mason_lspconfig.setup({})
 mason_lspconfig.setup_handlers({
   function(server_name)
     require('lspconfig')[server_name].setup({
     capabilities = capabilities,
     on_attach = function()
+      -- lsp mappings
       vim.keymap.set("n", "<leader>gd", fzfLua.lsp_definitions)
       vim.keymap.set("n", "<leader>gr", fzfLua.lsp_references)
 
@@ -252,46 +310,11 @@ mason_lspconfig.setup_handlers({
   end,
 })
 
-local dap = require('dap')
-dap.adapters.python = {
-  type = 'executable',
-  command = '/Users/jj678a/.pyenv/versions/novibedj/bin/python',
-  args = { '-m', 'debugpy.adapter' },
-}
-dap.configurations.python = {
-  {
-    type = 'python',
-    request = 'launch',
-    name = 'Launch file',
-    program = "${file}",
-    console = "integratedTerminal",
-    justMyCode = false,
-    pythonPath = function()
-      if vim.env.VIRTUAL_ENV then
-        return vim.env.VIRTUAL_ENV .. '/bin/python'
-      end
-      return '/Users/jj678a/.pyenv/versions/novibedj/bin/python'
-    end,
-  },
-}
-
--- vim.api.nvim_create_autocmd({"FileType"}, {
---   pattern = {"python"},
---   callback = function()
---     -- Check for project-specific .nvim/dap.lua file
---     local project_config = vim.fn.getcwd() .. "/.dap.lua"
---     if vim.fn.filereadable(project_config) == 1 then
---       -- Create a unique module name for this project's config
---       local module_name = "project_dap_" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
---       -- Add the directory to package.path temporarily
---       package.loaded[module_name] = nil
---       local old_path = package.path
---       package.path = vim.fn.getcwd() .. "/?.lua;" .. package.path
---       -- Require the module
---       pcall(require, module_name)
---       -- Restore package.path
---       package.path = old_path
---     end
---   end
--- })
+vim.api.nvim_create_autocmd({"ModeChanged"}, {
+  callback = function()
+    local mode = vim.api.nvim_get_mode().mode
+    local is_term_mode = mode == "t"
+    vim.api.nvim_set_option_value("timeoutlen", is_term_mode and 0 or 1000, { scope = "local" })
+  end,
+})
 

@@ -1,5 +1,5 @@
 # alfred everything
-cmd - tab : open -a Alfred\ 5
+cmd - tab : skhd -k 'cmd + shift - l'
 cmd + shift - tab : open -a Alfred\ 5
 cmd - space : open -a Alfred\ 5
 
@@ -9,7 +9,6 @@ cmd - w : open -a Arc
 cmd - e : open -a Obsidian
 
 # lock screen
-cmd + shift - l: skhd -k 'cmd - l'
 alt + cmd - l : open -a ScreenSaverEngine
 
 # rectangle overrides

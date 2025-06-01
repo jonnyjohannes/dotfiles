@@ -4,7 +4,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/src -mindepth 2 -maxdepth 2 -type d | cut -d'/' -f5- | fzf --tmux --border sharp --prompt=" ")
+    selected=$(find -L ~/src -mindepth 2 -maxdepth 2 -type d | cut -d'/' -f5- | fzf --tmux --border sharp --prompt=" ")
 fi;
 
 
@@ -26,9 +26,9 @@ create_tmux_layout() {
     local dir=$1
 
     tmux select-window
-    tmux split-window -h -p 70 -c $dir
+    tmux split-window -h -p 80 -c $dir
     tmux select-pane -L
-    tmux split-window -v -p 30 -c $dir
+    tmux split-window -v -p 20 -c $dir
     tmux select-pane -U
     tmux select-pane -R
 }
@@ -36,7 +36,7 @@ create_tmux_layout() {
 if ! tmux has-session -t $session 2> /dev/null; then
     tmux new-session -ds $session -c $dir
     tmux switch-client -t $session
-    create_tmux_layout $dir
+    # create_tmux_layout $dir
 fi
 
 tmux switch-client -t $session
