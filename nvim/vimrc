@@ -78,4 +78,5 @@ let g:airline_section_x = ''
 let g:airline_section_y = '%l : %c'
 let g:airline_section_z = '%{airline#util#wrap(airline#parts#mode(),0)}'
 
-cnoreabbrev <expr> q getcmdtype() == ":" && getcmdline() == "q" && len(getbufinfo({'buflisted':1})) > 1 ? "echo 'Multiple buffers open. Use :qa to quit all.'" : "q"
+cabbrev q close
+

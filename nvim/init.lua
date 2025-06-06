@@ -44,10 +44,12 @@ require('lazy').setup({
       },
       build = "make",
       opts = {
-        provider = "openai",
-        openai = {
-          model = "o3",
-        },
+        provider = 'openai',
+        providers = {
+          openai = {
+            model = "o3",
+          },
+        }
       },
     },
     { 'gelguy/wilder.nvim' },
@@ -133,23 +135,12 @@ require('lualine').setup({
     lualine_c = {
     },
     lualine_x = {
-      'progress',
-      'location',
+      'diagnostics',
+      'lsp_status',
     },
     lualine_y = {
-      {
-        'lsp_status',
-        icon = '',
-        symbols = {
-          spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
-          done = '✓',
-          separator = ' ',
-        },
-        ignore_lsp = {
-          'Github Copilot',
-          'copilot',
-        },
-      }
+      'location',
+      'progress',
     },
     lualine_z = {
       'mode',
@@ -188,6 +179,7 @@ require('nvim-treesitter.configs').setup({
     'markdown',
     'markdown_inline',
     'python',
+    'sql',
     'vim',
   },
   highlight = {
