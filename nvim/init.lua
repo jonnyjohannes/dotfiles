@@ -32,10 +32,8 @@ require('lazy').setup({
     {
       "yetone/avante.nvim",
       dependencies = {
-        "nvim-tree/nvim-web-devicons",
-        "stevearc/dressing.nvim",
-        "nvim-lua/plenary.nvim",
         "MunifTanjim/nui.nvim",
+        "stevearc/dressing.nvim",
         {
           "MeanderingProgrammer/render-markdown.nvim",
           opts = { file_types = { "markdown", "Avante" } },
@@ -53,7 +51,6 @@ require('lazy').setup({
       },
     },
     { 'gelguy/wilder.nvim' },
-    -- { 'github/copilot.vim' },
     { "zbirenbaum/copilot.lua",
       cmd = "Copilot",
       event = "InsertEnter",
@@ -74,7 +71,7 @@ require('lazy').setup({
     { 'hrsh7th/cmp-path' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
-    { 'ibhagwan/fzf-lua', commit = 'ed8761eaa58ff77312a877a4de63d016d58dfc58' },
+    { 'ibhagwan/fzf-lua' },
     { 'mfussenegger/nvim-dap' },
     { 'mrjones2014/smart-splits.nvim' },
     { 'neovim/nvim-lspconfig' },
@@ -100,7 +97,10 @@ require('monokai-pro').setup({
 })
 require('catppuccin').setup({
   flavour = 'mocha',
-}) require('rose-pine').setup({ variant = 'moon', })
+})
+require('rose-pine').setup({
+  variant = 'moon',
+})
 vim.opt.fillchars:append({ eob = " " })
 vim.cmd('colorscheme rose-pine')
 
@@ -117,6 +117,7 @@ vim.keymap.set('n', '<Leader>/', fzfLua.search_history)
 
 -- lualine
 vim.cmd('set laststatus=3')
+vim.cmd('set showtabline=0')
 require('lualine').setup({
   options = {
     section_separators = '',
@@ -125,18 +126,18 @@ require('lualine').setup({
   sections = {
     lualine_a = {
       {
-        'buffers',
+        'windows',
         use_mode_colors = true,
         symbols = '',
-      }
+      },
     },
     lualine_b = {
     },
     lualine_c = {
     },
     lualine_x = {
-      'diagnostics',
       'lsp_status',
+      'diagnostics',
     },
     lualine_y = {
       'location',
@@ -173,12 +174,14 @@ vim.keymap.set({'n', 't'}, '<leader><leader>l', smartSplits.swap_buf_right)
 -- treesitter
 require('nvim-treesitter.configs').setup({
   ensure_installed = {
+    'bash',
     'java',
     'javascript',
     'lua',
     'markdown',
     'markdown_inline',
     'python',
+    'regex',
     'sql',
     'vim',
   },
@@ -239,17 +242,17 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
+    ['<C-l>'] = cmp.mapping.complete(),
+    ['<ESC>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<TAB>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       else
         fallback()
       end
     end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    ['<S-TAB>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       else
