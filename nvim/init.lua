@@ -17,6 +17,32 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
+    -- colorschemes
+    { 'catppuccin/nvim' },
+    { 'loctvl842/monokai-pro.nvim' },
+    { 'rose-pine/neovim' },
+    -- tools
+    { 'ibhagwan/fzf-lua' },
+    { 'mrjones2014/smart-splits.nvim' },
+    { 'nvim-lualine/lualine.nvim' },
+    { 'nvim-tree/nvim-tree.lua' },
+    { 'nvim-tree/nvim-web-devicons' },
+    { 'tpope/vim-fugitive' },
+    -- LSP/DAP
+    { 'mfussenegger/nvim-dap' },
+    { 'neovim/nvim-lspconfig' },
+    { 'nvim-java/nvim-java' },
+    { 'nvim-treesitter/nvim-treesitter' },
+    { 'mason-org/mason.nvim', version = '^1.0.0' },
+    { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
+    { 'sheerun/vim-polyglot' },
+    -- cmp completions
+    { 'hrsh7th/cmp-buffer' },
+    { 'hrsh7th/cmp-cmdline' },
+    { 'hrsh7th/cmp-path' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/nvim-cmp' },
+    -- AI
     {
       'CopilotC-Nvim/CopilotChat.nvim',
       build = 'make tiktoken',
@@ -31,34 +57,35 @@ require('lazy').setup({
       },
     },
     {
-      "yetone/avante.nvim",
+      'yetone/avante.nvim',
       dependencies = {
-        "MunifTanjim/nui.nvim",
-        "stevearc/dressing.nvim",
+        'MunifTanjim/nui.nvim',
+        'nvim-lua/plenary.nvim',
+        'stevearc/dressing.nvim',
         {
-          "MeanderingProgrammer/render-markdown.nvim",
-          opts = { file_types = { "markdown", "Avante" } },
-          ft = { "markdown", "Avante" },
+          'MeanderingProgrammer/render-markdown.nvim',
+          opts = { file_types = { 'markdown', 'Avante' } },
+          ft = { 'markdown', 'Avante' },
         },
       },
-      build = "make",
+      build = 'make',
       opts = {
         provider = 'copilot',
         providers = {
           openai = {
-            model = "o3",
+            model = 'o3',
           },
           copilot = {
-            model = "gemini-2.5-pro",
+            model = 'gemini-2.5-pro',
           },
         }
       },
     },
-    { "zbirenbaum/copilot.lua",
-      cmd = "Copilot",
-      event = "InsertEnter",
+    { 'zbirenbaum/copilot.lua',
+      cmd = 'Copilot',
+      event = 'InsertEnter',
       config = function()
-        require("copilot").setup({
+        require('copilot').setup({
           suggestion = { enabled = false },
           panel = { enabled = false },
         })
@@ -70,32 +97,9 @@ require('lazy').setup({
         require('copilot_cmp').setup({ })
       end,
     },
-    { 'hrsh7th/cmp-buffer' },
-    { 'hrsh7th/cmp-cmdline' },
-    { 'hrsh7th/cmp-path' },
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/nvim-cmp' },
-    { 'ibhagwan/fzf-lua' },
-    { 'mfussenegger/nvim-dap' },
-    { 'mrjones2014/smart-splits.nvim' },
-    { 'neovim/nvim-lspconfig' },
-    { 'nvim-java/nvim-java' },
-    { 'nvim-lua/plenary.nvim' },
-    { 'nvim-lualine/lualine.nvim' },
-    { 'nvim-tree/nvim-tree.lua' },
-    { 'nvim-tree/nvim-web-devicons' },
-    { 'nvim-treesitter/nvim-treesitter' },
-    { 'sheerun/vim-polyglot' },
-    { 'tpope/vim-fugitive' },
-    { 'mason-org/mason.nvim', version = '^1.0.0' },
-    { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
-    -- colorschemes
-    { 'catppuccin/nvim' },
-    { 'loctvl842/monokai-pro.nvim' },
-    { 'rose-pine/neovim' },
 })
 
--- color scheme
+-- colorscheme
 require('monokai-pro').setup({
   filter = 'spectrum',
 })
@@ -112,7 +116,7 @@ require('rose-pine').setup({
     },
   },
 })
-vim.opt.fillchars:append({ eob = " " })
+vim.opt.fillchars:append({ eob = ' ' })
 vim.cmd('colorscheme rose-pine')
 
 -- fzf
@@ -126,6 +130,26 @@ vim.keymap.set('n', '<Leader>t', fzfLua.files)
 vim.keymap.set('n', '<Leader>x', fzfLua.command_history)
 vim.keymap.set('n', '<Leader>/', fzfLua.search_history)
 
+-- splits
+local smartSplits = require('smart-splits')
+smartSplits.setup({
+})
+-- splits - resizing
+vim.keymap.set({'n', 't'}, '<A-h>', smartSplits.resize_left)
+vim.keymap.set({'n', 't'}, '<A-j>', smartSplits.resize_down)
+vim.keymap.set({'n', 't'}, '<A-k>', smartSplits.resize_up)
+vim.keymap.set({'n', 't'}, '<A-l>', smartSplits.resize_right)
+-- splits - moving
+vim.keymap.set({'n', 't'}, '<C-h>', smartSplits.move_cursor_left)
+vim.keymap.set({'n', 't'}, '<C-j>', smartSplits.move_cursor_down)
+vim.keymap.set({'n', 't'}, '<C-k>', smartSplits.move_cursor_up)
+vim.keymap.set({'n', 't'}, '<C-l>', smartSplits.move_cursor_right)
+-- splits - swapping
+vim.keymap.set({'n', 't'}, '<leader><leader>h', smartSplits.swap_buf_left)
+vim.keymap.set({'n', 't'}, '<leader><leader>j', smartSplits.swap_buf_down)
+vim.keymap.set({'n', 't'}, '<leader><leader>k', smartSplits.swap_buf_up)
+vim.keymap.set({'n', 't'}, '<leader><leader>l', smartSplits.swap_buf_right)
+
 -- lualine
 vim.cmd('set laststatus=3')
 vim.cmd('set showtabline=0')
@@ -136,6 +160,8 @@ require('lualine').setup({
   },
   sections = {
     lualine_a = {
+    },
+    lualine_b = {
       {
         'progress',
         fmt = function()
@@ -149,10 +175,7 @@ require('lualine').setup({
       {
         'windows',
         use_mode_colors = true,
-        symbols = '',
       },
-    },
-    lualine_b = {
     },
     lualine_c = {
     },
@@ -165,32 +188,22 @@ require('lualine').setup({
     lualine_y = {
     },
     lualine_z = {
-      'mode',
     },
   },
   inactive_sections = {
   },
 })
 
--- splits
-local smartSplits = require('smart-splits')
-smartSplits.setup({
+-- nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+require('nvim-tree').setup({
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    },
+  },
 })
--- resizing
-vim.keymap.set({'n', 't'}, '<A-h>', smartSplits.resize_left)
-vim.keymap.set({'n', 't'}, '<A-j>', smartSplits.resize_down)
-vim.keymap.set({'n', 't'}, '<A-k>', smartSplits.resize_up)
-vim.keymap.set({'n', 't'}, '<A-l>', smartSplits.resize_right)
--- moving between
-vim.keymap.set({'n', 't'}, '<C-h>', smartSplits.move_cursor_left)
-vim.keymap.set({'n', 't'}, '<C-j>', smartSplits.move_cursor_down)
-vim.keymap.set({'n', 't'}, '<C-k>', smartSplits.move_cursor_up)
-vim.keymap.set({'n', 't'}, '<C-l>', smartSplits.move_cursor_right)
--- swapping
-vim.keymap.set({'n', 't'}, '<leader><leader>h', smartSplits.swap_buf_left)
-vim.keymap.set({'n', 't'}, '<leader><leader>j', smartSplits.swap_buf_down)
-vim.keymap.set({'n', 't'}, '<leader><leader>k', smartSplits.swap_buf_up)
-vim.keymap.set({'n', 't'}, '<leader><leader>l', smartSplits.swap_buf_right)
 
 -- treesitter
 require('nvim-treesitter.configs').setup({
@@ -209,15 +222,32 @@ require('nvim-treesitter.configs').setup({
   },
 })
 
--- nvim-tree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-require('nvim-tree').setup({
-  actions = {
-    open_file = {
-      quit_on_open = true,
-    },
-  },
+-- LSP/DAP
+-- load project local config
+local project_j2de_path = vim.fn.getcwd() .. '/j2de.lua'
+if vim.fn.filereadable(project_j2de_path) == 1 then
+  dofile(project_j2de_path)
+end
+local mason = require('mason')
+local mason_lspconfig = require('mason-lspconfig')
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+mason.setup({})
+mason_lspconfig.setup({})
+mason_lspconfig.setup_handlers({
+  function(server_name)
+    require('lspconfig')[server_name].setup({
+    capabilities = capabilities,
+    on_attach = function()
+      -- lsp mappings
+      vim.keymap.set('n', '<leader>gd', fzfLua.lsp_definitions)
+      vim.keymap.set('n', '<leader>gr', fzfLua.lsp_references)
+
+      -- dap mappings
+      vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
+      vim.keymap.set('n', '<leader>dc', '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>')
+    end,
+  })
+  end,
 })
 
 -- completions
@@ -282,44 +312,5 @@ cmp.setup.cmdline(':', {
     { name = 'path' },
     { name = 'cmdline' },
   },
-})
-
--- LSPs
-local mason = require("mason")
-local mason_lspconfig = require("mason-lspconfig")
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
--- Project specific LSP and DAP
-local project_j2de_path = vim.fn.getcwd() .. "/j2de.lua"
-if vim.fn.filereadable(project_j2de_path) == 1 then
-  dofile(project_j2de_path)
-  print("🐝 j2de.lua loaded 🐞")
-end
-
-mason.setup({})
-mason_lspconfig.setup({})
-mason_lspconfig.setup_handlers({
-  function(server_name)
-    require('lspconfig')[server_name].setup({
-    capabilities = capabilities,
-    on_attach = function()
-      -- lsp mappings
-      vim.keymap.set("n", "<leader>gd", fzfLua.lsp_definitions)
-      vim.keymap.set("n", "<leader>gr", fzfLua.lsp_references)
-
-      -- dap mappings
-      vim.keymap.set("n", "<leader>db", require('dap').toggle_breakpoint)
-      vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
-    end,
-  })
-  end,
-})
-
-vim.api.nvim_create_autocmd({"ModeChanged"}, {
-  callback = function()
-    local mode = vim.api.nvim_get_mode().mode
-    local is_term_mode = mode == "t"
-    vim.api.nvim_set_option_value("timeoutlen", is_term_mode and 0 or 1000, { scope = "local" })
-  end,
 })
 
