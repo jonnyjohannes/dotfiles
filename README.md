@@ -7,7 +7,9 @@ Hacking Essentials
     - alacritty: terminal emulator
     - brew: homebrew
     - git: global config, ignore
+    - karabiner: for hold-ctrl/tap-esc on mac keyboard
     - nvim: (neo)vim configs
+    - sketchybar: macos toolbar hack
     - skhd: hotkey daemon
     - starship: prompt
     - tmux: terminal multiplexer
@@ -34,6 +36,5 @@ Installation
     #   - vim 
     #   - zsh
     ln -s ~/.dotfiles/nvim/vimrc ~/.vimrc
-    vim +PluginInstall +qall
     ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 ```
