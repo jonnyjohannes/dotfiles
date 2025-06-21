@@ -107,8 +107,8 @@ require('rose-pine').setup({
   palette = {
     main = {
       base = '#1e1e1e',
-      surface = '#1e1e1e',
       overlay = '#363738',
+      surface = '#282828',
     },
   },
 })
@@ -137,6 +137,16 @@ require('lualine').setup({
   sections = {
     lualine_a = {
       {
+        'progress',
+        fmt = function()
+          local current = vim.fn.line('.')
+          local total = vim.fn.line('$')
+          local chars = {'█', '▇', '▆', '▅', '▄', '▃', '▂', '▁'}
+          local idx = math.floor((current/total) * (#chars - 1)) + 1
+          return chars[idx]
+        end,
+      },
+      {
         'windows',
         use_mode_colors = true,
         symbols = '',
@@ -147,12 +157,12 @@ require('lualine').setup({
     lualine_c = {
     },
     lualine_x = {
-      'diagnostics',
       'lsp_status',
+      'diagnostics',
+      'branch',
+      'diff',
     },
     lualine_y = {
-      'location',
-      'progress',
     },
     lualine_z = {
       'mode',
