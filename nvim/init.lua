@@ -17,7 +17,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
-    { 'CopilotC-Nvim/CopilotChat.nvim',
+    {
+      'CopilotC-Nvim/CopilotChat.nvim',
       build = 'make tiktoken',
       opts = {
         mappings = {
@@ -42,15 +43,17 @@ require('lazy').setup({
       },
       build = "make",
       opts = {
-        provider = 'openai',
+        provider = 'copilot',
         providers = {
           openai = {
             model = "o3",
           },
+          copilot = {
+            model = "gemini-2.5-pro",
+          },
         }
       },
     },
-    { 'gelguy/wilder.nvim' },
     { "zbirenbaum/copilot.lua",
       cmd = "Copilot",
       event = "InsertEnter",
@@ -68,6 +71,7 @@ require('lazy').setup({
       end,
     },
     { 'hrsh7th/cmp-buffer' },
+    { 'hrsh7th/cmp-cmdline' },
     { 'hrsh7th/cmp-path' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
@@ -99,7 +103,14 @@ require('catppuccin').setup({
   flavour = 'mocha',
 })
 require('rose-pine').setup({
-  variant = 'moon',
+  variant = 'main',
+  palette = {
+    main = {
+      base = '#1e1e1e',
+      surface = '#1e1e1e',
+      overlay = '#363738',
+    },
+  },
 })
 vim.opt.fillchars:append({ eob = " " })
 vim.cmd('colorscheme rose-pine')
@@ -136,8 +147,8 @@ require('lualine').setup({
     lualine_c = {
     },
     lualine_x = {
-      'lsp_status',
       'diagnostics',
+      'lsp_status',
     },
     lualine_y = {
       'location',
@@ -174,14 +185,12 @@ vim.keymap.set({'n', 't'}, '<leader><leader>l', smartSplits.swap_buf_right)
 -- treesitter
 require('nvim-treesitter.configs').setup({
   ensure_installed = {
-    'bash',
     'java',
     'javascript',
     'lua',
     'markdown',
     'markdown_inline',
     'python',
-    'regex',
     'sql',
     'vim',
   },
@@ -201,40 +210,8 @@ require('nvim-tree').setup({
   },
 })
 
--- wilder
-local wilder = require('wilder')
-wilder.setup({
-  modes = {':', '/', '?'},
-  enable_cmdline_enter = 0,
-})
-wilder.set_option('renderer', wilder.popupmenu_renderer(
-  wilder.popupmenu_border_theme({
-    highlighter = wilder.basic_highlighter(),
-    min_width = '100%',
-    min_height = '20%',
-    max_height = '20%',
-    reverse = 0,
-  })
-))
-wilder.set_option('pipeline', {
-  wilder.branch(
-    wilder.cmdline_pipeline({
-      language = 'vim',
-      fuzzy = 2,
-    }),
-    wilder.search_pipeline({
-      language = 'vim',
-      fuzzy = 2,
-    })
-  )
-})
-
--- LSP and completion
+-- completions
 local cmp = require('cmp')
-local mason = require("mason")
-local mason_lspconfig = require("mason-lspconfig")
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 cmp.setup({
   completion = {
     autocomplete = false,
@@ -271,20 +248,43 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
 })
-
-require('java').setup({})
-
-vim.api.nvim_create_autocmd({"VimEnter"}, {
-  callback = function()
-    -- Check for project-specific j2de.lua file
-    local project_config = vim.fn.getcwd() .. "/j2de.lua"
-    if vim.fn.filereadable(project_config) == 1 then
-      -- Load the project-specific configuration
-      dofile(project_config)
-      print("j2de config loaded 🐞")
-    end
-  end
+cmp.setup.cmdline({'/', '?'}, {
+  formatting = {
+    format = function(_, item)
+      item.kind = ''
+      return item
+    end,
+  },
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
 })
+cmp.setup.cmdline(':', {
+  formatting = {
+    format = function(_, item)
+      item.kind = ''
+      return item
+    end,
+  },
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'path' },
+    { name = 'cmdline' },
+  },
+})
+
+-- LSPs
+local mason = require("mason")
+local mason_lspconfig = require("mason-lspconfig")
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+-- Project specific LSP and DAP
+local project_j2de_path = vim.fn.getcwd() .. "/j2de.lua"
+if vim.fn.filereadable(project_j2de_path) == 1 then
+  dofile(project_j2de_path)
+  print("🐝 j2de.lua loaded 🐞")
+end
 
 mason.setup({})
 mason_lspconfig.setup({})
