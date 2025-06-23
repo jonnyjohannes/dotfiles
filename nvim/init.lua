@@ -105,14 +105,23 @@ require('monokai-pro').setup({
 })
 require('catppuccin').setup({
   flavour = 'mocha',
+  color_overrides = {
+    all = {
+      base = '#1f1f1f',
+      crust = '#363738',
+      mantle = '#1e1e1e',
+      overlay0 = '#363738',
+      surface1 = '#363738',
+    },
+  },
 })
 require('rose-pine').setup({
   variant = 'main',
   palette = {
     main = {
-      base = '#1e1e1e',
+      base = '#1f1f1f',
       overlay = '#363738',
-      surface = '#282828',
+      surface = '#1e1e1e',
     },
   },
 })
@@ -124,11 +133,9 @@ local fzfLua = require('fzf-lua')
 fzfLua.setup({
   'borderless_full',
 })
-vim.keymap.set('n', '<Leader>b', fzfLua.buffers)
-vim.keymap.set('n', '<Leader>f', fzfLua.grep_project)
-vim.keymap.set('n', '<Leader>t', fzfLua.files)
+vim.keymap.set('n', '<Leader>w', fzfLua.buffers)
+vim.keymap.set('n', '<Leader>f', fzfLua.files)
 vim.keymap.set('n', '<Leader>x', fzfLua.command_history)
-vim.keymap.set('n', '<Leader>/', fzfLua.search_history)
 
 -- splits
 local smartSplits = require('smart-splits')
@@ -173,8 +180,9 @@ require('lualine').setup({
         end,
       },
       {
-        'windows',
+        'buffers',
         use_mode_colors = true,
+        symbols = '',
       },
     },
     lualine_c = {
@@ -198,11 +206,6 @@ require('lualine').setup({
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 require('nvim-tree').setup({
-  actions = {
-    open_file = {
-      quit_on_open = true,
-    },
-  },
 })
 
 -- treesitter
@@ -223,7 +226,6 @@ require('nvim-treesitter.configs').setup({
 })
 
 -- LSP/DAP
--- load project local config
 local project_j2de_path = vim.fn.getcwd() .. '/j2de.lua'
 if vim.fn.filereadable(project_j2de_path) == 1 then
   dofile(project_j2de_path)
@@ -238,13 +240,10 @@ mason_lspconfig.setup_handlers({
     require('lspconfig')[server_name].setup({
     capabilities = capabilities,
     on_attach = function()
-      -- lsp mappings
       vim.keymap.set('n', '<leader>gd', fzfLua.lsp_definitions)
       vim.keymap.set('n', '<leader>gr', fzfLua.lsp_references)
-
-      -- dap mappings
       vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
-      vim.keymap.set('n', '<leader>dc', '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>')
+      vim.keymap.set('n', '<leader>dc', '<CMD>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>')
     end,
   })
   end,

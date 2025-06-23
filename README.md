@@ -4,16 +4,16 @@ Jonny Johannes's Dotfiles
 Hacking Essentials
 ------------------
 
-    - alacritty: terminal emulator
-    - brew: homebrew
-    - git: global config, ignore
-    - karabiner: for hold-ctrl/tap-esc on mac keyboard
-    - nvim: (neo)vim configs
-    - sketchybar: macos toolbar hack
-    - skhd: hotkey daemon
-    - starship: prompt
-    - tmux: terminal multiplexer
-    - zsh: zshrc
+- alacritty: terminal emulator
+- brew: homebrew
+- git: global config, ignore
+- karabiner: for hold-ctrl/tap-esc on mac keyboard
+- nvim: (neo)vim configs
+- sketchybar: macos toolbar hack
+- skhd: hotkey daemon
+- starship: prompt
+- tmux: terminal multiplexer
+- zsh: zshrc
 
 Installation
 ------------

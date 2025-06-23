@@ -1,5 +1,5 @@
 [general]
-import = ["themes/rose-pine-main.toml"]
+import = ['themes/rose-pine-main.toml']
 
 [colors.primary]
 background = '#1e1e1e'

@@ -27,6 +27,10 @@ augroup NormalModeOverrides
   nnoremap N Nzzzv
   " Keep cursor in place when joining lines
   nnoremap J mzJ`z
+  " buffer moving
+  nnoremap <Leader>n :bnext<CR>
+  nnoremap <Leader>p :bprev<CR>
+  nnoremap <Leader>l <C-^>
 augroup END
 
 augroup VisualModeOverrides
@@ -39,8 +43,12 @@ augroup END
 augroup TerminalModeOverrides
   autocmd!
   " Back to NormalMode (vanilla vim is weird with <M>)
-  tnoremap <M-Esc> <C-\><C-n>
+  tnoremap <A-Esc> <C-\><C-n>
+  " Hide line numbers in terminal mode
+  silent! autocmd TermEnter * setlocal nonumber norelativenumber
+  silent! autocmd TermLeave * setlocal number relativenumber
   " TerminalMode no leader timeout
   silent! autocmd TermEnter * setlocal timeoutlen=0
   silent! autocmd TermLeave * setlocal timeoutlen=1000
 augroup END
+

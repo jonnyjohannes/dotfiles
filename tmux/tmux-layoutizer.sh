@@ -4,8 +4,12 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find -L ~/src -mindepth 2 -maxdepth 2 -type d | cut -d'/' -f5- | fzf --tmux --border sharp --prompt=" ")
-fi;
+    selected=$(
+        find -L ~/src -name '[!.]*' -mindepth 2 -maxdepth 2 -type d |
+        cut -d'/' -f5- |
+        fzf --tmux --border sharp --prompt=" "
+    )
+fi
 
 
 if [[ -z $selected ]]; then
