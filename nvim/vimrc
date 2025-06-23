@@ -13,6 +13,7 @@ set expandtab                     " use softtabs
 set clipboard=unnamed             " share system clipboard
 set mouse=v                       " enable mouse in visual mode
 set nofixendofline                " no newlines at the end of files
+set fillchars=eob:\               " blank end of buffers
 
 let mapleader = ' '
 cabbrev q close
@@ -28,9 +29,10 @@ augroup NormalModeOverrides
   " Keep cursor in place when joining lines
   nnoremap J mzJ`z
   " buffer moving
-  nnoremap <Leader>n :bnext<CR>
-  nnoremap <Leader>p :bprev<CR>
-  nnoremap <Leader>l <C-^>
+  silent! nnoremap <LEADER>n :bnext<CR>
+  silent! nnoremap <LEADER>p :bprev<CR>
+  silent! nnoremap <LEADER>l <C-^>
+  silent! nnoremap <LEADER>x :confirm bd<CR>
 augroup END
 
 augroup VisualModeOverrides

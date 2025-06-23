@@ -42,7 +42,7 @@ require('lazy').setup({
     { 'hrsh7th/cmp-path' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
-    -- AI
+    -- AI Copilots
     {
       'CopilotC-Nvim/CopilotChat.nvim',
       build = 'make tiktoken',
@@ -106,7 +106,7 @@ require('monokai-pro').setup({
 require('catppuccin').setup({
   flavour = 'mocha',
   color_overrides = {
-    all = {
+    mocha = {
       base = '#1f1f1f',
       crust = '#363738',
       mantle = '#1e1e1e',
@@ -125,7 +125,6 @@ require('rose-pine').setup({
     },
   },
 })
-vim.opt.fillchars:append({ eob = ' ' })
 vim.cmd('colorscheme rose-pine')
 
 -- fzf
@@ -133,9 +132,9 @@ local fzfLua = require('fzf-lua')
 fzfLua.setup({
   'borderless_full',
 })
-vim.keymap.set('n', '<Leader>w', fzfLua.buffers)
-vim.keymap.set('n', '<Leader>f', fzfLua.files)
-vim.keymap.set('n', '<Leader>x', fzfLua.command_history)
+vim.keymap.set('n', '<LEADER>s', fzfLua.buffers)
+vim.keymap.set('n', '<LEADER>f', fzfLua.files)
+vim.keymap.set('n', '<LEADER>:', fzfLua.command_history)
 
 -- splits
 local smartSplits = require('smart-splits')
@@ -152,10 +151,10 @@ vim.keymap.set({'n', 't'}, '<C-j>', smartSplits.move_cursor_down)
 vim.keymap.set({'n', 't'}, '<C-k>', smartSplits.move_cursor_up)
 vim.keymap.set({'n', 't'}, '<C-l>', smartSplits.move_cursor_right)
 -- splits - swapping
-vim.keymap.set({'n', 't'}, '<leader><leader>h', smartSplits.swap_buf_left)
-vim.keymap.set({'n', 't'}, '<leader><leader>j', smartSplits.swap_buf_down)
-vim.keymap.set({'n', 't'}, '<leader><leader>k', smartSplits.swap_buf_up)
-vim.keymap.set({'n', 't'}, '<leader><leader>l', smartSplits.swap_buf_right)
+vim.keymap.set({'n', 't'}, '<LEADER><LEADER>h', smartSplits.swap_buf_left)
+vim.keymap.set({'n', 't'}, '<LEADER><LEADER>j', smartSplits.swap_buf_down)
+vim.keymap.set({'n', 't'}, '<LEADER><LEADER>k', smartSplits.swap_buf_up)
+vim.keymap.set({'n', 't'}, '<LEADER><LEADER>l', smartSplits.swap_buf_right)
 
 -- lualine
 vim.cmd('set laststatus=3')
@@ -238,14 +237,14 @@ mason_lspconfig.setup({})
 mason_lspconfig.setup_handlers({
   function(server_name)
     require('lspconfig')[server_name].setup({
-    capabilities = capabilities,
-    on_attach = function()
-      vim.keymap.set('n', '<leader>gd', fzfLua.lsp_definitions)
-      vim.keymap.set('n', '<leader>gr', fzfLua.lsp_references)
-      vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
-      vim.keymap.set('n', '<leader>dc', '<CMD>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>')
-    end,
-  })
+      capabilities = capabilities,
+      on_attach = function()
+        vim.keymap.set('n', '<LEADER>gd', fzfLua.lsp_definitions)
+        vim.keymap.set('n', '<LEADER>gr', fzfLua.lsp_references)
+        vim.keymap.set('n', '<LEADER>db', require('dap').toggle_breakpoint)
+        vim.keymap.set('n', '<LEADER>dc', '<CMD>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>')
+      end,
+    })
   end,
 })
 
@@ -297,7 +296,7 @@ cmp.setup.cmdline({'/', '?'}, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' }
-  }
+  },
 })
 cmp.setup.cmdline(':', {
   formatting = {
