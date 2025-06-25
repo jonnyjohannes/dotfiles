@@ -26,13 +26,14 @@ augroup NormalModeOverrides
   " Center screen when navigating search results
   nnoremap n nzzzv
   nnoremap N Nzzzv
-  " Keep cursor in place when joining lines
-  nnoremap J mzJ`z
-  " buffer moving
-  silent! nnoremap <LEADER>n :bnext<CR>
-  silent! nnoremap <LEADER>p :bprev<CR>
-  silent! nnoremap <LEADER>l <C-^>
-  silent! nnoremap <LEADER>x :confirm bd<CR>
+  " buffer (tmux-ish) navigation
+  nnoremap <leader>c :term<cr>
+  nnoremap <leader>n :bnext<cr>
+  nnoremap <leader>p :bprevious<cr>
+  nnoremap <leader>l :b#<cr>
+  nnoremap <leader>L :e #<cr>
+  nnoremap <leader>x :confirm bd<cr>
+  nnoremap <leader>z :only<cr>
 augroup END
 
 augroup VisualModeOverrides
@@ -44,7 +45,7 @@ augroup END
 
 augroup TerminalModeOverrides
   autocmd!
-  " Back to NormalMode (vanilla vim is weird with <M>)
+  " Back to NormalMode (vanilla vim is weird with <A>)
   tnoremap <A-Esc> <C-\><C-n>
   " Hide line numbers in terminal mode
   silent! autocmd TermEnter * setlocal nonumber norelativenumber

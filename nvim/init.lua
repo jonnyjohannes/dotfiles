@@ -127,15 +127,6 @@ require('rose-pine').setup({
 })
 vim.cmd('colorscheme rose-pine')
 
--- fzf
-local fzfLua = require('fzf-lua')
-fzfLua.setup({
-  'borderless_full',
-})
-vim.keymap.set('n', '<LEADER>s', fzfLua.buffers)
-vim.keymap.set('n', '<LEADER>f', fzfLua.files)
-vim.keymap.set('n', '<LEADER>:', fzfLua.command_history)
-
 -- splits
 local smartSplits = require('smart-splits')
 smartSplits.setup({
@@ -151,10 +142,19 @@ vim.keymap.set({'n', 't'}, '<C-j>', smartSplits.move_cursor_down)
 vim.keymap.set({'n', 't'}, '<C-k>', smartSplits.move_cursor_up)
 vim.keymap.set({'n', 't'}, '<C-l>', smartSplits.move_cursor_right)
 -- splits - swapping
-vim.keymap.set({'n', 't'}, '<LEADER><LEADER>h', smartSplits.swap_buf_left)
-vim.keymap.set({'n', 't'}, '<LEADER><LEADER>j', smartSplits.swap_buf_down)
-vim.keymap.set({'n', 't'}, '<LEADER><LEADER>k', smartSplits.swap_buf_up)
-vim.keymap.set({'n', 't'}, '<LEADER><LEADER>l', smartSplits.swap_buf_right)
+vim.keymap.set({'n', 't'}, '<leader><leader>h', smartSplits.swap_buf_left)
+vim.keymap.set({'n', 't'}, '<leader><leader>j', smartSplits.swap_buf_down)
+vim.keymap.set({'n', 't'}, '<leader><leader>k', smartSplits.swap_buf_up)
+vim.keymap.set({'n', 't'}, '<leader><leader>l', smartSplits.swap_buf_right)
+
+-- fzf
+local fzfLua = require('fzf-lua')
+fzfLua.setup({
+  'borderless_full',
+})
+vim.keymap.set('n', '<leader>s', fzfLua.buffers)
+vim.keymap.set('n', '<leader>f', fzfLua.files)
+vim.keymap.set('n', '<leader>:', fzfLua.command_history)
 
 -- lualine
 vim.cmd('set laststatus=3')
@@ -179,9 +179,9 @@ require('lualine').setup({
         end,
       },
       {
-        'buffers',
-        use_mode_colors = true,
+        'windows',
         symbols = '',
+        use_mode_colors = true,
       },
     },
     lualine_c = {
@@ -239,10 +239,10 @@ mason_lspconfig.setup_handlers({
     require('lspconfig')[server_name].setup({
       capabilities = capabilities,
       on_attach = function()
-        vim.keymap.set('n', '<LEADER>gd', fzfLua.lsp_definitions)
-        vim.keymap.set('n', '<LEADER>gr', fzfLua.lsp_references)
-        vim.keymap.set('n', '<LEADER>db', require('dap').toggle_breakpoint)
-        vim.keymap.set('n', '<LEADER>dc', '<CMD>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>')
+        vim.keymap.set('n', '<leader>gd', fzfLua.lsp_definitions)
+        vim.keymap.set('n', '<leader>gr', fzfLua.lsp_references)
+        vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
+        vim.keymap.set('n', '<leader>dc', '<cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>')
       end,
     })
   end,
