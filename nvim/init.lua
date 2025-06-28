@@ -168,7 +168,7 @@ fzfLua.setup({
     preview = {
       border = 'single',
       horizontal = 'right:60%',
-      vertical = 'up:60%',
+      vertical = 'up:50%',
     },
     height = 0.30,
     width = 1,
