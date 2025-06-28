@@ -150,7 +150,30 @@ vim.keymap.set({'n', 't'}, '<leader><leader>l', smartSplits.swap_buf_right)
 -- fzf
 local fzfLua = require('fzf-lua')
 fzfLua.setup({
-  'borderless_full',
+  fzf_opts = {
+    ['--layout'] = 'reverse-list',
+  },
+  keymap = {
+    builtin = {
+      ['<c-d>'] = 'preview-page-down',
+      ['<c-u>'] = 'preview-page-up',
+    },
+    fzf = {
+      ['ctrl-d'] = 'preview-page-down',
+      ['ctrl-u'] = 'preview-page-up',
+    },
+  },
+  winopts = {
+    border = 'single',
+    preview = {
+      border = 'single',
+      horizontal = 'right:60%',
+      vertical = 'up:60%',
+    },
+    height = 0.50,
+    width = 1,
+    row = 1,
+  },
 })
 vim.keymap.set('n', '<leader>s', fzfLua.buffers)
 vim.keymap.set('n', '<leader>t', fzfLua.files)
@@ -283,8 +306,8 @@ cmp.setup({
     { name = 'path' },
   }),
   window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered({ border = 'single' }),
+    documentation = cmp.config.window.bordered({ border = 'single' }),
   },
 })
 cmp.setup.cmdline({'/', '?'}, {

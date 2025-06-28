@@ -20,10 +20,10 @@ cabbrev q close
 
 augroup NormalModeOverrides
   autocmd!
-  " Center screen after page movements
+  " Centre screen after page movements
   nnoremap <C-d> <C-d>zz
   nnoremap <C-u> <C-u>zz
-  " Center screen when navigating search results
+  " Centre screen when navigating search results
   nnoremap n nzzzv
   nnoremap N Nzzzv
   " buffer (tmux-ish) navigation
