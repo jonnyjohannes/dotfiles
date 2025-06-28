@@ -170,14 +170,14 @@ fzfLua.setup({
       horizontal = 'right:60%',
       vertical = 'up:60%',
     },
-    height = 0.50,
+    height = 0.30,
     width = 1,
     row = 1,
   },
 })
-vim.keymap.set('n', '<leader>s', fzfLua.buffers)
-vim.keymap.set('n', '<leader>t', fzfLua.files)
+vim.keymap.set('n', '<leader>b', fzfLua.buffers)
 vim.keymap.set('n', '<leader>f', fzfLua.grep_project)
+vim.keymap.set('n', '<leader>t', fzfLua.files)
 vim.keymap.set('n', '<leader>:', fzfLua.command_history)
 
 -- lualine

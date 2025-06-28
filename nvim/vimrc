@@ -13,6 +13,7 @@ set expandtab                     " use softtabs
 set clipboard=unnamed             " share system clipboard
 set mouse=v                       " enable mouse in visual mode
 set nofixendofline                " no newlines at the end of files
+set noshowmode                    " no mode in command line
 set fillchars=eob:\               " blank end of buffers
 
 let mapleader = ' '
