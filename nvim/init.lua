@@ -53,7 +53,7 @@ require('lazy').setup({
             insert = '<C-r>',
           },
         },
-        model = 'claude-3.7-sonnet',
+        model = 'gemini-2.5-pro',
       },
     },
     {
@@ -73,10 +73,16 @@ require('lazy').setup({
         provider = 'copilot',
         providers = {
           openai = {
+            extra_request_body = {
+              max_completion_tokens = 8192,
+            },
             model = 'o3',
           },
           copilot = {
-            model = 'gemini-2.5-pro',
+            extra_request_body = {
+              max_tokens = 8192,
+            },
+            model = 'claude-sonnet-4',
           },
         }
       },
@@ -265,6 +271,7 @@ mason_lspconfig.setup_handlers({
       on_attach = function()
         vim.keymap.set('n', '<leader>gd', fzfLua.lsp_definitions)
         vim.keymap.set('n', '<leader>gr', fzfLua.lsp_references)
+        vim.keymap.set('n', '<leader>dr', require('dap').continue)
         vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
         vim.keymap.set('n', '<leader>dc', '<cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>')
       end,

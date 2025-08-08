@@ -32,7 +32,6 @@ augroup NormalModeOverrides
   nnoremap <leader>n :bnext<cr>
   nnoremap <leader>p :bprevious<cr>
   nnoremap <leader>l :b#<cr>
-  nnoremap <leader>L :e #<cr>
   nnoremap <leader>x :confirm bd<cr>
   nnoremap <leader>z :only<cr>
 augroup END
