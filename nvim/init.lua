@@ -250,7 +250,7 @@ require('nvim-treesitter.configs').setup({
 })
 
 -- LSP/DAP
-local project_j2de_path = vim.fn.getcwd() .. '/j2de.lua'
+local project_j2de_path = vim.fn.getcwd() .. '/.j2de.lua'
 if vim.fn.filereadable(project_j2de_path) == 1 then
   dofile(project_j2de_path)
 end

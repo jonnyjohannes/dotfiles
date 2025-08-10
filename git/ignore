@@ -25,6 +25,5 @@ Session.vim
 tags
 
 # project local
-j2de.lua
-**/*mise*
+.j2de.lua
 
