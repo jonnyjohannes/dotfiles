@@ -17,7 +17,6 @@ set noshowmode                    " no mode in command line
 set fillchars=eob:\               " blank end of buffers
 
 let mapleader = ' '
-cabbrev q close
 
 augroup NormalModeOverrides
   autocmd!
@@ -28,9 +27,6 @@ augroup NormalModeOverrides
   nnoremap n nzzzv
   nnoremap N Nzzzv
   " buffer (tmux-ish) navigation
-  nnoremap <leader>c :term<cr>
-  nnoremap <leader>n :bnext<cr>
-  nnoremap <leader>p :bprevious<cr>
   nnoremap <leader>l :b#<cr>
   nnoremap <leader>x :confirm bd<cr>
   nnoremap <leader>z :only<cr>
@@ -41,17 +37,5 @@ augroup VisualModeOverrides
   " Move selected lines up and down
   vnoremap J :m '>+1<CR>gv=gv
   vnoremap K :m '<-2<CR>gv=gv
-augroup END
-
-augroup TerminalModeOverrides
-  autocmd!
-  " Back to NormalMode (vanilla vim is weird with <A>)
-  tnoremap <A-Esc> <C-\><C-n>
-  " Hide line numbers in terminal mode
-  silent! autocmd TermEnter * setlocal nonumber norelativenumber
-  silent! autocmd TermLeave * setlocal number relativenumber
-  " TerminalMode no leader timeout
-  silent! autocmd TermEnter * setlocal timeoutlen=0
-  silent! autocmd TermLeave * setlocal timeoutlen=1000
 augroup END
 

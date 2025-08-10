@@ -87,7 +87,8 @@ require('lazy').setup({
         }
       },
     },
-    { 'zbirenbaum/copilot.lua',
+    {
+      'zbirenbaum/copilot.lua',
       cmd = 'Copilot',
       event = 'InsertEnter',
       config = function()
@@ -138,20 +139,15 @@ local smartSplits = require('smart-splits')
 smartSplits.setup({
 })
 -- splits - resizing
-vim.keymap.set({'n', 't'}, '<A-h>', smartSplits.resize_left)
-vim.keymap.set({'n', 't'}, '<A-j>', smartSplits.resize_down)
-vim.keymap.set({'n', 't'}, '<A-k>', smartSplits.resize_up)
-vim.keymap.set({'n', 't'}, '<A-l>', smartSplits.resize_right)
+vim.keymap.set({'n'}, '<A-h>', smartSplits.resize_left)
+vim.keymap.set({'n'}, '<A-j>', smartSplits.resize_down)
+vim.keymap.set({'n'}, '<A-k>', smartSplits.resize_up)
+vim.keymap.set({'n'}, '<A-l>', smartSplits.resize_right)
 -- splits - moving
-vim.keymap.set({'n', 't'}, '<C-h>', smartSplits.move_cursor_left)
-vim.keymap.set({'n', 't'}, '<C-j>', smartSplits.move_cursor_down)
-vim.keymap.set({'n', 't'}, '<C-k>', smartSplits.move_cursor_up)
-vim.keymap.set({'n', 't'}, '<C-l>', smartSplits.move_cursor_right)
--- splits - swapping
-vim.keymap.set({'n', 't'}, '<leader><leader>h', smartSplits.swap_buf_left)
-vim.keymap.set({'n', 't'}, '<leader><leader>j', smartSplits.swap_buf_down)
-vim.keymap.set({'n', 't'}, '<leader><leader>k', smartSplits.swap_buf_up)
-vim.keymap.set({'n', 't'}, '<leader><leader>l', smartSplits.swap_buf_right)
+vim.keymap.set({'n'}, '<C-h>', smartSplits.move_cursor_left)
+vim.keymap.set({'n'}, '<C-j>', smartSplits.move_cursor_down)
+vim.keymap.set({'n'}, '<C-k>', smartSplits.move_cursor_up)
+vim.keymap.set({'n'}, '<C-l>', smartSplits.move_cursor_right)
 
 -- fzf
 local fzfLua = require('fzf-lua')
@@ -249,9 +245,8 @@ require('nvim-treesitter.configs').setup({
     'sql',
     'vim',
   },
-  highlight = {
-    enable = true,
-  },
+  highlight = { enable = true, },
+  indent = { enable = true },
 })
 
 -- LSP/DAP
