@@ -1,5 +1,5 @@
 [general]
-import = ['themes/rose-pine-main.toml']
+import = ['themes/monokai-pro.toml']
 
 [colors.primary]
 background = '#1e1e1e'
@@ -7,7 +7,6 @@ foreground = '#e0e0e0'
 
 [colors.cursor]
 cursor = '#e068a5'
-text   = 'CellBackground'
 
 [font]
 size = 15
