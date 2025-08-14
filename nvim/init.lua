@@ -250,10 +250,16 @@ require('nvim-treesitter.configs').setup({
 })
 
 -- LSP/DAP
+local global_j2de_path = vim.fn.fnamemodify(vim.env.MYVIMRC, ':h') .. '/j2de.lua'
+if vim.fn.filereadable(global_j2de_path) == 1 then
+  dofile(global_j2de_path)
+end
 local project_j2de_path = vim.fn.getcwd() .. '/.j2de.lua'
 if vim.fn.filereadable(project_j2de_path) == 1 then
   dofile(project_j2de_path)
 end
+
+local lspconfig = require('lspconfig')
 local mason = require('mason')
 local mason_lspconfig = require('mason-lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -261,14 +267,16 @@ mason.setup({})
 mason_lspconfig.setup({})
 mason_lspconfig.setup_handlers({
   function(server_name)
-    require('lspconfig')[server_name].setup({
+    lspconfig[server_name].setup({
       capabilities = capabilities,
       on_attach = function()
         vim.keymap.set('n', '<leader>gd', fzfLua.lsp_definitions)
         vim.keymap.set('n', '<leader>gr', fzfLua.lsp_references)
         vim.keymap.set('n', '<leader>dr', require('dap').continue)
         vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
-        vim.keymap.set('n', '<leader>dc', '<cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>')
+        vim.keymap.set('n', '<leader>dc', function()
+          require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
+        end)
       end,
     })
   end,
