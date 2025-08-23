@@ -1,10 +1,10 @@
 #!/bin/bash
 
 colors=(
-  'red'
   'green' 
   'yellow'
   'blue'
+  'red'
 )
 
 session_id=$(tmux display-message -p '#{session_id}')

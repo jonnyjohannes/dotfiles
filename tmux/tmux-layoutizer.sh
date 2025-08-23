@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 # Inspired by https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 
+combo=$({
+    tmux list-sessions -F '#{session_name}';
+    find ~/src -mindepth 1 -maxdepth 1 -type l | cut -d'/' -f5-;
+} | awk '!seen[$0]++ && NF')
+
 selected=$(
-    find -L ~/src -name '[!.]*' -mindepth 2 -maxdepth 2 -type d |
-    cut -d'/' -f5- |
-    fzf --tmux 100% --border sharp --prompt=" "
+    echo $combo | fzf --tmux 100% --border sharp --prompt='(⌐■_■) '
 )
 
 if [[ -z $selected ]]; then

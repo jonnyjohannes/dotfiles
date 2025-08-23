@@ -3,8 +3,8 @@ cmd - tab : skhd -k 'cmd + shift - l'
 cmd - space : open -a Alfred\ 5
 
 # applications
-cmd - q : open -a Alacritty
-cmd - w : open -a Arc
+cmd - q : open -a Arc
+cmd - w : open -a Alacritty
 cmd - e : open -a Obsidian
 
 # lock screen
