@@ -17,16 +17,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
-    -- colorschemes
-    { 'catppuccin/nvim' },
-    { 'loctvl842/monokai-pro.nvim' },
-    { 'rose-pine/neovim' },
     -- tools
     { 'ibhagwan/fzf-lua' },
     { 'mrjones2014/smart-splits.nvim' },
     { 'nvim-lualine/lualine.nvim' },
     { 'nvim-tree/nvim-tree.lua' },
     { 'nvim-tree/nvim-web-devicons' },
+    { 'rose-pine/neovim' },
     { 'tpope/vim-fugitive' },
     -- LSP/DAP
     { 'mfussenegger/nvim-dap' },
@@ -35,7 +32,6 @@ require('lazy').setup({
     { 'nvim-treesitter/nvim-treesitter' },
     { 'mason-org/mason.nvim', version = '^1.0.0' },
     { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
-    { 'sheerun/vim-polyglot' },
     -- cmp completions
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-cmdline' },
@@ -107,21 +103,6 @@ require('lazy').setup({
 })
 
 -- colorscheme
-require('monokai-pro').setup({
-  filter = 'spectrum',
-})
-require('catppuccin').setup({
-  flavour = 'mocha',
-  color_overrides = {
-    mocha = {
-      base = '#1f1f1f',
-      crust = '#363738',
-      mantle = '#1e1e1e',
-      overlay0 = '#363738',
-      surface1 = '#363738',
-    },
-  },
-})
 require('rose-pine').setup({
   variant = 'main',
   palette = {
@@ -160,10 +141,6 @@ fzfLua.setup({
       ['<c-d>'] = 'preview-page-down',
       ['<c-u>'] = 'preview-page-up',
     },
-    fzf = {
-      ['ctrl-d'] = 'preview-page-down',
-      ['ctrl-u'] = 'preview-page-up',
-    },
   },
   winopts = {
     border = 'single',
@@ -172,7 +149,7 @@ fzfLua.setup({
       horizontal = 'right:60%',
       vertical = 'up:50%',
     },
-    height = 0.30,
+    height = 0.3,
     width = 1,
     row = 1,
   },

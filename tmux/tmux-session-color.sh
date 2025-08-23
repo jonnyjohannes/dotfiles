@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 colors=(
   'green' 
@@ -7,9 +7,15 @@ colors=(
   'red'
 )
 
-session_id=$(tmux display-message -p '#{session_id}')
-session_index=${session_id#$}
-color_index=$((session_index % ${#colors[@]}))
+active_session=$(tmux display-message -p '#S')
+index=0
+for session in $(tmux list-sessions -F '#S' 2>/dev/null); do
+        if [[ "$session" == "$active_session" ]]; then
+                break 
+        fi
+        ((index++))
+done
+color_index=$(($index % ${#colors[@]}))
 
 echo "${colors[$color_index]}"
 

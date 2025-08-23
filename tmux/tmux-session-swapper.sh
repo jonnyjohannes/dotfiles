@@ -7,7 +7,7 @@ combo=$({
 } | awk '!seen[$0]++ && NF')
 
 selected=$(
-    echo $combo | fzf --tmux 100% --border sharp --prompt='(⌐■_■) '
+    echo $combo | fzf --tmux top,99% --border sharp --prompt='(⌐■_■) '
 )
 
 if [[ -z $selected ]]; then
