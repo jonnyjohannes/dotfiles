@@ -152,6 +152,7 @@ fzfLua.setup({
     height = 0.3,
     width = 1,
     row = 1,
+    col = 0,
   },
 })
 vim.keymap.set('n', '<leader>f', fzfLua.grep_project)
