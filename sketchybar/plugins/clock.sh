@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 colors=(
   '0xfffd6883'
