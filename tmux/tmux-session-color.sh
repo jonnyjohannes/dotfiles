@@ -3,7 +3,9 @@
 colors=(
   'green' 
   'blue'
+  'cyan'
   'yellow'
+  'magenta'
   'red'
 )
 
