@@ -2,8 +2,8 @@
 
 colors=(
   'green' 
-  'yellow'
   'blue'
+  'yellow'
   'red'
 )
 
