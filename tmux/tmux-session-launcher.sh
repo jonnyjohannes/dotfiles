@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 # Inspired by https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 
-colors=(42 44 46 43 45 41)
+colors=(
+  42
+  44
+  45
+  43
+  46
+  41
+)
 base_dir=$HOME/src
 cadidates=()
 
