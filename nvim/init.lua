@@ -1,105 +1,105 @@
--- basics
 local vim = vim
+-- pen + paper
 vim.cmd.source('~/.config/nvim/vimrc')
 
 -- lazy.nvim
 local lazypath = vim.fn.expand('~/.local/share/nvim/lazy/lazy.nvim')
 
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        'git',
-        'clone',
-        '--filter=blob:none',
-        'https://github.com/folke/lazy.nvim.git',
-        '--branch=stable',
-        lazypath,
-    })
+  vim.fn.system({
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable',
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
-    -- tools
-    { 'ibhagwan/fzf-lua' },
-    { 'mrjones2014/smart-splits.nvim' },
-    { 'nvim-lualine/lualine.nvim' },
-    { 'nvim-tree/nvim-tree.lua' },
-    { 'nvim-tree/nvim-web-devicons' },
-    { 'rose-pine/neovim' },
-    { 'tpope/vim-fugitive' },
-    -- LSP/DAP
-    { 'mfussenegger/nvim-dap' },
-    { 'neovim/nvim-lspconfig' },
-    { 'nvim-java/nvim-java' },
-    { 'nvim-treesitter/nvim-treesitter' },
-    { 'mason-org/mason.nvim', version = '^1.0.0' },
-    { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
-    -- cmp completions
-    { 'hrsh7th/cmp-buffer' },
-    { 'hrsh7th/cmp-cmdline' },
-    { 'hrsh7th/cmp-path' },
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/nvim-cmp' },
-    -- AI Copilots
-    {
-      'CopilotC-Nvim/CopilotChat.nvim',
-      build = 'make tiktoken',
-      opts = {
-        mappings = {
-          reset = {
-            normal = '<C-r>',
-            insert = '<C-r>',
-          },
-        },
-        model = 'gemini-2.5-pro',
-      },
-    },
-    {
-      'yetone/avante.nvim',
-      dependencies = {
-        'MunifTanjim/nui.nvim',
-        'nvim-lua/plenary.nvim',
-        'stevearc/dressing.nvim',
-        {
-          'MeanderingProgrammer/render-markdown.nvim',
-          opts = { file_types = { 'markdown', 'Avante' } },
-          ft = { 'markdown', 'Avante' },
+  -- tools
+  { 'ibhagwan/fzf-lua' },
+  { 'mrjones2014/smart-splits.nvim' },
+  { 'nvim-lualine/lualine.nvim' },
+  { 'nvim-tree/nvim-tree.lua' },
+  { 'nvim-tree/nvim-web-devicons' },
+  { 'rose-pine/neovim' },
+  { 'tpope/vim-fugitive' },
+  -- LSP/DAP
+  { 'mfussenegger/nvim-dap' },
+  { 'neovim/nvim-lspconfig' },
+  { 'nvim-java/nvim-java' },
+  { 'nvim-treesitter/nvim-treesitter' },
+  { 'mason-org/mason.nvim', version = '^1.0.0' },
+  { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
+  -- cmp completions
+  { 'hrsh7th/cmp-buffer' },
+  { 'hrsh7th/cmp-cmdline' },
+  { 'hrsh7th/cmp-path' },
+  { 'hrsh7th/cmp-nvim-lsp' },
+  { 'hrsh7th/nvim-cmp' },
+  -- AI Copilots
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    build = 'make tiktoken',
+    opts = {
+      mappings = {
+        reset = {
+          normal = '<C-r>',
+          insert = '<C-r>',
         },
       },
-      build = 'make',
-      opts = {
-        provider = 'copilot',
-        providers = {
-          openai = {
-            extra_request_body = {
-              max_completion_tokens = 8192,
-            },
-            model = 'o3',
-          },
-          copilot = {
-            extra_request_body = {
-              max_tokens = 8192,
-            },
-            model = 'claude-sonnet-4',
-          },
-        }
+      model = 'gpt-4',
+    },
+  },
+  {
+    'yetone/avante.nvim',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim',
+      {
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = { file_types = { 'markdown', 'Avante' } },
+        ft = { 'markdown', 'Avante' },
       },
     },
-    {
-      'zbirenbaum/copilot.lua',
-      cmd = 'Copilot',
-      event = 'InsertEnter',
-      config = function()
-        require('copilot').setup({
-          suggestion = { enabled = false },
-          panel = { enabled = false },
-        })
-      end,
+    build = 'make',
+    opts = {
+      provider = 'copilot',
+      providers = {
+        openai = {
+          extra_request_body = {
+            max_completion_tokens = 8192,
+          },
+          model = 'o3',
+        },
+        copilot = {
+          extra_request_body = {
+            max_tokens = 8192,
+          },
+          model = 'claude-sonnet-4',
+        },
+      }
     },
-    {
-      'zbirenbaum/copilot-cmp',
-      config = function()
-        require('copilot_cmp').setup({ })
-      end,
-    },
+  },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+    config = function()
+      require('copilot').setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  },
+  {
+    'zbirenbaum/copilot-cmp',
+    config = function()
+      require('copilot_cmp').setup({ })
+    end,
+  },
 })
 
 -- colorscheme

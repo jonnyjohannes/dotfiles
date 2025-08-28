@@ -26,4 +26,5 @@ tags
 
 # project local
 .j2de.lua
+.factorypath
 

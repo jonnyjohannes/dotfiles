@@ -1,41 +1,47 @@
-set nocompatible                  " (neo)vim compatible
-set cursorline                    " highlight current line
-set number                        " show line numbers
-set relativenumber                " show relative line numbers
-set ignorecase                    " case-insensitive searching
-set smartcase                     " but case-sensitive if expression contains a capital letter
-set incsearch                     " highlight matches as you type
-set hlsearch                      " highlight matches.
-set splitbelow                    " split horizontal pane to the bottom
-set splitright                    " split vertical pane to the right
-set shiftround                    " use multiple of shiftwidth
-set expandtab                     " use softtabs
-set clipboard=unnamed             " share system clipboard
-set mouse=v                       " enable mouse in visual mode
-set nofixendofline                " no newlines at the end of files
-set noshowmode                    " no mode in command line
-set fillchars=eob:\               " blank end of buffers
+set nocompatible            " (neo)vim compatible
+set number                  " show line numbers
+set relativenumber          " show relative line numbers
+set ignorecase              " case-insensitive searching
+set smartcase               " case-smartsensitive searching
+set incsearch               " highlight matches incrementally
+set hlsearch                " highlight matches
+set splitbelow              " split horizontal pane to the bottom
+set splitright              " split vertical pane to the right
+set mouse=                  " no mouse
+set shiftround              " use multiple of shiftwidth
+set tabstop=2               " 2 space tab
+set shiftwidth=2            " 2 space tab
+set expandtab               " use softtabs
+set clipboard=unnamedplus   " share system clipboard
+set noshowmode              " no mode in command line
+set fillchars=eob:\         " blank end of buffers
+set cursorline              " highlight current line
 
 let mapleader = ' '
 
 augroup NormalModeOverrides
   autocmd!
-  " Centre screen after page movements
+  " centre screen after page movements
   nnoremap <C-d> <C-d>zz
   nnoremap <C-u> <C-u>zz
-  " Centre screen when navigating search results
+  " centre screen when navigating search results
   nnoremap n nzzzv
   nnoremap N Nzzzv
   " buffer (tmux-ish) navigation
   nnoremap <leader>l :b#<cr>
   nnoremap <leader>x :confirm bd<cr>
   nnoremap <leader>z :only<cr>
+  " clear search highlights
+  nnoremap <esc> :nohlsearch<cr><esc>
 augroup END
 
 augroup VisualModeOverrides
   autocmd!
-  " Move selected lines up and down
+  " move selected lines up and down
   vnoremap J :m '>+1<CR>gv=gv
   vnoremap K :m '<-2<CR>gv=gv
+  " keep selection on indent
+  vnoremap < <gv
+  vnoremap > >gv
 augroup END
 
