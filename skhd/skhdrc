@@ -5,7 +5,6 @@ cmd - space : open -a Alfred\ 5
 # applications
 cmd - q : open -a Arc
 cmd - w : open -a Alacritty
-cmd - e : open -a Obsidian
 
 # lock screen
 alt + cmd - l : open -a ScreenSaverEngine

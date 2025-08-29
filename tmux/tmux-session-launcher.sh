@@ -18,15 +18,17 @@ for session in $(tmux list-sessions -F '#{session_name}' 2>/dev/null || true); d
   color_index=$(($index % ${#colors[@]}))
   ((color_index++))
   color=${colors[$color_index]}
-  label="$(printf '\033[1;30;%sm %s \033[0m' "$color" "$session")"
-  candidates+=("$session"$'\t'"$label")
+
+  label=$(printf '\033[1;30;%sm %s \033[0m' $color $session)
+  candidates+=($session$'\t'$label)
+
   ((index++))
 done
 
 # project dirs
-for dir in $(find $base_dir -mindepth 2 -maxdepth 2 -type d | cut -d'/' -f5-); do
+for dir in $(find -L $base_dir -mindepth 2 -maxdepth 2 -type d | cut -d'/' -f5-); do
   label=$(printf '%s' $dir | tr '/' '-' | tr '.' '_' )
-  candidates+=("$dir"$'\t'"$label")
+  candidates+=($dir$'\t'$label)
 done
 
 selected=$(
@@ -39,15 +41,15 @@ selected=$(
     --border=sharp \
     --gap \
     --info=hidden \
-    --header $'\n\n[return] (⌐■_■)        [ctrl-x] (x_x) \n\n\n' \
-    --bind "ctrl-x:execute(tmux kill-session -t {1})+abort" \
+    --header $'\n\n[return] (⌐■_■)       [ctrl-x] (x_x) \n\n\n' \
+    --bind 'ctrl-x:execute(tmux kill-session -t {1})+abort' \
 )
 
 if [[ -z $selected ]]; then
   exit 0
 fi
 
-selected="${selected%%$'\t'*}"
+selected=${selected%%$'\t'*}
 
 dir=$base_dir/$selected
 session=$(printf '%s' $selected | tr '/' '-' | tr '.' '_' )

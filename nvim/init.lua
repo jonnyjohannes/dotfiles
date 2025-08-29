@@ -201,8 +201,6 @@ require('lualine').setup({
     lualine_z = {
     },
   },
-  inactive_sections = {
-  },
 })
 
 -- nvim-tree
@@ -250,6 +248,7 @@ mason_lspconfig.setup_handlers({
       on_attach = function()
         vim.keymap.set('n', '<leader>gd', fzfLua.lsp_definitions)
         vim.keymap.set('n', '<leader>gr', fzfLua.lsp_references)
+        vim.keymap.set('n', '<leader>gh', ':!gh pr view --web<cr>')
         vim.keymap.set('n', '<leader>dr', require('dap').continue)
         vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
         vim.keymap.set('n', '<leader>dc', function()
