@@ -20,6 +20,7 @@ require('lazy').setup({
   -- tools
   { 'ibhagwan/fzf-lua' },
   { 'mrjones2014/smart-splits.nvim' },
+  { 'jpalardy/vim-slime' },
   { 'nvim-lualine/lualine.nvim' },
   { 'nvim-tree/nvim-tree.lua' },
   { 'nvim-tree/nvim-web-devicons' },
@@ -155,9 +156,9 @@ fzfLua.setup({
     col = 0,
   },
 })
-vim.keymap.set('n', '<leader>f', fzfLua.grep_project)
-vim.keymap.set('n', '<leader>s', fzfLua.buffers)
-vim.keymap.set('n', '<leader>t', fzfLua.files)
+vim.keymap.set('n', '<leader>s', function()
+  fzfLua.combine({ pickers = 'buffers;files', line_query=true })
+end)
 vim.keymap.set('n', '<leader>:', fzfLua.command_history)
 
 -- lualine
@@ -322,4 +323,19 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' },
   },
 })
+
+-- vim slime
+vim.g.slime_target = 'tmux'
+vim.g.slime_dont_ask_default = 1
+vim.g.slime_default_config = {
+  socket_name = 'default',
+  target_pane = '{last}'
+}
+vim.g.slime_bracketed_paste = 1
+vim.g.slime_python_ipython = 1
+vim.g.slime_no_mappings = 1
+
+vim.keymap.set({'n'}, '<leader>dl', ':SlimeSendCurrentLine<cr>')
+vim.keymap.set({'x'}, '<leader>ds', ':SlimeSend<cr>')
+vim.keymap.set({'n'}, '<leader>df', ':%SlimeSend<cr>')
 

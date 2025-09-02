@@ -31,5 +31,6 @@
   "render-markdown.nvim": { "branch": "main", "commit": "f626e90bbc4b3d8f4fd29c909d958b165af13f4a" },
   "smart-splits.nvim": { "branch": "master", "commit": "67cbc412b83014ea5f92d617471d459714b5e6c7" },
   "spring-boot.nvim": { "branch": "main", "commit": "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0" },
-  "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" }
+  "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
+  "vim-slime": { "branch": "main", "commit": "67b24bf93cff3ac39db94694a7aefcdb3f44b927" }
 }
