@@ -130,6 +130,9 @@ vim.keymap.set({'n'}, '<C-h>', smartSplits.move_cursor_left)
 vim.keymap.set({'n'}, '<C-j>', smartSplits.move_cursor_down)
 vim.keymap.set({'n'}, '<C-k>', smartSplits.move_cursor_up)
 vim.keymap.set({'n'}, '<C-l>', smartSplits.move_cursor_right)
+-- splits - swapping
+vim.keymap.set({'n'}, '<leader>{', smartSplits.swap_buf_up)
+vim.keymap.set({'n'}, '<leader>}', smartSplits.swap_buf_down)
 
 -- fzf
 local fzfLua = require('fzf-lua')
@@ -142,6 +145,12 @@ fzfLua.setup({
       ['<c-d>'] = 'preview-page-down',
       ['<c-u>'] = 'preview-page-up',
     },
+  },
+  builtin = {
+    winopts = {
+      height = 0.3,
+      width = 1.0
+    }
   },
   winopts = {
     border = 'single',
@@ -156,10 +165,13 @@ fzfLua.setup({
     col = 0,
   },
 })
+vim.keymap.set('n', '<leader>f', fzfLua.live_grep)
+vim.keymap.set('x', '<leader>f', fzfLua.grep_visual)
 vim.keymap.set('n', '<leader>s', function()
   fzfLua.combine({ pickers = 'buffers;files', line_query=true })
 end)
 vim.keymap.set('n', '<leader>:', fzfLua.command_history)
+vim.keymap.set('n', '<leader>/', fzfLua.blines)
 
 -- lualine
 vim.cmd('set laststatus=3')
@@ -171,8 +183,6 @@ require('lualine').setup({
   },
   sections = {
     lualine_a = {
-    },
-    lualine_b = {
       {
         'progress',
         fmt = function()
@@ -183,6 +193,8 @@ require('lualine').setup({
           return chars[idx]
         end,
       },
+    },
+    lualine_b = {
       {
         'windows',
         symbols = '',
@@ -209,6 +221,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 require('nvim-tree').setup({
 })
+vim.keymap.set({'n'}, '<leader>t', ':NvimTreeFindFileToggle<cr>')
 
 -- treesitter
 require('nvim-treesitter.configs').setup({
@@ -247,12 +260,11 @@ mason_lspconfig.setup_handlers({
     lspconfig[server_name].setup({
       capabilities = capabilities,
       on_attach = function()
-        vim.keymap.set('n', '<leader>gd', fzfLua.lsp_definitions)
-        vim.keymap.set('n', '<leader>gr', fzfLua.lsp_references)
-        vim.keymap.set('n', '<leader>gh', ':!gh pr view --web<cr>')
+        vim.keymap.set('n', 'gd', fzfLua.lsp_definitions)
+        vim.keymap.set('n', 'gr', fzfLua.lsp_references)
         vim.keymap.set('n', '<leader>dr', require('dap').continue)
         vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
-        vim.keymap.set('n', '<leader>dc', function()
+        vim.keymap.set('n', '<leader>dB', function()
           require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
         end)
       end,
@@ -338,4 +350,4 @@ vim.g.slime_no_mappings = 1
 vim.keymap.set({'n'}, '<leader>dl', ':SlimeSendCurrentLine<cr>')
 vim.keymap.set({'x'}, '<leader>ds', ':SlimeSend<cr>')
 vim.keymap.set({'n'}, '<leader>df', ':%SlimeSend<cr>')
-
+vim.keymap.set({'n'}, '<leader>gh', ':!gh pr view --web<cr>')

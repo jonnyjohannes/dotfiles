@@ -29,7 +29,7 @@ augroup NormalModeOverrides
   nnoremap N Nzzzv
   " buffer (tmux-ish) navigation
   nnoremap <leader>l :b#<cr>
-  nnoremap <leader>x :confirm bd<cr>
+  nnoremap <leader>x :close<cr>
   nnoremap <leader>z :only<cr>
   " clear search highlights
   nnoremap <esc> :nohlsearch<cr><esc>
