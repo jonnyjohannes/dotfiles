@@ -31,8 +31,8 @@ require('lazy').setup({
   { 'neovim/nvim-lspconfig' },
   { 'nvim-java/nvim-java' },
   { 'nvim-treesitter/nvim-treesitter' },
-  { 'mason-org/mason.nvim', version = '^1.0.0' },
-  { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
+  { 'mason-org/mason.nvim', opts = {}, },
+  { 'mason-org/mason-lspconfig.nvim' },
   -- cmp completions
   { 'hrsh7th/cmp-buffer' },
   { 'hrsh7th/cmp-cmdline' },
@@ -131,8 +131,8 @@ vim.keymap.set({'n'}, '<C-j>', smartSplits.move_cursor_down)
 vim.keymap.set({'n'}, '<C-k>', smartSplits.move_cursor_up)
 vim.keymap.set({'n'}, '<C-l>', smartSplits.move_cursor_right)
 -- splits - swapping
-vim.keymap.set({'n'}, '<leader>{', smartSplits.swap_buf_up)
-vim.keymap.set({'n'}, '<leader>}', smartSplits.swap_buf_down)
+vim.keymap.set({'n'}, '<leader>{', smartSplits.swap_buf_left)
+vim.keymap.set({'n'}, '<leader>}', smartSplits.swap_buf_right)
 
 -- fzf
 local fzfLua = require('fzf-lua')
@@ -165,8 +165,9 @@ fzfLua.setup({
     col = 0,
   },
 })
-vim.keymap.set('n', '<leader>f', fzfLua.live_grep)
-vim.keymap.set('x', '<leader>f', fzfLua.grep_visual)
+vim.keymap.set('n', '<leader>f', fzfLua.builtin)
+vim.keymap.set('n', '<leader>g', fzfLua.live_grep)
+vim.keymap.set('x', '<leader>g', fzfLua.grep_visual)
 vim.keymap.set('n', '<leader>s', function()
   fzfLua.combine({ pickers = 'buffers;files', line_query=true })
 end)
@@ -249,28 +250,26 @@ if vim.fn.filereadable(project_j2de_path) == 1 then
   dofile(project_j2de_path)
 end
 
-local lspconfig = require('lspconfig')
 local mason = require('mason')
 local mason_lspconfig = require('mason-lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 mason.setup({})
 mason_lspconfig.setup({})
-mason_lspconfig.setup_handlers({
-  function(server_name)
-    lspconfig[server_name].setup({
-      capabilities = capabilities,
-      on_attach = function()
-        vim.keymap.set('n', 'gd', fzfLua.lsp_definitions)
-        vim.keymap.set('n', 'gr', fzfLua.lsp_references)
-        vim.keymap.set('n', '<leader>dr', require('dap').continue)
-        vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
-        vim.keymap.set('n', '<leader>dB', function()
-          require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
-        end)
-      end,
-    })
-  end,
-})
+for _, server_name in ipairs(mason_lspconfig.get_installed_servers()) do
+  vim.lsp.config[server_name] = {
+    capabilities = capabilities,
+    on_attach = function()
+      vim.keymap.set('n', 'gd', fzfLua.lsp_definitions)
+      vim.keymap.set('n', 'gr', fzfLua.lsp_references)
+      vim.keymap.set('n', '<leader>dr', require('dap').continue)
+      vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
+      vim.keymap.set('n', '<leader>dB', function()
+        require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
+      end)
+    end,
+  }
+  vim.lsp.enable(server_name)
+end
 
 -- completions
 local cmp = require('cmp')
@@ -348,6 +347,10 @@ vim.g.slime_python_ipython = 1
 vim.g.slime_no_mappings = 1
 
 vim.keymap.set({'n'}, '<leader>dl', ':SlimeSendCurrentLine<cr>')
-vim.keymap.set({'x'}, '<leader>ds', ':SlimeSend<cr>')
-vim.keymap.set({'n'}, '<leader>df', ':%SlimeSend<cr>')
-vim.keymap.set({'n'}, '<leader>gh', ':!gh pr view --web<cr>')
+vim.keymap.set({'x'}, '<leader>dl', ':SlimeSend<cr>')
+vim.keymap.set({'n'}, '<leader>dL', ':%SlimeSend<cr>')
+vim.keymap.set({'n'}, '<leader>og', ':!gh browse<cr>')
+vim.keymap.set({'n'}, '<leader>oH', ':!gh pr view --web<cr>')
+
+vim.api.nvim_set_hl(0, "Visual", { reverse = true })
+

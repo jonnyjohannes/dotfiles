@@ -45,3 +45,9 @@ augroup VisualModeOverrides
   vnoremap > >gv
 augroup END
 
+"augroup TerminalModeOverrides
+"  autocmd!
+"  tnoremap <M-esc> <C-\><C-n>
+"  tnoremap <M-,>   <C-\><C-n>:lua Snacks.terminal.toggle()<cr>
+"augroup END
+
