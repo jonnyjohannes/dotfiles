@@ -1,3 +1,4 @@
+local vim = vim
 return {
   {
     'nvim-tree/nvim-tree.lua',
@@ -7,6 +8,10 @@ return {
     end,
     opts = {
     },
+    config = function(_, opts)
+      require('nvim-tree').setup(opts)
+      vim.keymap.set({'n'}, '<leader>t', ':NvimTreeFindFileToggle<cr>')
+    end,
   },
 }
 

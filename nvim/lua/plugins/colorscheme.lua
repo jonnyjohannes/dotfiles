@@ -1,3 +1,4 @@
+local vim = vim
 return {
   {
     'rose-pine/neovim',
@@ -17,6 +18,5 @@ return {
       vim.api.nvim_set_hl(0, "Visual", { reverse = true })
     end,
   },
-  { 'tpope/vim-fugitive' },
 }
 
