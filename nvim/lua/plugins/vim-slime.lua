@@ -16,6 +16,7 @@ return {
       vim.keymap.set({'n'}, '<leader>dl', ':SlimeSendCurrentLine<cr>')
       vim.keymap.set({'x'}, '<leader>dl', ':SlimeSend<cr>')
       vim.keymap.set({'n'}, '<leader>dL', ':%SlimeSend<cr>')
+      vim.keymap.set({'x'}, '<leader>dL', ':SlimeSend<cr>')
     end,
   },
 }

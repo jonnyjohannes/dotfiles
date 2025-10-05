@@ -6,16 +6,21 @@ return {
     },
     config = function()
       local smartSplits = require('smart-splits')
-      vim.keymap.set({'n'}, '<A-h>', smartSplits.resize_left)
-      vim.keymap.set({'n'}, '<A-j>', smartSplits.resize_down)
-      vim.keymap.set({'n'}, '<A-k>', smartSplits.resize_up)
-      vim.keymap.set({'n'}, '<A-l>', smartSplits.resize_right)
-      vim.keymap.set({'n'}, '<C-h>', smartSplits.move_cursor_left)
-      vim.keymap.set({'n'}, '<C-j>', smartSplits.move_cursor_down)
-      vim.keymap.set({'n'}, '<C-k>', smartSplits.move_cursor_up)
-      vim.keymap.set({'n'}, '<C-l>', smartSplits.move_cursor_right)
-      vim.keymap.set({'n'}, '<leader>{', smartSplits.swap_buf_left)
-      vim.keymap.set({'n'}, '<leader>}', smartSplits.swap_buf_right)
+
+      vim.keymap.set({'n', 't'}, '<C-h>', smartSplits.move_cursor_left)
+      vim.keymap.set({'n', 't'}, '<C-j>', smartSplits.move_cursor_down)
+      vim.keymap.set({'n', 't'}, '<C-k>', smartSplits.move_cursor_up)
+      vim.keymap.set({'n', 't'}, '<C-l>', smartSplits.move_cursor_right)
+
+      vim.keymap.set({'n', 't'}, '<M-h>', smartSplits.resize_left)
+      vim.keymap.set({'n', 't'}, '<M-j>', smartSplits.resize_down)
+      vim.keymap.set({'n', 't'}, '<M-k>', smartSplits.resize_up)
+      vim.keymap.set({'n', 't'}, '<M-l>', smartSplits.resize_right)
+
+      vim.keymap.set({'n', 't'}, '<C-M-h>', smartSplits.swap_buf_left)
+      vim.keymap.set({'n', 't'}, '<C-M-j>', smartSplits.swap_buf_down)
+      vim.keymap.set({'n', 't'}, '<C-M-k>', smartSplits.swap_buf_up)
+      vim.keymap.set({'n', 't'}, '<C-M-l>', smartSplits.swap_buf_right)
     end,
   },
 }

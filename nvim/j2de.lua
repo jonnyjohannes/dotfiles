@@ -1,28 +1,28 @@
 local vim = vim
-local dap = require("dap")
+local dap = require('dap')
 
 --  bash 
 dap.adapters.bashdb = {
   type = 'executable',
-  command = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/bash-debug-adapter',
-  name = "bashdb"
+  command = vim.fn.stdpath('data') .. '/mason/packages/bash-debug-adapter/bash-debug-adapter',
+  name = 'bashdb'
 }
 dap.configurations.sh = {
   {
     type = 'bashdb',
     request = 'launch',
     name = '(ba)sh it: ${file}',
-    program = "${file}",
-    pathBash = "/opt/homebrew/bin/bash",
-    pathCat = "/bin/cat",
-    pathMkfifo = "/usr/bin/mkfifo",
-    pathPkill = "/usr/bin/pkill",
-    pathBashdb = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb",
-    pathBashdbLib = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/extension/bashdb_dir",
-    cwd = "${workspaceFolder}",
+    program = '${file}',
+    pathBash = '/opt/homebrew/bin/bash',
+    pathCat = '/bin/cat',
+    pathMkfifo = '/usr/bin/mkfifo',
+    pathPkill = '/usr/bin/pkill',
+    pathBashdb = vim.fn.stdpath('data') .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
+    pathBashdbLib = vim.fn.stdpath('data') .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
+    cwd = '${workspaceFolder}',
     args = {},
     env = {},
-    terminalKind = "integrated",
+    terminalKind = 'integrated',
     showDebugOutput = true,
   }
 }
@@ -39,33 +39,33 @@ dap.configurations.python = {
     type = 'python',
     request = 'launch',
     name = '${file}',
-    program = "${file}",
-    console = "integratedTerminal",
+    program = '${file}',
+    console = 'integratedTerminal',
     pythonPath = python_path,
   },
 }
 
 --  js
-dap.adapters["pwa-node"] = {
-  type = "server",
-  host = "localhost",
-  port = "${port}",
+dap.adapters['pwa-node'] = {
+  type = 'server',
+  host = 'localhost',
+  port = '${port}',
   executable = {
-    command = "node",
+    command = 'node',
     args = {
-      vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
-      "${port}",
+      vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js',
+      '${port}',
     },
   },
 }
 dap.configurations.javascript = {
   {
-    type = "pwa-node",
-    request = "launch",
-    name = "${file}",
-    program = "${file}",
-    console = "integratedTerminal",
-    cwd = "${workspaceFolder}",
+    type = 'pwa-node',
+    request = 'launch',
+    name = '${file}',
+    program = '${file}',
+    console = 'integratedTerminal',
+    cwd = '${workspaceFolder}',
   },
 }
 

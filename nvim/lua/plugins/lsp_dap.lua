@@ -8,8 +8,10 @@ return {
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = {
+          'bash',
           'java',
           'javascript',
+          'json',
           'lua',
           'markdown',
           'markdown_inline',
@@ -20,6 +22,10 @@ return {
         highlight = { enable = true, },
         indent = { enable = true },
       })
+      vim.opt.foldmethod = 'expr'
+      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+      vim.opt.foldlevel = 99
+      vim.opt.foldenable = true
     end,
   },
   { 'mason-org/mason.nvim',
@@ -55,6 +61,21 @@ return {
         }
         vim.lsp.enable(server_name)
       end
+
+      vim.keymap.set('n', 'K', function()
+        vim.lsp.buf.hover({ border = 'single' })
+      end)
+
+      vim.diagnostic.config({
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = '󰅚',
+            [vim.diagnostic.severity.WARN]  = '󰀪',
+            [vim.diagnostic.severity.HINT]  = '󰌶',
+            [vim.diagnostic.severity.INFO]  = '»',
+          },
+        },
+      })
     end,
   },
 }

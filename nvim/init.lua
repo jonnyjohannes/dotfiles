@@ -1,11 +1,12 @@
 local vim = vim
+
 -- pen + paper
 vim.cmd.source('~/.config/nvim/vimrc')
 
--- lazy.nvim
+-- plugins
 local lazypath = vim.fn.expand('~/.local/share/nvim/lazy/lazy.nvim')
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
+ vim.fn.system({
     'git',
     'clone',
     '--filter=blob:none',

@@ -32,7 +32,7 @@ augroup NormalModeOverrides
   nnoremap <leader>x :close<cr>
   nnoremap <leader>z :only<cr>
   " clear search highlights
-  nnoremap <esc> :nohlsearch<cr><esc>
+  nnoremap <esc> :nohlsearch<cr>:echo ' (⌐■_■)'<cr><esc>
 augroup END
 
 augroup VisualModeOverrides
@@ -45,9 +45,8 @@ augroup VisualModeOverrides
   vnoremap > >gv
 augroup END
 
-"augroup TerminalModeOverrides
-"  autocmd!
-"  tnoremap <M-esc> <C-\><C-n>
-"  tnoremap <M-,>   <C-\><C-n>:lua Snacks.terminal.toggle()<cr>
-"augroup END
+augroup TerminalModeOverrides
+  autocmd!
+  tnoremap <M-esc> <C-\><C-n>
+augroup END
 

@@ -41,6 +41,7 @@ selected=$(
     --border=sharp \
     --gap \
     --info=hidden \
+    --layout=reverse \
     --header $'\n\n[return] (⌐■_■)       [ctrl-x] (x_x) \n\n\n' \
     --bind 'ctrl-x:execute(tmux kill-session -t {1})+abort' \
 )

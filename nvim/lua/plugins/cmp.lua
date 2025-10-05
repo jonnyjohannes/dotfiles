@@ -68,7 +68,6 @@ return {
           { name = 'cmdline' },
         },
       })
-
     end,
   },
 }
