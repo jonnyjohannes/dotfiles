@@ -6,7 +6,7 @@ return {
       fzf_opts = {
         ['--layout'] = 'reverse-list',
       },
-     builtin = {
+      builtin = {
         winopts = {
           border = 'single',
           height = 0.3,
