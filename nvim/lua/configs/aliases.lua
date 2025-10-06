@@ -1,9 +1,10 @@
 local vim = vim
+local Snacks = Snacks
 
 local M = {
   {
     text = "[Picker] Snacks",
-    action = function() vim.cmd(':lua Snacks.picker()') end,
+    action = function() Snacks.picker() end,
   },
   {
     text = '[Picker] FZF',
@@ -11,7 +12,7 @@ local M = {
   },
   {
     text = '[Marks] Marks set',
-    action = function() vim.cmd(':lua Snacks.picker.marks()') end,
+    action = function() Snacks.picker.marks() end,
   },
   {
     text = '[Yank] Copy Buffer To Clipboard',
@@ -35,15 +36,15 @@ local M = {
   },
   {
     text = '[Diagnostics] Document',
-    action = function() vim.cmd(':lua Snacks.picker.diagnostics_buffer()') end,
+    action = function() Snacks.picker.diagnostics_buffer() end,
   },
   {
     text = '[Diagnostics] Workspace',
-    action = function() vim.cmd(':lua Snacks.picker.diagnostics()') end,
+    action = function() Snacks.picker.diagnostics() end,
   },
   {
     text = '[GitHub] Line',
-    action = function() vim.cmd(':lua Snacks.gitbrowse()') end,
+    action = function() Snacks.gitbrowse() end,
   },
   {
     text = '[GitHub] Repo',

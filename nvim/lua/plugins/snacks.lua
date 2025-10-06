@@ -48,6 +48,16 @@ return {
       terminal = {
         enabled = true
       },
+      zen = {
+        show = {
+          statusline = true,
+        },
+        win = {
+          width = 100,
+          height = 0,
+          backdrop = { blend = 0 },
+        }
+      },
     },
     config = function(_, opts)
       require('snacks').setup(opts)
@@ -62,12 +72,14 @@ return {
         })
       end
 
+      vim.api.nvim_create_user_command('S', 'lua Snacks.picker()', {})
       vim.keymap.set({'n', 't'}, '<M-i>', Snacks.terminal.toggle)
       vim.keymap.set({'n', 'x'}, '<leader>:', Snacks.picker.command_history)
       vim.keymap.set({'n', 'x'}, '<leader>/', Snacks.picker.grep)
       vim.keymap.set({'n', 'x'}, '<leader>*', Snacks.picker.grep_word)
       vim.keymap.set({'n', 'x'}, '<leader>f', snacksPickerAliases)
       vim.keymap.set({'n', 'x'}, '<leader>s', Snacks.picker.smart)
+      vim.keymap.set({'n', 'x'}, '<leader>Z', Snacks.zen.zen)
     end,
   }
 }
