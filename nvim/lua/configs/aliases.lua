@@ -1,61 +1,58 @@
 local vim = vim
 
-local M = {}
-
-M.aliases = {
+local M = {
   {
-    name = '[Marks] Marks set',
-    action = function() vim.cmd(':F marks') end,
+    text = "[Picker] Snacks",
+    action = function() vim.cmd(':lua Snacks.picker()') end,
   },
   {
-    name = '[Yank] Copy Buffer To Clipboard',
-    action = function() vim.cmd(':%y') end,
-  },
-  {
-    name = '[FZF] Builtins',
+    text = '[Picker] FZF',
     action = function() vim.cmd(':F') end,
   },
   {
-    name = '[DAP] Run It',
+    text = '[Marks] Marks set',
+    action = function() vim.cmd(':lua Snacks.picker.marks()') end,
+  },
+  {
+    text = '[Yank] Copy Buffer To Clipboard',
+    action = function() vim.cmd(':%y') end,
+  },
+  {
+    text = '[DAP] Run It',
     action = function() require('dap').continue() end,
   },
   {
-    name = '[DAP] Breakpoint Toggle',
+    text = '[DAP] Breakpoint Toggle',
     action = function() require('dap').toggle_breakpoint() end,
   },
   {
-    name = '[DAP] Conditional Breakpoint',
-    action = function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')).toggle_breakpoint() end,
+    text = '[DAP] Conditional Breakpoint',
+    action = function()
+      vim.ui.input({ prompt = 'Breakpoint condition: ' }, function(cond)
+        require('dap').set_breakpoint(cond)
+      end)
+    end,
   },
   {
-    name = '[Diagnostics] Document',
-    action = function() vim.cmd(':F lsp_document_diagnostics') end,
+    text = '[Diagnostics] Document',
+    action = function() vim.cmd(':lua Snacks.picker.diagnostics_buffer()') end,
   },
   {
-    name = '[Diagnostics] Workspace',
-    action = function() vim.cmd(':F lsp_workspace_diagnostics') end,
+    text = '[Diagnostics] Workspace',
+    action = function() vim.cmd(':lua Snacks.picker.diagnostics()') end,
   },
   {
-    name = '[GitHub] Line',
+    text = '[GitHub] Line',
     action = function() vim.cmd(':lua Snacks.gitbrowse()') end,
   },
   {
-    name = '[GitHub] Repo',
+    text = '[GitHub] Repo',
     action = function() vim.cmd(':!gh browse') end,
   },
   {
-    name = '[GitHub] Pull Request',
+    text = '[GitHub] Pull Request',
     action = function() vim.cmd(':!gh pr view --web') end,
   },
 }
-
-function M.get_alias(name)
-  for _, cmd in ipairs(M.aliases) do
-    if cmd.name == name then
-      return cmd
-    end
-  end
-  return nil
-end
 
 return M

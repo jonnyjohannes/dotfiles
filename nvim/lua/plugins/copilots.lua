@@ -34,7 +34,6 @@ return {
     dependencies = {
       'MunifTanjim/nui.nvim',
       'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim',
       {
         'MeanderingProgrammer/render-markdown.nvim',
         opts = { file_types = { 'markdown', 'Avante' } },

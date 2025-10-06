@@ -44,7 +44,9 @@ return {
             vim.keymap.set('n', '<leader>dr', require('dap').continue)
             vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
             vim.keymap.set('n', '<leader>dB', function()
-              require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
+              vim.ui.input({ prompt = 'Breakpoint condition: ' }, function(cond)
+                require('dap').set_breakpoint(cond)
+              end)
             end)
           end,
         }
