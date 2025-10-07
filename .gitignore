@@ -1,6 +1,7 @@
 *.local
 Alfred.alfredpreferences
 automatic_backups
+cursor
 ftplugin
 gcloud
 gh
