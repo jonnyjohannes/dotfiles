@@ -22,6 +22,25 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Post quote if quote key is tapped, Option if held.",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "quote",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_option",
+                                        "lazy": true
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "quote" }],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },

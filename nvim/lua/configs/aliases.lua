@@ -1,17 +1,20 @@
 local vim = vim
-local Snacks = Snacks
 
 local M = {
   {
-    text = "[Picker] Snacks",
+    text = "[Picker]-Snacks",
     action = function() Snacks.picker() end,
   },
   {
-    text = '[Picker] FZF',
+    text = '[Picker]-FZF',
     action = function() vim.cmd(':F') end,
   },
   {
-    text = '[Marks] Marks set',
+    text = '[Marks]-Snacks Marks set',
+    action = function() require('fzf-lua').marks() end,
+  },
+  {
+    text = '[Marks]-FZF Marks set',
     action = function() Snacks.picker.marks() end,
   },
   {
