@@ -105,7 +105,7 @@ return {
               end
             end
 
-            for k, v in pairs(fzfLua) do
+            for k, _ in pairs(fzfLua) do
               if vim.startswith(k, ArgLead) then
                 table.insert(completions, k)
               end

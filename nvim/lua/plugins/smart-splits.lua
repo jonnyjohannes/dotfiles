@@ -17,10 +17,10 @@ return {
       vim.keymap.set({'n', 't'}, '<M-k>', smartSplits.resize_up)
       vim.keymap.set({'n', 't'}, '<M-l>', smartSplits.resize_right)
 
-      vim.keymap.set({'n', 't'}, '<C-M-h>', smartSplits.swap_buf_left)
-      vim.keymap.set({'n', 't'}, '<C-M-j>', smartSplits.swap_buf_down)
-      vim.keymap.set({'n', 't'}, '<C-M-k>', smartSplits.swap_buf_up)
-      vim.keymap.set({'n', 't'}, '<C-M-l>', smartSplits.swap_buf_right)
+      vim.keymap.set({'n', 't'}, '<C-M-h>', '<C-w>H')
+      vim.keymap.set({'n', 't'}, '<C-M-j>', '<C-w>J')
+      vim.keymap.set({'n', 't'}, '<C-M-k>', '<C-w>K')
+      vim.keymap.set({'n', 't'}, '<C-M-l>', '<C-w>L')
     end,
   },
 }

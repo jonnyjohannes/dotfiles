@@ -61,7 +61,10 @@ return {
         win = {
           width = 100,
           height = 0.9,
-          backdrop = { blend = 0 },
+          backdrop = {
+            transparent = false,
+            blend = 80,
+          }
         }
       },
     },
@@ -69,8 +72,8 @@ return {
       local Snacks = require('snacks')
       Snacks.setup(opts)
 
-      vim.keymap.set({'n', 't'}, '<M-i>', Snacks.terminal.toggle)
-      vim.keymap.set({'n', 'x'}, '<leader>Z', Snacks.zen.zen)
+      vim.keymap.set({'n', 't'}, '<M-t>', Snacks.terminal.toggle)
+      vim.keymap.set({'n', 'x'}, '<M-z>', Snacks.zen.zen)
 
       local aliases = require('configs.aliases')
       local unifiedPickerSelector = function()
@@ -137,10 +140,10 @@ return {
           desc = 'Call a Snacks.nvim picker by name or execute an alias'
         })
 
-      vim.keymap.set({'n', 'x'}, '<leader>:', Snacks.picker.command_history)
-      vim.keymap.set({'n', 'x'}, '<leader>/', Snacks.picker.grep)
-      vim.keymap.set({'n', 'x'}, '<leader>*', Snacks.picker.grep_word)
-      vim.keymap.set({'n', 'x'}, '<leader>s', Snacks.picker.smart)
+      -- vim.keymap.set({'n', 'x'}, '<leader>:', Snacks.picker.command_history)
+      -- vim.keymap.set({'n', 'x'}, '<leader>/', Snacks.picker.grep)
+      -- vim.keymap.set({'n', 'x'}, '<leader>*', Snacks.picker.grep_word)
+      -- vim.keymap.set({'n', 'x'}, '<leader>s', Snacks.picker.smart)
     end
   }
 }
