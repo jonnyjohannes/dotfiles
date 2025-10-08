@@ -34,7 +34,7 @@ return  {
       })
 
       vim.keymap.set('n', 'mm', function() harpoon:list():prepend() end)
-      vim.keymap.set('n', '<M-d>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+      vim.keymap.set('n', '<M-s>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
       vim.keymap.set('n', '<M-r>', function() harpoon:list():select(1) end)
       vim.keymap.set('n', '<M-e>', function() harpoon:list():select(2) end)

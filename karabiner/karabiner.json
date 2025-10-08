@@ -51,7 +51,8 @@
                         "product_id": 42233,
                         "vendor_id": 936
                     },
-                    "manipulate_caps_lock_led": false
+                    "manipulate_caps_lock_led": false,
+                    "treat_as_built_in_keyboard": true
                 },
                 {
                     "identifiers": {
@@ -61,7 +62,8 @@
                         "vendor_id": 936
                     },
                     "ignore": false,
-                    "manipulate_caps_lock_led": false
+                    "manipulate_caps_lock_led": false,
+                    "treat_as_built_in_keyboard": true
                 }
             ],
             "name": "Default profile",
