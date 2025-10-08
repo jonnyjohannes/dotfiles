@@ -1,18 +1,9 @@
 local vim = vim
-local Snacks = require('snacks')
 
 local M = {
   {
-    text = '[Diagnostics] Document',
-    action = function() Snacks.picker.diagnostics_buffer() end,
-  },
-  {
-    text = '[Diagnostics] Workspace',
-    action = function() Snacks.picker.diagnostics() end,
-  },
-  {
     text = '[GitHub] Line',
-    action = function() Snacks.gitbrowse() end,
+    action = function() vim.cmd(':lua Snacks.gitbrowse()') end,
   },
   {
     text = '[GitHub] Repo',

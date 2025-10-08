@@ -5,7 +5,12 @@ return  {
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require('harpoon'):setup()
+      require('harpoon'):setup({
+        settings = {
+          save_on_toggle = true,
+          sync_on_ui_close = true,
+        },
+      })
       local harpoon = require('harpoon')
       local harpoon_extensions = require("harpoon.extensions")
 
@@ -34,12 +39,12 @@ return  {
       })
 
       vim.keymap.set('n', 'mm', function() harpoon:list():prepend() end)
-      vim.keymap.set('n', '<M-s>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+      vim.keymap.set('n', '<leader>f', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-      vim.keymap.set('n', '<M-r>', function() harpoon:list():select(1) end)
-      vim.keymap.set('n', '<M-e>', function() harpoon:list():select(2) end)
-      vim.keymap.set('n', '<M-w>', function() harpoon:list():select(3) end)
-      vim.keymap.set('n', '<M-q>', function() harpoon:list():select(4) end)
+      vim.keymap.set('n', '<M-a>', function() harpoon:list():select(1) end)
+      vim.keymap.set('n', '<M-s>', function() harpoon:list():select(2) end)
+      vim.keymap.set('n', '<M-d>', function() harpoon:list():select(3) end)
+      vim.keymap.set('n', '<M-f>', function() harpoon:list():select(4) end)
     end,
   }
 }
