@@ -16,7 +16,7 @@ return {
         },
       },
       explorer = {
-        enabled = false
+        enabled = false,
       },
       picker = {
         layout = {
@@ -51,6 +51,18 @@ return {
       gitbrowse = {
         enabled = true
       },
+      scratch = {
+        ft = 'markdown',
+        win = {
+          width = 100,
+          height = 0.9,
+          border = 'single',
+          backdrop = {
+            transparent = true,
+            blend = 80,
+          },
+        },
+      },
       statuscolumn = {
         enabled = true
       },
@@ -61,6 +73,7 @@ return {
         win = {
           width = 100,
           height = 0.9,
+          border = 'single',
           backdrop = {
             transparent = false,
             blend = 80,
@@ -72,8 +85,9 @@ return {
       local Snacks = require('snacks')
       Snacks.setup(opts)
 
-      vim.keymap.set({'n', 't'}, '<M-t>', Snacks.terminal.toggle)
-      vim.keymap.set({'n', 'x'}, '<M-z>', Snacks.zen.zen)
+      vim.keymap.set({'n', 't', 'x'}, '<M-n>', Snacks.scratch.open)
+      vim.keymap.set({'n', 't', 'x'}, '<M-t>', Snacks.terminal.toggle)
+      vim.keymap.set({'n', 't', 'x'}, '<M-z>', Snacks.zen.zen)
 
       local aliases = require('configs.aliases')
       local unifiedPickerSelector = function()
@@ -129,7 +143,7 @@ return {
               end
             end
 
-            for k, v in pairs(Snacks.picker) do
+            for k, _ in pairs(Snacks.picker) do
               if vim.startswith(k, ArgLead) then
                 table.insert(completions, k)
               end

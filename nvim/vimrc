@@ -35,6 +35,15 @@ augroup NormalModeOverrides
   nnoremap <leader>z :only<cr>
   " clear search highlights
   nnoremap <esc> :nohlsearch<cr>:echo ' (⌐■_■)'<cr><esc>
+  " privleged marks
+  nnoremap ma mA
+  nnoremap ms mS
+  nnoremap md mD
+  nnoremap mf mF
+  nnoremap <M-a> 'A
+  nnoremap <M-s> 'S
+  nnoremap <M-d> 'D
+  nnoremap <M-f> 'F
 augroup END
 
 augroup VisualModeOverrides
