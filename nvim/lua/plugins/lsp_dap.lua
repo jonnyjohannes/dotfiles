@@ -3,20 +3,6 @@ return {
   { 'mfussenegger/nvim-dap' },
   { 'neovim/nvim-lspconfig' },
   { 'nvim-java/nvim-java' },
-  {
-    'nvim-treesitter/nvim-treesitter',
-    config = function()
-      require('nvim-treesitter.configs').setup({
-        auto_install = true,
-        highlight = { enable = true, },
-        indent = { enable = true },
-      })
-      vim.opt.foldmethod = 'expr'
-      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-      vim.opt.foldlevel = 99
-      vim.opt.foldenable = true
-    end,
-  },
   { 'mason-org/mason.nvim',
     opts = {
     },
