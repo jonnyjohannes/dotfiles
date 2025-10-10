@@ -70,13 +70,15 @@ return {
         enabled = true
       },
       zen = {
-        win = {
-          width = 100,
-          height = 0.9,
-          border = 'single',
-          backdrop = {
-            transparent = false,
-            blend = 80,
+        zoom = {
+          win = {
+            width = 100,
+            height = 0.9,
+            border = 'single',
+            backdrop = {
+              transparent = false,
+              blend = 80,
+            }
           }
         }
       },
@@ -87,7 +89,7 @@ return {
 
       vim.keymap.set({'n', 't', 'x'}, '<M-n>', Snacks.scratch.open)
       vim.keymap.set({'n', 't', 'x'}, '<M-t>', Snacks.terminal.toggle)
-      vim.keymap.set({'n', 't', 'x'}, '<M-z>', Snacks.zen.zen)
+      vim.keymap.set({'n', 't', 'x'}, '<M-z>', Snacks.zen.zoom)
 
       local aliases = require('configs.aliases')
       local unifiedPickerSelector = function()
