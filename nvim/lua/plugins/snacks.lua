@@ -54,7 +54,7 @@ return {
       scratch = {
         ft = 'markdown',
         win = {
-          width = 100,
+          width = 90,
           height = 0.95,
           border = 'single',
           backdrop = {
@@ -72,13 +72,13 @@ return {
       zen = {
         zoom = {
           win = {
-            width = 100,
+            width = 90,
             height = 0.95,
-            border = 'single',
+            border = 'none',
             backdrop = {
               transparent = false,
-              blend = 80,
-            }
+              blend = 99,
+            },
           }
         }
       },

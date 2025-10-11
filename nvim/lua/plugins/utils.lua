@@ -12,7 +12,7 @@ return {
         },
       })
       vim.api.nvim_set_hl(0, "RenderMarkdownCode", {
-        bg = "#0f0f0f",
+        bg = "#111111",
       })
     end,
   },
