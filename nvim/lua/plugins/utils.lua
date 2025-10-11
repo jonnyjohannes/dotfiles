@@ -2,7 +2,26 @@ local vim = vim
 return {
   { 'nvim-tree/nvim-web-devicons' },
   { 'nvim-lua/plenary.nvim' },
-  { 'MeanderingProgrammer/render-markdown.nvim' },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    config = function()
+      require('render-markdown').setup({
+        code = {
+          left_pad = 2,
+          right_pad = 2,
+        },
+      })
+      vim.api.nvim_set_hl(0, "RenderMarkdownCode", {
+        bg = "#0f0f0f",
+      })
+    end,
+  },
+  {
+    "mohseenrm/marko.nvim",
+    config = function()
+      require("marko").setup()
+    end
+  },
   {
     'nvim-treesitter/nvim-treesitter',
     config = function()

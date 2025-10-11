@@ -50,7 +50,7 @@ return {
         vim.api.nvim_win_set_cursor(0, {last_content_line+1, end_col})
       end
 
-      vim.keymap.set('n', 'VV', select_between_fences)
+      vim.keymap.set('n', 'vv', select_between_fences)
       vim.keymap.set("n", "<leader>dk", ":MoltenReevaluateCell<CR>")
       vim.keymap.set("v", "<leader>dk", ":<C-u>MoltenEvaluateVisual<CR>gv")
       vim.keymap.set("n", "<leader>dj", ":noautocmd MoltenEnterOutput<CR>")

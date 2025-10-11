@@ -55,7 +55,7 @@ return {
         ft = 'markdown',
         win = {
           width = 100,
-          height = 0.9,
+          height = 0.95,
           border = 'single',
           backdrop = {
             transparent = true,
@@ -73,7 +73,7 @@ return {
         zoom = {
           win = {
             width = 100,
-            height = 0.9,
+            height = 0.95,
             border = 'single',
             backdrop = {
               transparent = false,
