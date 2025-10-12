@@ -115,7 +115,7 @@ return {
           items = items,
           format = 'text',
           confirm = 'item_action',
-          title = ' Pickers & Aliases ',
+          title = ' Aliases + Pickers ',
         })
       end
 
@@ -159,6 +159,7 @@ return {
       -- vim.keymap.set({'n', 'x'}, '<leader>:', Snacks.picker.command_history)
       -- vim.keymap.set({'n', 'x'}, '<leader>/', Snacks.picker.grep)
       -- vim.keymap.set({'n', 'x'}, '<leader>*', Snacks.picker.grep_word)
+      -- vim.keymap.set({'n', 'x'}, '<leader>f', unifiedPickerSelector)
       -- vim.keymap.set({'n', 'x'}, '<leader>s', Snacks.picker.smart)
     end
   }

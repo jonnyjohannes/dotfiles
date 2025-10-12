@@ -40,8 +40,8 @@ return {
     config = function(_, opts)
       local fzfLua = require('fzf-lua')
       fzfLua.setup(opts)
-      local aliases = require('configs.aliases')
 
+      local aliases = require('configs.aliases')
       local unifiedFzfPicker = function()
         local items = {}
         local item_map = {}
@@ -73,12 +73,11 @@ return {
             end,
           },
           winopts = {
-            title = ' Pickers & Aliases ',
+            title = ' Aliases + Pickers ',
           },
         })
       end
 
-      -- Create F command (existing functionality)
       vim.api.nvim_create_user_command('F', function(others)
         local picker = others.fargs[1]
         if not picker or picker == "" then
@@ -120,6 +119,7 @@ return {
       vim.keymap.set({'n', 'x'}, '<leader>/', fzfLua.live_grep)
       vim.keymap.set({'n'}, '<leader>*', fzfLua.grep_cword)
       vim.keymap.set({'x'}, '<leader>*', fzfLua.grep_visual)
+      vim.keymap.set({'n', 'x'}, '<leader>f', unifiedFzfPicker)
       vim.keymap.set({'n', 'x'}, '<leader>s', function()
         fzfLua.combine({ pickers = 'buffers;files', line_query=true })
       end)
