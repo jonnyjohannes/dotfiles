@@ -12,7 +12,7 @@ set shiftround              " use multiple of shiftwidth
 set tabstop=2               " 2 space tab
 set shiftwidth=2            " 2 space tab
 set expandtab               " use softtabs
-set clipboard=unnamedplus   " share system clipboard
+set clipboard=unnamed       " share system clipboard
 set noshowmode              " no mode in command line
 set fillchars=eob:\         " blank end of buffers
 set cursorline              " highlight current line
