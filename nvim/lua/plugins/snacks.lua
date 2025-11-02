@@ -19,6 +19,7 @@ return {
         enabled = false,
       },
       picker = {
+        follow = true,
         layout = {
           preview = false,
           layout = {
@@ -67,7 +68,11 @@ return {
         enabled = true
       },
       terminal = {
-        enabled = true
+        enabled = true,
+        win = {
+          position = "right",
+          width = 0.3
+        },
       },
       zen = {
         zoom = {

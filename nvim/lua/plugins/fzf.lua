@@ -6,8 +6,16 @@ return {
       fzf_opts = {
         ['--layout'] = 'reverse-list',
       },
-      builtin = {
+      defaults = {
+        follow = true,
         winopts = {
+          preview = {
+            hidden = true,
+            border = 'single',
+            horizontal = 'right:60%',
+            vertical = 'up:50%',
+          },
+          title_pos = 'left',
           border = 'single',
           height = 14,
           width = 1,
@@ -21,20 +29,6 @@ return {
           ['<C-u>'] = 'preview-page-up',
           ['<M-p>'] = 'toggle-preview',
         },
-      },
-      winopts = {
-        preview = {
-          hidden = true,
-          border = 'single',
-          horizontal = 'right:60%',
-          vertical = 'up:50%',
-        },
-        title_pos = 'left',
-        border = 'single',
-        height = 14,
-        width = 1,
-        row = 1,
-        col = 0,
       },
     },
     config = function(_, opts)

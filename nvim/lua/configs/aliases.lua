@@ -14,7 +14,7 @@ local M = {
     action = function() vim.cmd(':NvimTreeFindFileToggle') end,
   },
   {
-    text = '[Hacking] Zoom',
+    text = '[Hacking] Zen Zoom',
     action = function() vim.cmd(':lua Snacks.zen.zoom()') end,
   },
   {

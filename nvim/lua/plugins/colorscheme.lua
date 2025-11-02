@@ -15,6 +15,7 @@ return {
     config = function(_, opts)
       require('rose-pine').setup(opts)
       vim.cmd('colorscheme rose-pine')
+      vim.cmd('highlight Visual term=reverse cterm=reverse gui=reverse')
     end,
   },
 }
