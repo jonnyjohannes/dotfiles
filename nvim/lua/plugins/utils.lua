@@ -20,7 +20,61 @@ return {
     "mohseenrm/marko.nvim",
     config = function()
       require("marko").setup()
+
+      -- -- priveledged marks
+      -- vim.keymap.set({'n', 'x'}, 'ma', 'mA')
+      -- vim.keymap.set({'n', 'x'}, 'ms', 'mS')
+      -- vim.keymap.set({'n', 'x'}, 'md', 'mD')
+      -- vim.keymap.set({'n', 'x'}, 'mf', 'mF')
+      -- vim.keymap.set({'n', 'x'}, '<M-a>', "'Azz")
+      -- vim.keymap.set({'n', 'x'}, '<M-s>', "'Szz")
+      -- vim.keymap.set({'n', 'x'}, '<M-d>', "'Dzz")
+      -- vim.keymap.set({'n', 'x'}, '<M-f>', "'Fzz")
     end
+  },
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    config = function()
+      local harpoon = require('harpoon')
+      harpoon:setup({
+        settings = {
+          save_on_toggle = true,
+          sync_on_ui_close = true,
+        },
+      })
+      local harpoon_extensions = require("harpoon.extensions")
+      harpoon:extend(harpoon_extensions.builtins.highlight_current_file())
+      harpoon:extend({
+        UI_CREATE = function(cx)
+          vim.api.nvim_win_set_config(cx.win_id, {
+            relative = "editor",
+            row = vim.o.lines - 12,
+            col = 0,
+            width = vim.o.columns,
+            height = 12,
+          })
+          vim.keymap.set("n", "<C-v>", function()
+            harpoon.ui:select_menu_item({ vsplit = true })
+          end, { buffer = cx.bufnr })
+
+          vim.keymap.set("n", "<C-s>", function()
+            harpoon.ui:select_menu_item({ split = true })
+          end, { buffer = cx.bufnr })
+
+          vim.keymap.set("n", "<C-t>", function()
+            harpoon.ui:select_menu_item({ tabedit = true })
+          end, { buffer = cx.bufnr })
+        end,
+      })
+
+      vim.keymap.set('n', '<leader>a', function() harpoon:list():add() end)
+      vim.keymap.set('n', '<M-a>', function() harpoon:list():select(1) end)
+      vim.keymap.set('n', '<M-s>', function() harpoon:list():select(2) end)
+      vim.keymap.set('n', '<M-d>', function() harpoon:list():select(3) end)
+      vim.keymap.set('n', '<M-f>', function() harpoon:list():select(4) end)
+      vim.keymap.set('n', '<M-g>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+    end,
   },
   {
     'nvim-treesitter/nvim-treesitter',
