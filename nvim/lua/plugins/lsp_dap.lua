@@ -1,6 +1,21 @@
 local vim = vim
 return {
   { 'mfussenegger/nvim-dap' },
+  {
+    'igorlfs/nvim-dap-view',
+    opts = {
+      winbar = {
+        sections = { 'console', 'watches', 'scopes', 'exceptions', 'breakpoints', 'threads', 'repl' },
+        default_section = 'console',
+      },
+    },
+    config = function(_, opts)
+      require('dap-view').setup(opts)
+      require('dap').listeners.after.event_initialized["dap_view"] = function()
+        require("dap-view").open()
+      end
+    end,
+  },
   { 'neovim/nvim-lspconfig' },
   { 'nvim-java/nvim-java' },
   { 'mason-org/mason.nvim',
@@ -34,6 +49,7 @@ return {
                 require('dap').set_breakpoint(cond)
               end)
             end)
+            vim.keymap.set('n', '<leader>dd', require("dap-view").toggle)
           end,
         }
         vim.lsp.enable(server_name)
