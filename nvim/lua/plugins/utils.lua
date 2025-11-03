@@ -3,6 +3,21 @@ return {
   { 'nvim-tree/nvim-web-devicons' },
   { 'nvim-lua/plenary.nvim' },
   {
+    "nvim-zh/colorful-winsep.nvim",
+    opts = {
+      border = 'single',
+      highlight = 'white',
+      animate = {
+        enabled = false,
+      },
+      indicator_for_2wins = {
+        position = false,
+      },
+    },
+    config = true,
+    event = { "WinLeave" },
+  },
+  {
     'MeanderingProgrammer/render-markdown.nvim',
     config = function()
       require('render-markdown').setup({

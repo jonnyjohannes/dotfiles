@@ -60,7 +60,7 @@ return {
           border = 'single',
           backdrop = {
             transparent = true,
-            blend = 80,
+            blend = 69,
           },
         },
       },
@@ -70,7 +70,7 @@ return {
       terminal = {
         enabled = true,
         win = {
-          position = "right",
+          position = 'right',
           width = 0.3
         },
       },
@@ -84,7 +84,7 @@ return {
               transparent = false,
               blend = 99,
             },
-          }
+         }
         }
       },
     },

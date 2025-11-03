@@ -31,6 +31,7 @@ augroup NormalModeOverrides
   nnoremap YY :%y<cr>
   " buffer (tmux-ish) navigation
   nnoremap <leader>l :b#<cr>
+  nnoremap <leader>w :write<cr>
   nnoremap <leader>x :close<cr>
   nnoremap <leader>z :only<cr>
   " clear search highlights
