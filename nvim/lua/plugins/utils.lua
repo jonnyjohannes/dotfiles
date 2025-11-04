@@ -6,7 +6,7 @@ return {
     "nvim-zh/colorful-winsep.nvim",
     opts = {
       border = 'single',
-      highlight = 'white',
+      highlight = 'gray',
       animate = {
         enabled = false,
       },
