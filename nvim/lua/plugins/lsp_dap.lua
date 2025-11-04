@@ -11,8 +11,8 @@ return {
     },
     config = function(_, opts)
       require('dap-view').setup(opts)
-      require('dap').listeners.after.event_initialized["dap_view"] = function()
-        require("dap-view").open()
+      require('dap').listeners.after.event_initialized['dap_view'] = function()
+        require('dap-view').open()
       end
     end,
   },
@@ -49,7 +49,7 @@ return {
                 require('dap').set_breakpoint(cond)
               end)
             end)
-            vim.keymap.set('n', '<leader>dd', require("dap-view").toggle)
+            vim.keymap.set('n', '<leader>dk', require('dap-view').toggle)
           end,
         }
         vim.lsp.enable(server_name)

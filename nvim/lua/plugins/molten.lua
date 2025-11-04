@@ -50,10 +50,18 @@ return {
         vim.api.nvim_win_set_cursor(0, {last_content_line+1, end_col})
       end
 
-      vim.keymap.set('n', 'vv', select_between_fences)
-      vim.keymap.set("n", "<leader>dk", ":MoltenReevaluateCell<CR>")
-      vim.keymap.set("v", "<leader>dk", ":<C-u>MoltenEvaluateVisual<CR>gv")
-      vim.keymap.set("n", "<leader>dj", ":noautocmd MoltenEnterOutput<CR>")
+      -- Autocommand for *.ipynb files
+      vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+        pattern = "*.ipynb",
+        callback = function()
+          -- Apply molten-specific keymaps
+          vim.keymap.set('n', 'vv', select_between_fences, { buffer = 0 })
+          vim.keymap.set("n", "<leader>dr", ":MoltenReevaluateCell<CR>", { buffer = 0 })
+          vim.keymap.set("v", "<leader>dr", ":<C-u>MoltenEvaluateVisual<CR>gv", { buffer = 0 })
+          vim.keymap.set("n", "<leader>dj", ":noautocmd MoltenEnterOutput<CR>", { buffer = 0 })
+        end,
+      })
+
     end,
     build = ":UpdateRemotePlugins",
   }
