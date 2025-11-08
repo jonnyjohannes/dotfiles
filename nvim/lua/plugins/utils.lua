@@ -93,11 +93,27 @@ return {
   },
   {
     'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'RRethy/nvim-treesitter-textobjects',
+    },
     config = function()
       require('nvim-treesitter.configs').setup({
         auto_install = true,
         highlight = { enable = true, },
         indent = { enable = true },
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
+              ['ic'] = '@class.inner',
+              ['as'] = '@local.scope',
+            },
+          },
+        },
       })
       vim.opt.foldmethod = 'expr'
       vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
@@ -105,5 +121,15 @@ return {
       vim.opt.foldenable = true
     end,
   },
+  {
+    'chrisgrieser/nvim-various-textobjs',
+    event = 'VeryLazy',
+    opts = {
+      keymaps = {
+        useDefaults = true,
+      },
+    },
+  }
 }
+
 
