@@ -42,14 +42,16 @@ return {
           on_attach = function()
             vim.keymap.set('n', 'gd', require('fzf-lua').lsp_definitions)
             vim.keymap.set('n', 'gr', require('fzf-lua').lsp_references)
-            vim.keymap.set('n', '<leader>dr', require('dap').continue)
+            vim.keymap.set('n', '<M-r>', require('dap').continue)
+            vim.keymap.set('n', '<M-e>', require('dap').step_over)
+            vim.keymap.set('n', '<M-w>', require('dap').step_into)
+            vim.keymap.set('n', '<M-q>', require('dap').step_out)
             vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
             vim.keymap.set('n', '<leader>dB', function()
               vim.ui.input({ prompt = 'Breakpoint condition: ' }, function(cond)
                 require('dap').set_breakpoint(cond)
               end)
             end)
-            vim.keymap.set('n', '<leader>dk', require('dap-view').toggle)
           end,
         }
         vim.lsp.enable(server_name)
