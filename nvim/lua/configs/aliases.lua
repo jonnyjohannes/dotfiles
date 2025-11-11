@@ -2,22 +2,6 @@ local vim = vim
 
 local M = {
   {
-    text = '[Hacking] Buffers + Files',
-    action = function() vim.cmd(':lua require("fzf-lua").combine({ pickers = "buffers;files", line_query=true })') end,
-  },
-  {
-    text = '[Hacking] Note',
-    action = function() vim.cmd(':lua Snacks.scratch.open()') end,
-  },
-  {
-    text = '[Hacking] Tree',
-    action = function() vim.cmd(':NvimTreeFindFileToggle') end,
-  },
-  {
-    text = '[Hacking] Zen Zoom',
-    action = function() vim.cmd(':lua Snacks.zen.zoom()') end,
-  },
-  {
     text = '[GitHub] Line',
     action = function() vim.cmd(':lua Snacks.gitbrowse()') end,
   },

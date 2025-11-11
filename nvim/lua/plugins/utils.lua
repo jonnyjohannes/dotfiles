@@ -106,6 +106,9 @@ return {
         textobjects = {
           select = {
             enable = true,
+            disable = {
+              'lua',
+            },
             lookahead = true,
             keymaps = {
               ['af'] = '@function.outer',
@@ -131,7 +134,7 @@ return {
         useDefaults = true,
       },
     },
-  }
+  },
 }
 
 

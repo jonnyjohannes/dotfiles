@@ -9,12 +9,6 @@ return {
         default_section = 'console',
       },
     },
-    config = function(_, opts)
-      require('dap-view').setup(opts)
-      require('dap').listeners.after.event_initialized['dap_view'] = function()
-        require('dap-view').open()
-      end
-    end,
   },
   { 'neovim/nvim-lspconfig' },
   { 'nvim-java/nvim-java' },
@@ -52,6 +46,8 @@ return {
                 require('dap').set_breakpoint(cond)
               end)
             end)
+            vim.keymap.set('n', '<leader>dr', require('dap-view').toggle)
+            vim.keymap.set('n', '<leader>dx', require('dap').terminate)
           end,
         }
         vim.lsp.enable(server_name)
