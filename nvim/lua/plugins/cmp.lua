@@ -1,5 +1,4 @@
 return {
-
   {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
@@ -61,7 +60,7 @@ return {
           documentation = cmp.config.window.bordered({ border = 'single' }),
         },
       })
-      cmp.setup.cmdline({'/', '?'}, {
+      cmp.setup.cmdline({ '/', '?' }, {
         formatting = {
           format = function(_, item)
             item.kind = ''
@@ -89,4 +88,3 @@ return {
     end,
   },
 }
-
