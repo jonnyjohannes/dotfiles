@@ -88,36 +88,35 @@ return {
 
         fzfLua[picker]()
       end, {
-          nargs = '?',
-          complete = function(ArgLead)
-            local completions = {}
+        nargs = '?',
+        complete = function(ArgLead)
+          local completions = {}
 
-            for _, alias in ipairs(aliases) do
-              if vim.startswith(alias.text, ArgLead) then
-                table.insert(completions, alias.text)
-              end
+          for _, alias in ipairs(aliases) do
+            if vim.startswith(alias.text, ArgLead) then
+              table.insert(completions, alias.text)
             end
+          end
 
-            for k, _ in pairs(fzfLua) do
-              if vim.startswith(k, ArgLead) then
-                table.insert(completions, k)
-              end
+          for k, _ in pairs(fzfLua) do
+            if vim.startswith(k, ArgLead) then
+              table.insert(completions, k)
             end
+          end
 
-            return completions
-          end,
-          desc = 'Call a fzf-lua picker by name or execute an alias'
-        })
+          return completions
+        end,
+        desc = 'Call a fzf-lua picker by name or execute an alias'
+      })
 
-      vim.keymap.set({'n', 'x'}, '<leader>:', fzfLua.command_history)
-      vim.keymap.set({'n', 'x'}, '<leader>/', fzfLua.live_grep)
-      vim.keymap.set({'n'}, '<leader>*', fzfLua.grep_cword)
-      vim.keymap.set({'x'}, '<leader>*', fzfLua.grep_visual)
-      vim.keymap.set({'n', 'x'}, '<leader>f', unifiedFzfPicker)
-      vim.keymap.set({'n', 'x'}, '<leader>s', function()
-        fzfLua.combine({ pickers = 'buffers;files', line_query=true })
+      vim.keymap.set({ 'n', 'x' }, '<leader>:', fzfLua.command_history)
+      vim.keymap.set({ 'n', 'x' }, '<leader>/', fzfLua.live_grep)
+      vim.keymap.set({ 'n' }, '<leader>*', fzfLua.grep_cword)
+      vim.keymap.set({ 'x' }, '<leader>*', fzfLua.grep_visual)
+      vim.keymap.set({ 'n', 'x' }, '<leader>f', unifiedFzfPicker)
+      vim.keymap.set({ 'n', 'x' }, '<leader>s', function()
+        fzfLua.combine({ pickers = 'buffers;files', line_query = true })
       end)
     end,
   },
 }
-

@@ -12,7 +12,8 @@ return {
   },
   { 'neovim/nvim-lspconfig' },
   { 'nvim-java/nvim-java' },
-  { 'mason-org/mason.nvim',
+  {
+    'mason-org/mason.nvim',
     opts = {
     },
   },
@@ -40,6 +41,7 @@ return {
             vim.keymap.set('n', '<M-e>', require('dap').step_over)
             vim.keymap.set('n', '<M-w>', require('dap').step_into)
             vim.keymap.set('n', '<M-q>', require('dap').step_out)
+            vim.keymap.set('n', '<M-x>', require('dap').terminate)
             vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
             vim.keymap.set('n', '<leader>dB', function()
               vim.ui.input({ prompt = 'Breakpoint condition: ' }, function(cond)
@@ -47,7 +49,6 @@ return {
               end)
             end)
             vim.keymap.set('n', '<leader>dr', require('dap-view').toggle)
-            vim.keymap.set('n', '<leader>dx', require('dap').terminate)
           end,
         }
         vim.lsp.enable(server_name)
@@ -55,6 +56,12 @@ return {
 
       vim.keymap.set('n', 'K', function()
         vim.lsp.buf.hover({ border = 'single' })
+      end)
+
+      local diagnosticVirtualTextEnable = false
+      vim.keymap.set('n', '<leader>dd', function()
+        diagnosticVirtualTextEnable = not diagnosticVirtualTextEnable
+        vim.diagnostic.config({ virtual_text = diagnosticVirtualTextEnable })
       end)
 
       vim.diagnostic.config({
@@ -69,5 +76,20 @@ return {
       })
     end,
   },
+  {
+    'stevearc/conform.nvim',
+    config = function()
+      require('conform').setup({
+        formatters_by_ft = {
+          python = { 'black' },
+          sh = { 'beautysh' },
+          json = { 'jq' },
+        },
+        format_on_save = {
+          lsp_format = "fallback",
+          timeout_ms = 3000,
+        },
+      })
+    end,
+  }
 }
-

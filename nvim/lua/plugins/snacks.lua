@@ -5,7 +5,7 @@ return {
     opts = {
       indent = {
         animate = {
-          enabled = false
+          enabled = false,
         },
       },
       input = {
@@ -35,7 +35,7 @@ return {
             title_pos = 'left',
             {
               box = 'horizontal',
-              { win = 'list', border = 'none' },
+              { win = 'list',    border = 'none' },
               { win = 'preview', title = '{preview}', width = 0.6, border = 'left' },
             },
             { win = 'input', height = 1, border = 'top' },
@@ -50,7 +50,7 @@ return {
         },
       },
       gitbrowse = {
-        enabled = true
+        enabled = true,
       },
       scratch = {
         ft = 'markdown',
@@ -65,13 +65,13 @@ return {
         },
       },
       statuscolumn = {
-        enabled = true
+        enabled = true,
       },
       terminal = {
         enabled = true,
         win = {
           position = 'right',
-          width = 0.3
+          width = 0.3,
         },
       },
       zen = {
@@ -84,17 +84,17 @@ return {
               transparent = false,
               blend = 99,
             },
-         }
-        }
+          },
+        },
       },
     },
     config = function(_, opts)
       local Snacks = require('snacks')
       Snacks.setup(opts)
 
-      vim.keymap.set({'n', 't', 'x'}, '<M-n>', Snacks.scratch.open)
-      vim.keymap.set({'n', 't', 'x'}, '<M-t>', Snacks.terminal.toggle)
-      vim.keymap.set({'n', 't', 'x'}, '<M-z>', Snacks.zen.zoom)
+      vim.keymap.set({ 'n' }, '<leader>N', Snacks.scratch.open)
+      vim.keymap.set({ 'n' }, '<leader>T', Snacks.terminal.toggle)
+      vim.keymap.set({ 'n' }, '<leader>Z', Snacks.zen.zoom)
 
       local aliases = require('configs.aliases')
       local unifiedPickerSelector = function()
@@ -104,15 +104,17 @@ return {
           table.insert(items, {
             text = alias.text,
             action = alias.action,
-            type = 'alias'
+            type = 'alias',
           })
         end
 
         for name, func in pairs(Snacks.picker) do
           table.insert(items, {
             text = name,
-            action = function() func() end,
-            type = 'picker'
+            action = function()
+              func()
+            end,
+            type = 'picker',
           })
         end
 
@@ -126,7 +128,7 @@ return {
 
       vim.api.nvim_create_user_command('S', function(others)
         local picker = others.fargs[1]
-        if not picker or picker == "" then
+        if not picker or picker == '' then
           unifiedPickerSelector()
           return
         end
@@ -140,32 +142,32 @@ return {
 
         Snacks.picker[picker]()
       end, {
-          nargs = '?',
-          complete = function(ArgLead)
-            local completions = {}
+        nargs = '?',
+        complete = function(ArgLead)
+          local completions = {}
 
-            for _, alias in ipairs(aliases) do
-              if vim.startswith(alias.text, ArgLead) then
-                table.insert(completions, alias.text)
-              end
+          for _, alias in ipairs(aliases) do
+            if vim.startswith(alias.text, ArgLead) then
+              table.insert(completions, alias.text)
             end
+          end
 
-            for k, _ in pairs(Snacks.picker) do
-              if vim.startswith(k, ArgLead) then
-                table.insert(completions, k)
-              end
+          for k, _ in pairs(Snacks.picker) do
+            if vim.startswith(k, ArgLead) then
+              table.insert(completions, k)
             end
+          end
 
-            return completions
-          end,
-          desc = 'Call a Snacks.nvim picker by name or execute an alias'
-        })
+          return completions
+        end,
+        desc = 'Call a Snacks.nvim picker by name or execute an alias',
+      })
 
       -- vim.keymap.set({'n', 'x'}, '<leader>:', Snacks.picker.command_history)
       -- vim.keymap.set({'n', 'x'}, '<leader>/', Snacks.picker.grep)
       -- vim.keymap.set({'n', 'x'}, '<leader>*', Snacks.picker.grep_word)
       -- vim.keymap.set({'n', 'x'}, '<leader>f', unifiedPickerSelector)
       -- vim.keymap.set({'n', 'x'}, '<leader>s', Snacks.picker.smart)
-    end
-  }
+    end,
+  },
 }

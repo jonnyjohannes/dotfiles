@@ -2,6 +2,18 @@ local vim = vim
 
 local M = {
   {
+    text = '[GBQ] bq preview',
+    action = function() vim.cmd(':exe "new | read !bq query --use_legacy_sql=false < " . expand("%:p")') end,
+  },
+  {
+    text = '[GBQ] bq count',
+    action = function()
+      local f = vim.fn.expand('%:p')
+      vim.cmd(':execute "new | read !echo \\"SELECT count(1) FROM ( $(cat ' ..
+        f .. ') )\\" | bq query --use_legacy_sql=false"')
+    end,
+  },
+  {
     text = '[GitHub] Line',
     action = function() vim.cmd(':lua Snacks.gitbrowse()') end,
   },
