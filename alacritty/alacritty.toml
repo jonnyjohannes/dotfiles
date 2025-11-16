@@ -4,13 +4,16 @@ import = ['themes/catppuccin-mocha.toml']
 [colors.cursor]
 cursor = '#e068a5'
 
+[colors.vi_mode_cursor]
+cursor = '#fbf719'
+
 [colors.primary]
 background = '#1e1e1e'
 foreground = '#e0e0e0'
 
 [colors.selection]
-text = "CellBackground"
-background = "CellForeground"
+text = 'CellBackground'
+background = 'CellForeground'
 
 [font]
 size = 15
@@ -29,4 +32,10 @@ option_as_alt = 'Both'
 [window.padding]
 x = 10
 y = 10
+
+[keyboard]
+bindings = [
+{ key = 'A', mode = 'Vi|~Search', action = 'ToggleSemanticSelection' },
+{ key = 'I', mode = 'Vi|~Search', action = 'ToggleSemanticSelection' },
+]
 
