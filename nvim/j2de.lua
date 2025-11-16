@@ -1,30 +1,28 @@
 local vim = vim
 local dap = require('dap')
 
---  bash 
-dap.adapters.bashdb = {
-  type = 'executable',
-  command = vim.fn.stdpath('data') .. '/mason/packages/bash-debug-adapter/bash-debug-adapter',
-  name = 'bashdb'
+--  zsh
+dap.adapters.codelldb = {
+  type = 'server',
+  port = '${port}',
+  executable = {
+    command = vim.fn.stdpath('data') .. '/mason/bin/codelldb',
+    args = { '--port', '${port}' },
+  },
 }
 dap.configurations.sh = {
   {
-    type = 'bashdb',
+    name = '${file}',
+    type = 'codelldb',
     request = 'launch',
-    name = '(ba)sh it: ${file}',
-    program = '${file}',
-    pathBash = '/opt/homebrew/bin/bash',
-    pathCat = '/bin/cat',
-    pathMkfifo = '/usr/bin/mkfifo',
-    pathPkill = '/usr/bin/pkill',
-    pathBashdb = vim.fn.stdpath('data') .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
-    pathBashdbLib = vim.fn.stdpath('data') .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
+    program = '/opt/homebrew/bin/zsh',
+    args = { '${file}' },
     cwd = '${workspaceFolder}',
-    args = {},
-    env = {},
     terminalKind = 'integrated',
     showDebugOutput = true,
-  }
+    stopOnEntry = false,
+    env = { ZDOTDIR = vim.loop.os_homedir() },
+  },
 }
 
 --  python
@@ -68,4 +66,3 @@ dap.configurations.javascript = {
     cwd = '${workspaceFolder}',
   },
 }
-
