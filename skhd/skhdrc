@@ -7,18 +7,18 @@ cmd - q : open -a Arc
 cmd - w : open -a Alacritty
 
 # lock screen
-alt + cmd - l : open -a ScreenSaverEngine
-
-# rectangle overrides
-alt + shift - h : open -g "rectangle://execute-action?name=left-half"
-alt + shift - j : open -g "rectangle://execute-action?name=bottom-half"
-alt + shift - k : open -g "rectangle://execute-action?name=top-half"
-alt + shift - l : open -g "rectangle://execute-action?name=right-half"
-alt + shift - return : open -g "rectangle://execute-action?name=maximize"
+cmd + alt - l : open -a ScreenSaverEngine
 
 # vim ctrl arrows
-ctrl + cmd - h : skhd -k 'left'
-ctrl + cmd - j : skhd -k 'down'
-ctrl + cmd - k : skhd -k 'up'
-ctrl + cmd - l : skhd -k 'right'
+cmd + ctrl - h : skhd -k 'left'
+cmd + ctrl - j : skhd -k 'down'
+cmd + ctrl - k : skhd -k 'up'
+cmd + ctrl - l : skhd -k 'right'
+
+# rectangle overrides
+cmd + ctrl + shift - h : open -g "rectangle://execute-action?name=left-half"
+cmd + ctrl + shift - j : open -g "rectangle://execute-action?name=bottom-half"
+cmd + ctrl + shift - k : open -g "rectangle://execute-action?name=top-half"
+cmd + ctrl + shift - l : open -g "rectangle://execute-action?name=right-half"
+cmd + ctrl + shift - return : open -g "rectangle://execute-action?name=maximize"
 
