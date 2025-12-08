@@ -96,7 +96,21 @@ local function run_job_and_show(cmd, args, buf_name)
           return
         end
 
-        vim.api.nvim_buf_set_lines(buf, 0, -1, false, j:result())
+        local result = j:result()
+        -- Check if result is empty or contains only whitespace
+        local has_data = false
+        for _, line in ipairs(result) do
+          if line:match("%S") then -- Check if line contains non-whitespace characters
+            has_data = true
+            break
+          end
+        end
+
+        if has_data then
+          vim.api.nvim_buf_set_lines(buf, 0, -1, false, result)
+        else
+          vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "NO DATA" })
+        end
         vim.notify("GBQ'd", vim.log.levels.INFO)
       end)
     end,
