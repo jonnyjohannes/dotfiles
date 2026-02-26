@@ -27,31 +27,22 @@ return {
   { 'nvim-tree/nvim-web-devicons' },
   {
     'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      'RRethy/nvim-treesitter-textobjects',
+      'nvim-treesitter/nvim-treesitter-textobjects',
     },
-    config = function()
-      require('nvim-treesitter.configs').setup({
-        auto_install = true,
-        highlight = { enable = true, },
-        indent = { enable = true },
-        textobjects = {
-          select = {
-            enable = true,
-            disable = {
-              'lua',
-            },
-            lookahead = true,
-            keymaps = {
-              ['af'] = '@function.outer',
-              ['if'] = '@function.inner',
-              ['ac'] = '@class.outer',
-              ['ic'] = '@class.inner',
-              ['as'] = '@local.scope',
-            },
-          },
-        },
-      })
+    opts = {
+      ensure_installed = { 'markdown', 'markdown_inline' },
+      auto_install = true,
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = { 'markdown' },
+      },
+      indent = { enable = true },
+    },
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
       vim.opt.foldmethod = 'expr'
       vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
       vim.opt.foldlevel = 99

@@ -53,3 +53,33 @@ augroup TerminalModeOverrides
   tnoremap <M-esc> <C-\><C-n>
 augroup END
 
+" Fenced code block text objects
+function! s:FencedCodeBlock(inner) abort
+  " Find the start of current fenced block (search backward)
+  let start_line = search('^```', 'bnW')
+  if start_line == 0
+    return
+  endif
+
+  " Find the end of current fenced block (search forward)
+  let end_line = search('^```', 'nW')
+  if end_line == 0
+    return
+  endif
+
+  if a:inner
+    " Inner: select content between fences
+    let start_line += 1
+    let end_line -= 1
+  endif
+
+  " Select the lines
+  execute 'normal! ' . start_line . 'GV' . end_line . 'G'
+endfunction
+
+" Text object mappings
+xnoremap <silent> iC :<C-u>call <SID>FencedCodeBlock(1)<CR>
+onoremap <silent> iC :<C-u>call <SID>FencedCodeBlock(1)<CR>
+xnoremap <silent> aC :<C-u>call <SID>FencedCodeBlock(0)<CR>
+onoremap <silent> aC :<C-u>call <SID>FencedCodeBlock(0)<CR>
+

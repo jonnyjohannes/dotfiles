@@ -85,10 +85,10 @@ return {
           sh = { 'beautysh' },
           json = { 'jq' },
         },
-        format_on_save = {
-          lsp_format = 'fallback',
-          timeout_ms = 3000,
-        },
+        -- format_on_save = {
+        --   lsp_format = 'fallback',
+        --   timeout_ms = 3000,
+        -- },
       })
     end,
   },

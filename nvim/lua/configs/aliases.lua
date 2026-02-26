@@ -5,6 +5,8 @@ local Job = require("plenary.job")
 local state = {
   win = nil,
   buf = nil,
+  bk_win = nil,
+  bk_buf = nil,
 }
 
 local function get_or_create_window()
@@ -17,6 +19,26 @@ local function get_or_create_window()
   state.win = vim.api.nvim_get_current_win()
   state.buf = vim.api.nvim_get_current_buf()
   return state.win
+end
+
+local function get_or_create_build_window()
+  if state.bk_win and vim.api.nvim_win_is_valid(state.bk_win) then
+    vim.api.nvim_set_current_win(state.bk_win)
+    if state.bk_buf and vim.api.nvim_buf_is_valid(state.bk_buf) then
+      vim.api.nvim_win_set_buf(state.bk_win, state.bk_buf)
+      return state.bk_win
+    end
+  end
+
+  vim.cmd("belowright new")
+  state.bk_win = vim.api.nvim_get_current_win()
+  state.bk_buf = vim.api.nvim_create_buf(false, true)
+  vim.bo[state.bk_buf].bufhidden = "hide"  -- persist buffer after job exits (don't wipe)
+  vim.api.nvim_win_set_buf(state.bk_win, state.bk_buf)
+  vim.api.nvim_set_current_win(state.bk_win)
+  vim.api.nvim_set_current_buf(state.bk_buf)
+  vim.fn.termopen("bk build watch")
+  return state.bk_win
 end
 
 local function ensure_results_buffer(win, buf_name)
@@ -181,6 +203,12 @@ local M = {
   {
     text = '[GitHub] Repo',
     action = function() vim.cmd(':!gh browse') end,
+  },
+  {
+    text = "[Buildkite] build watch",
+    action = function()
+      get_or_create_build_window()
+    end,
   },
 }
 
