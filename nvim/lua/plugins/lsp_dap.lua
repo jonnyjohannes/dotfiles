@@ -85,11 +85,13 @@ return {
           sh = { 'beautysh' },
           json = { 'jq' },
         },
-        -- format_on_save = {
-        --   lsp_format = 'fallback',
-        --   timeout_ms = 3000,
-        -- },
       })
+      vim.api.nvim_create_user_command("ConformFormat", function()
+        require("conform").format({
+          lsp_fallback = true,
+          async = false,
+        })
+      end, { desc = "Format buffer with conform" })
     end,
   },
 }

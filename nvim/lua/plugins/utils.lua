@@ -1,16 +1,9 @@
 local vim = vim
 return {
+  { 'MeanderingProgrammer/render-markdown.nvim' },
   {
-    'chrisgrieser/nvim-various-textobjs',
-    event = 'VeryLazy',
-    opts = {
-      keymaps = {
-        useDefaults = true,
-      },
-    },
-  },
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
+    'MeanderingProgrammer/treesitter-modules.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('render-markdown').setup({
         code = {
@@ -18,37 +11,17 @@ return {
           right_pad = 2,
         },
       })
+      require('treesitter-modules').setup({
+        auto_install = false,
+      })
       vim.api.nvim_set_hl(0, 'RenderMarkdownCode', {
         bg = '#111111',
       })
     end,
-  },
+  }
   { 'nvim-lua/plenary.nvim' },
   { 'nvim-tree/nvim-web-devicons' },
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    event = { 'BufReadPre', 'BufNewFile' },
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    opts = {
-      ensure_installed = { 'markdown', 'markdown_inline' },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { 'markdown' },
-      },
-      indent = { enable = true },
-    },
-    config = function(_, opts)
-      require('nvim-treesitter.configs').setup(opts)
-      vim.opt.foldmethod = 'expr'
-      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-      vim.opt.foldlevel = 99
-      vim.opt.foldenable = true
-    end,
-  },
+  { 'nvim-treesitter/nvim-treesitter' },
   {
     'nvim-zh/colorful-winsep.nvim',
     opts = {

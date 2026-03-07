@@ -1,6 +1,8 @@
 *.local
 Alfred.alfredpreferences
 automatic_backups
+bk.yaml
+cagent
 cursor
 ftplugin
 gcloud
@@ -10,3 +12,4 @@ gh-dash
 github-copilot
 kube
 obsidian
+tfenv
