@@ -3,7 +3,6 @@ return {
   { 'MeanderingProgrammer/render-markdown.nvim' },
   {
     'MeanderingProgrammer/treesitter-modules.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('render-markdown').setup({
         code = {
@@ -12,13 +11,15 @@ return {
         },
       })
       require('treesitter-modules').setup({
-        auto_install = false,
+        auto_install = true,
+        highlight = { enable = true },
+        indent = { enable = true },
       })
       vim.api.nvim_set_hl(0, 'RenderMarkdownCode', {
         bg = '#111111',
       })
     end,
-  }
+  },
   { 'nvim-lua/plenary.nvim' },
   { 'nvim-tree/nvim-web-devicons' },
   { 'nvim-treesitter/nvim-treesitter' },
