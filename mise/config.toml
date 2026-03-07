@@ -1,9 +1,6 @@
-# [tools]
-# java   = "system"
-# node   = "system"
-# python = "system"
-# uv     = "system"
-#
-# [settings]
-# idiomatic_version_file_enable_tools = []
+[tools]
+java   = "24"
+node   = "24"
+python = "3.13"
+uv     = "latest"
 

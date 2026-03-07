@@ -182,6 +182,15 @@ local M = {
     text = '[GitHub] Repo',
     action = function() vim.cmd(':!gh browse') end,
   },
+  {
+    text = '[Conform] Format',
+    action = function() 
+      require("conform").format({
+        lsp_fallback = true,
+        async = false,
+      })
+    end,
+  },
 }
 
 return M
