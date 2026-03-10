@@ -96,7 +96,7 @@ return {
       vim.keymap.set({ 'n' }, '<leader>T', Snacks.terminal.toggle)
       vim.keymap.set({ 'n' }, '<leader>Z', Snacks.zen.zoom)
 
-      local aliases = require('configs.aliases')
+      local aliases = require('customs.aliases')
       local unifiedPickerSelector = function()
         local items = {}
 

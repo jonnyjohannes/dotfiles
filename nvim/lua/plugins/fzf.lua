@@ -35,7 +35,7 @@ return {
       local fzfLua = require('fzf-lua')
       fzfLua.setup(opts)
 
-      local aliases = require('configs.aliases')
+      local aliases = require('customs.aliases')
       local unifiedFzfPicker = function()
         local items = {}
         local item_map = {}

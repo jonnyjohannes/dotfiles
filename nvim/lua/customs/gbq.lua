@@ -117,81 +117,38 @@ local function run_job_and_show(cmd, args, buf_name)
   }):start()
 end
 
-local M = {
-  {
-    text = "[GBQ] bq preview",
-    action = function()
-      local selection = get_visual_selection()
-      local content
+local function get_content()
+  local selection = get_visual_selection()
+  if selection then
+    return selection
+  end
+  local file = vim.fn.expand("%:p")
+  local file_lines = vim.fn.readfile(file)
+  return table.concat(file_lines, "\n")
+end
 
-      if selection then
-        content = selection
-      else
-        -- Fall back to whole file
-        local file = vim.fn.expand("%:p")
-        local file_lines = vim.fn.readfile(file)
-        content = table.concat(file_lines, "\n")
-      end
+local function preview()
+  local content = get_content()
+  local temp_file = vim.fn.tempname() .. ".sql"
+  vim.fn.writefile(vim.split(content, "\n"), temp_file)
+  run_job_and_show("bash", {
+    "-lc",
+    string.format("bq query --use_legacy_sql=false < %q && rm %q", temp_file, temp_file),
+  })
+end
 
-      -- Write content to temporary file
-      local temp_file = vim.fn.tempname() .. ".sql"
-      vim.fn.writefile(vim.split(content, "\n"), temp_file)
+local function count()
+  local content = get_content()
+  local sql = string.format("SELECT count(1) as count FROM ( %s )", content)
+  local temp_file = vim.fn.tempname() .. ".sql"
+  vim.fn.writefile(vim.split(sql, "\n"), temp_file)
+  run_job_and_show("bash", {
+    "-lc",
+    string.format("bq query --use_legacy_sql=false < %q && rm %q", temp_file, temp_file),
+  })
+end
 
-      run_job_and_show("bash", {
-        "-lc",
-        string.format("bq query --use_legacy_sql=false < %q && rm %q", temp_file, temp_file),
-      })
-    end,
-  },
-  {
-    text = "[GBQ] bq count",
-    action = function()
-      local selection = get_visual_selection()
-      local content
-
-      if selection then
-        content = selection
-      else
-        -- Fall back to whole file
-        local file = vim.fn.expand("%:p")
-        local file_lines = vim.fn.readfile(file)
-        content = table.concat(file_lines, "\n")
-      end
-
-      local sql = string.format('SELECT count(1) as count FROM ( %s )', content)
-
-      -- Write to temporary file and use input redirection like the preview action
-      local temp_file = vim.fn.tempname() .. ".sql"
-      vim.fn.writefile(vim.split(sql, "\n"), temp_file)
-
-      run_job_and_show("bash", {
-        "-lc",
-        string.format("bq query --use_legacy_sql=false < %q && rm %q", temp_file, temp_file),
-      })
-    end,
-  },
-  {
-    text = '[GitHub] Line',
-    action = function() vim.cmd(':lua Snacks.gitbrowse()') end,
-  },
-  {
-    text = '[GitHub] PullRequest',
-    action = function() vim.cmd(':!gh pr view --web') end,
-  },
-  {
-    text = '[GitHub] Repo',
-    action = function() vim.cmd(':!gh browse') end,
-  },
-  {
-    text = '[Conform] Format',
-    action = function() 
-      require("conform").format({
-        lsp_fallback = true,
-        async = false,
-      })
-    end,
-  },
+return {
+  preview = preview,
+  count = count,
 }
-
-return M
-
