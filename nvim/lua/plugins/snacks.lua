@@ -162,11 +162,10 @@ return {
         end,
         desc = 'Call a Snacks.nvim picker by name or execute an alias',
       })
-
-      -- vim.keymap.set({'n', 'x'}, '<leader>:', Snacks.picker.command_history)
-      -- vim.keymap.set({'n', 'x'}, '<leader>/', Snacks.picker.grep)
-      -- vim.keymap.set({'n', 'x'}, '<leader>*', Snacks.picker.grep_word)
-      -- vim.keymap.set({'n', 'x'}, '<leader>f', unifiedPickerSelector)
+      vim.keymap.set({'n', 'x'}, '<leader>:', Snacks.picker.command_history)
+      vim.keymap.set({'n', 'x'}, '<leader>/', Snacks.picker.grep)
+      vim.keymap.set({'n', 'x'}, '<leader>*', Snacks.picker.grep_word)
+      vim.keymap.set({'n', 'x'}, '<leader>f', unifiedPickerSelector)
       -- vim.keymap.set({'n', 'x'}, '<leader>s', Snacks.picker.smart)
     end,
   },
