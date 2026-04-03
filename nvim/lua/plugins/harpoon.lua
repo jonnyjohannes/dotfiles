@@ -36,12 +36,15 @@ return {
         end,
       })
 
+      vim.keymap.set('n', '<leader><M-a>', function() harpoon:list():replace_at(1) end)
+      vim.keymap.set('n', '<leader><M-s>', function() harpoon:list():replace_at(2) end)
+      vim.keymap.set('n', '<leader><M-f>', function() harpoon:list():replace_at(3) end)
+      vim.keymap.set('n', '<leader><M-d>', function() harpoon:list():replace_at(4) end)
       vim.keymap.set('n', '<M-a>', function() harpoon:list():select(1) end)
       vim.keymap.set('n', '<M-s>', function() harpoon:list():select(2) end)
       vim.keymap.set('n', '<M-d>', function() harpoon:list():select(3) end)
       vim.keymap.set('n', '<M-f>', function() harpoon:list():select(4) end)
       vim.keymap.set('n', '<M-g>', function()
-        harpoon:list():add()
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end)
     end,
