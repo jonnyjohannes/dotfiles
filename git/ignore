@@ -29,3 +29,5 @@ tags
 .factorypath
 .aider*
 
+
+**/.claude/settings.local.json
