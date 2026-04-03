@@ -2,13 +2,14 @@
 bindkey -v
 
 # set default editors
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
 # exectuable PATHs
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/src/bin:$PATH
+export GOPATH=$HOME/src/go
 
 # env management
 eval "$(mise activate zsh)"
