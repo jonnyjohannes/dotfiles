@@ -27,7 +27,8 @@ done
 
 # project dirs
 for dir in $(find -L $base_dir -mindepth 2 -maxdepth 2 -type d | cut -d'/' -f5-); do
-  label=$(printf '%s' $dir | tr '/' '-' | tr '.' '_' )
+  label=${dir//\//-}
+  label=${label//./_}
   candidates+=($dir$'\t'$label)
 done
 
