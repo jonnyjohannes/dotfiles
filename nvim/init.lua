@@ -2,6 +2,8 @@ local vim = vim
 
 -- pen + paper
 vim.cmd.source('~/.config/nvim/vimrc')
+vim.opt.winborder = 'single'
+require('vim._core.ui2').enable({})
 
 -- plugins
 local lazypath = vim.fn.expand('~/.local/share/nvim/lazy/lazy.nvim')
