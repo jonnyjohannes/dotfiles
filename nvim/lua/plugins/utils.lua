@@ -27,7 +27,7 @@ return {
     'nvim-zh/colorful-winsep.nvim',
     opts = {
       border = 'single',
-      highlight = 'gray',
+      highlight = 'white',
       animate = {
         enabled = false,
       },
