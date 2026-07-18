@@ -13,6 +13,8 @@ github-copilot
 kube
 obsidian
 tfenv
+.jira
+devin
 herdr/*.log
 herdr/release-notes.json
 herdr/session.json
