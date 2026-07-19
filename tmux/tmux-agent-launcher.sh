@@ -63,7 +63,6 @@ format_agents() {
         "$icon" \
         "$status" \
         "$session" \
-        "$title"
     )
 
     printf '%s\t%s\n' "$session" "$label"
@@ -101,7 +100,7 @@ selected=$(
       --gap \
       --info=hidden \
       --layout=reverse \
-      --prompt='agents> ' \
+      --prompt='> ' \
       --header=$'\n\n[return] (⌐■_■)       [ctrl-x] (x_x) \n\n\n' \
       --bind 'ctrl-x:execute(bash "$HOME/.config/tmux/tmux-agent-launcher.sh" --close {1})+abort'
 ) || fzf_status=$?
