@@ -1,16 +1,1 @@
 onboarding = false
-
-[ui]
-agent_panel_sort = "priority"
-hide_tab_bar_when_single_tab = true
-sidebar_width = 32
-
-[ui.sidebar.agents]
-rows = [
-  ["state_icon", "workspace"],
-  ["state_text", "agent"],
-]
-
-[ui.toast]
-delivery = "off"
-delay_seconds = 2
