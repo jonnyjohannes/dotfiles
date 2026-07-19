@@ -128,6 +128,10 @@ if ! tmux has-session -t "=$session" 2>/dev/null; then
   exit 1
 fi
 
+# tmux window focus does not always produce Herdr's focus event. Mark the
+# agent seen explicitly so Herdr transitions done (idle + unseen) to idle.
+herdr agent focus "$session" >/dev/null 2>&1 || true
+
 if tmux display-message -p -t "=$session:3" >/dev/null 2>&1; then
   tmux select-window -t "=$session:3"
 fi

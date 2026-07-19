@@ -19,6 +19,38 @@ normalize_session() {
   printf '%s' "$value"
 }
 
+close_agent() {
+  local name=$1
+  local details
+  local workspace
+
+  if ! details=$(herdr agent get "$name" 2>/dev/null); then
+    return 0
+  fi
+
+  if ! workspace=$(jq -er '.result.agent.workspace_id' <<<"$details" 2>/dev/null); then
+    return 0
+  fi
+
+  herdr workspace close "$workspace" >/dev/null 2>&1 || true
+}
+
+close_session() {
+  local session=$1
+  local agent_present=${2:-0}
+
+  if [[ "$agent_present" == 1 ]]; then
+    close_agent "$session"
+  fi
+
+  tmux kill-session -t "=$session" >/dev/null 2>&1 || true
+}
+
+if [[ ${1:-} == '--close' ]]; then
+  close_session "${2:?missing session}" "${3:-0}"
+  exit 0
+fi
+
 agents_json=
 agent_rows=
 if agents_json=$(herdr agent list 2>/dev/null); then
@@ -95,6 +127,7 @@ index=0
 while IFS= read -r session; do
   [[ -n "$session" ]] || continue
   color_index=$(($index % ${#colors[@]}))
+  ((color_index++))
   color=${colors[$color_index]}
 
   label=$(printf '\033[1;30;%sm %s \033[0m' "$color" "$session")
@@ -127,7 +160,7 @@ selected_output=$(
       --layout=reverse \
       --header $'\n\n[return] (⌐■_■)       [ctrl-enter] <|°_°|>       [ctrl-x] (x_x) \n\n\n' \
       --expect=insert \
-      --bind 'ctrl-x:execute(tmux kill-session -t {3})+abort'
+      --bind 'ctrl-x:execute(bash "$HOME/.config/tmux/tmux-session-agent-launcher.sh" --close {3} {4})+abort'
 ) || fzf_status=$?
 
 case "$fzf_status" in
@@ -164,12 +197,14 @@ if ! tmux has-session -t "=$session" 2>/dev/null; then
   tmux new-session -ds "$session" -c "$dir"
 fi
 
-if [[ "$key" == insert && "$agent_present" == 1 ]] && \
-  tmux list-windows -t "=$session" -F '#{window_index}' 2>/dev/null | grep -qx '3'; then
+if [[ "$key" == insert && "$agent_present" == 1 ]]; then
   # tmux window focus does not always produce Herdr's focus event. Mark the
   # agent seen explicitly so Herdr transitions done (idle + unseen) to idle.
   herdr agent focus "$session" >/dev/null 2>&1 || true
-  tmux select-window -t "=$session:3"
+
+  if tmux list-windows -t "=$session" -F '#{window_index}' 2>/dev/null | grep -qx '3'; then
+    tmux select-window -t "=$session:3"
+  fi
 fi
 
 tmux switch-client -t "$session"
