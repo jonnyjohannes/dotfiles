@@ -80,16 +80,16 @@ agent_info() {
 status_color_and_icon() {
   case "$1" in
     blocked)
-      printf '31\t·'
+      printf '31\t■'
       ;;
     done)
-      printf '32\t·'
+      printf '32\t■'
       ;;
     working)
-      printf '33;5\t·'
+      printf '33;5\t■'
       ;;
     idle)
-      printf '90\t·'
+      printf '90\t■'
       ;;
     *)
       printf '90\t?'
