@@ -80,13 +80,13 @@ agent_info() {
 status_color_and_icon() {
   case "$1" in
     blocked)
-      printf '31\t!'
+      printf '31\t·'
       ;;
     done)
-      printf '34\t✓'
+      printf '32\t·'
       ;;
     working)
-      printf '33\t…'
+      printf '33;5\t·'
       ;;
     idle)
       printf '90\t·'
@@ -131,7 +131,7 @@ add_candidate() {
     status_label=$(printf '\033[1;%sm%s\033[0m' \
       "$status_color" \
       "$status_icon")
-    label+="  $status_label"
+    label+=" $status_label "
     candidates+=("$target"$'\t'"$label"$'\t'"$session"$'\t'1)
   else
     candidates+=("$target"$'\t'"$label"$'\t'"$session"$'\t'0)
