@@ -11,6 +11,7 @@ colors=(
 )
 base_dir=$HOME/src
 candidates=()
+seen_sessions=()
 
 normalize_session() {
   local value=$1
@@ -96,6 +97,17 @@ status_color_and_icon() {
   esac
 }
 
+session_seen() {
+  local session=$1
+  local seen
+
+  for seen in "${seen_sessions[@]}"; do
+    [[ "$seen" == "$session" ]] && return 0
+  done
+
+  return 1
+}
+
 add_candidate() {
   local target=$1
   local session=$2
@@ -107,14 +119,18 @@ add_candidate() {
   local status_icon
   local status_label
 
+  if session_seen "$session"; then
+    return 0
+  fi
+  seen_sessions+=("$session")
+
   if agent_record=$(agent_info "$session") && [[ -n "$agent_record" ]]; then
     agent_state=$agent_record
     status_parts=$(status_color_and_icon "$agent_state")
     IFS=$'\t' read -r status_color status_icon <<<"$status_parts"
-    status_label=$(printf '\033[1;%sm%s %-8s\033[0m' \
+    status_label=$(printf '\033[1;%sm%s\033[0m' \
       "$status_color" \
-      "$status_icon" \
-      "$agent_state")
+      "$status_icon")
     label+="  $status_label"
     candidates+=("$target"$'\t'"$label"$'\t'"$session"$'\t'1)
   else
