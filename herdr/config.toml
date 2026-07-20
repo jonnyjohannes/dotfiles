@@ -1,1 +1,4 @@
 onboarding = false
+
+[advanced]
+scrollback_limit_bytes = 50000000
