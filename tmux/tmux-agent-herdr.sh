@@ -12,6 +12,12 @@ else
   agent_command=(pi)
 fi
 
+# Keep Herdr's rendered terminal stream on tmux's primary screen so tmux
+# retains it in its own history for normal copy mode.
+if [[ -n ${TMUX_PANE:-} ]]; then
+  tmux set-window-option -t "$TMUX_PANE" alternate-screen off
+fi
+
 if ! herdr status server >/dev/null 2>&1; then
   printf 'herdr server is not running\n' >&2
   exit 1
