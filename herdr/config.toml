@@ -1,4 +1,7 @@
 onboarding = false
 
+[keys]
+copy_mode = "ctrl+alt+u"
+
 [advanced]
 scrollback_limit_bytes = 50000000
