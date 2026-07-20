@@ -20,71 +20,39 @@ normalize_session() {
   printf '%s' "$value"
 }
 
-close_agent() {
-  local name=$1
-  local details
-  local workspace
-
-  if ! details=$(herdr agent get "$name" 2>/dev/null); then
-    return 0
-  fi
-
-  if ! workspace=$(jq -er '.result.agent.workspace_id' <<<"$details" 2>/dev/null); then
-    return 0
-  fi
-
-  herdr workspace close "$workspace" >/dev/null 2>&1 || true
-}
-
 close_session() {
   local session=$1
-  local agent_present=${2:-0}
-
-  if [[ "$agent_present" == 1 ]]; then
-    close_agent "$session"
-  fi
-
   tmux kill-session -t "=$session" >/dev/null 2>&1 || true
 }
 
 if [[ ${1:-} == '--close' ]]; then
-  close_session "${2:?missing session}" "${3:-0}"
+  close_session "${2:?missing session}"
   exit 0
 fi
 
-agents_json=
-agent_rows=
-if agents_json=$(herdr agent list 2>/dev/null); then
-  agent_rows=$(jq -r '
-    .result.agents[]?
-    | [(.name // .agent // .workspace_id // ""),
-       (.agent_status // "unknown")]
-    | map(gsub("[\\t\\r\\n]"; " "))
-    | @tsv
-  ' <<<"$agents_json" 2>/dev/null || true)
-fi
-
-agent_info() {
+pi_info() {
   local session=$1
-  local agent_name
-  local agent_state
-  while IFS=$'\t' read -r agent_name agent_state; do
-    [[ "$agent_name" == "$session" ]] || continue
-    printf '%s' "$agent_state"
+  local pane_session
+  local window
+  local pane
+  local agent_present
+  local state
+
+  while IFS=$'\t' read -r pane_session window pane agent_present state; do
+    [[ "$pane_session" == "$session" && "$agent_present" == 1 ]] || continue
+    printf '%s\t%s\t%s' "${state:-idle}" "$window" "$pane"
     return 0
-  done <<<"$agent_rows"
+  done < <(
+    tmux list-panes -a \
+      -F '#{session_name}\t#{window_index}\t#{pane_id}\t#{@pi-agent}\t#{@pi-state}' \
+      2>/dev/null || true
+  )
 
   return 1
 }
 
 status_color_and_icon() {
   case "$1" in
-    blocked)
-      printf '31\t■'
-      ;;
-    done)
-      printf '32\t■'
-      ;;
     working)
       printf '33;5\t■'
       ;;
@@ -112,8 +80,10 @@ add_candidate() {
   local target=$1
   local session=$2
   local label=$3
-  local agent_record
-  local agent_state
+  local pi_record
+  local pi_state
+  local pi_window
+  local pi_pane
   local status_parts
   local status_color
   local status_icon
@@ -124,18 +94,48 @@ add_candidate() {
   fi
   seen_sessions+=("$session")
 
-  if agent_record=$(agent_info "$session") && [[ -n "$agent_record" ]]; then
-    agent_state=$agent_record
-    status_parts=$(status_color_and_icon "$agent_state")
+  if pi_record=$(pi_info "$session"); then
+    IFS=$'\t' read -r pi_state pi_window pi_pane <<<"$pi_record"
+    status_parts=$(status_color_and_icon "$pi_state")
     IFS=$'\t' read -r status_color status_icon <<<"$status_parts"
     status_label=$(printf '\033[1;%sm%s\033[0m' \
       "$status_color" \
       "$status_icon")
     label+=" $status_label "
-    candidates+=("$target"$'\t'"$label"$'\t'"$session"$'\t'1)
+    candidates+=("$target"$'\t'"$label"$'\t'"$session"$'\t'1'$'\t'"$pi_window"$'\t'"$pi_pane")
   else
-    candidates+=("$target"$'\t'"$label"$'\t'"$session"$'\t'0)
+    candidates+=("$target"$'\t'"$label"$'\t'"$session"$'\t'0'$'\t'$'\t')
   fi
+}
+
+launch_pi() {
+  local session=$1
+  local dir=$2
+  local pi_record
+  local pi_window
+  local new_window
+
+  if pi_record=$(pi_info "$session"); then
+    IFS=$'\t' read -r _ pi_window _ <<<"$pi_record"
+    tmux select-window -t "=$session:$pi_window"
+    return 0
+  fi
+
+  if [[ ! -d "$dir" ]]; then
+    tmux display-message "project directory not found: $dir"
+    return 1
+  fi
+
+  new_window=$(tmux new-window \
+    -d \
+    -P \
+    -F '#{window_index}' \
+    -t "=$session" \
+    -n 'glitch' \
+    -c "$dir" \
+    'command pi' 2>/dev/null) || return 1
+
+  tmux select-window -t "=$session:$new_window"
 }
 
 # sessions, colour coded
@@ -176,7 +176,7 @@ selected_output=$(
       --layout=reverse \
       --header $'\n\n[return] (⌐■_■)       [ctrl-enter] <|°_°|>       [ctrl-x] (x_x) \n\n\n' \
       --expect=insert \
-      --bind 'ctrl-x:execute(bash "$HOME/.config/tmux/tmux-session-agent-launcher.sh" --close {3} {4})+abort'
+      --bind 'ctrl-x:execute(bash "$HOME/.config/tmux/tmux-session-agent-launcher.sh" --close {3})+abort'
 ) || fzf_status=$?
 
 case "$fzf_status" in
@@ -201,25 +201,26 @@ if [[ "$selected_output" == *$'\n'* ]]; then
   selected=${selected_output#*$'\n'}
 fi
 
-IFS=$'\t' read -r target _ session agent_present <<<"$selected"
+IFS=$'\t' read -r target _ session pi_present pi_window pi_pane <<<"$selected"
 [[ -n "${session:-}" ]] || exit 0
 
-dir=$base_dir/$target
-if ! tmux has-session -t "=$session" 2>/dev/null; then
+if tmux has-session -t "=$session" 2>/dev/null; then
+  dir=$(tmux list-panes -t "=$session" -F '#{pane_current_path}' 2>/dev/null | head -n 1)
+else
+  dir=$base_dir/$target
   if [[ ! -d "$dir" ]]; then
-    tmux display-message "tmux session not found: $session"
+    tmux display-message "project directory not found: $dir"
     exit 0
   fi
   tmux new-session -ds "$session" -c "$dir"
 fi
 
-if [[ "$key" == insert && "$agent_present" == 1 ]]; then
-  # tmux window focus does not always produce Herdr's focus event. Mark the
-  # agent seen explicitly so Herdr transitions done (idle + unseen) to idle.
-  herdr agent focus "$session" >/dev/null 2>&1 || true
-
-  if tmux list-windows -t "=$session" -F '#{window_index}' 2>/dev/null | grep -qx '3'; then
-    tmux select-window -t "=$session:3"
+if [[ "$key" == insert ]]; then
+  if [[ "$pi_present" == 1 && -n "$pi_window" ]]; then
+    tmux select-window -t "=$session:$pi_window"
+  elif ! launch_pi "$session" "$dir"; then
+    tmux display-message "could not launch pi in session: $session"
+    exit 0
   fi
 fi
 
