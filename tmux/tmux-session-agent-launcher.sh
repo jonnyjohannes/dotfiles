@@ -12,6 +12,7 @@ colors=(
 base_dir=$HOME/src
 candidates=()
 seen_sessions=()
+pi_records=()
 
 normalize_session() {
   local value=$1
@@ -30,23 +31,38 @@ if [[ ${1:-} == '--close' ]]; then
   exit 0
 fi
 
-pi_info() {
-  local session=$1
+snapshot_pi_info() {
   local pane_session
   local window
   local pane
   local agent_present
   local state
 
+  pi_records=()
   while IFS=$'\t' read -r pane_session window pane agent_present state; do
-    [[ "$pane_session" == "$session" && "$agent_present" == 1 ]] || continue
-    printf '%s\t%s\t%s' "${state:-idle}" "$window" "$pane"
-    return 0
+    [[ "$agent_present" == 1 ]] || continue
+    pi_records+=("$pane_session"$'\t'"${state:-idle}"$'\t'"$window"$'\t'"$pane")
   done < <(
     tmux list-panes -a \
-      -F '#{session_name}\t#{window_index}\t#{pane_id}\t#{@pi-agent}\t#{@pi-state}' \
+      -F $'#{session_name}\t#{window_index}\t#{pane_id}\t#{@pi-agent}\t#{@pi-state}' \
       2>/dev/null || true
   )
+}
+
+pi_info() {
+  local session=$1
+  local record
+  local pane_session
+  local state
+  local window
+  local pane
+
+  for record in "${pi_records[@]}"; do
+    IFS=$'\t' read -r pane_session state window pane <<<"$record"
+    [[ "$pane_session" == "$session" ]] || continue
+    printf '%s\t%s\t%s' "$state" "$window" "$pane"
+    return 0
+  done
 
   return 1
 }
@@ -55,6 +71,9 @@ status_color_and_icon() {
   case "$1" in
     working)
       printf '33;5\t■'
+      ;;
+    done)
+      printf '32\t■'
       ;;
     idle)
       printf '90\t■'
@@ -102,48 +121,19 @@ add_candidate() {
       "$status_color" \
       "$status_icon")
     label+=" $status_label "
-    candidates+=("$target"$'\t'"$label"$'\t'"$session"$'\t'1'$'\t'"$pi_window"$'\t'"$pi_pane")
+    candidates+=("$target"$'\t'"$label"$'\t'"$session"$'\t'"1"$'\t'"$pi_window"$'\t'"$pi_pane")
   else
-    candidates+=("$target"$'\t'"$label"$'\t'"$session"$'\t'0'$'\t'$'\t')
+    candidates+=("$target"$'\t'"$label"$'\t'"$session"$'\t'"0"$'\t'$'\t')
   fi
 }
 
-launch_pi() {
-  local session=$1
-  local dir=$2
-  local pi_record
-  local pi_window
-  local new_window
-
-  if pi_record=$(pi_info "$session"); then
-    IFS=$'\t' read -r _ pi_window _ <<<"$pi_record"
-    tmux select-window -t "=$session:$pi_window"
-    return 0
-  fi
-
-  if [[ ! -d "$dir" ]]; then
-    tmux display-message "project directory not found: $dir"
-    return 1
-  fi
-
-  new_window=$(tmux new-window \
-    -d \
-    -P \
-    -F '#{window_index}' \
-    -t "=$session" \
-    -n 'glitch' \
-    -c "$dir" \
-    'command pi' 2>/dev/null) || return 1
-
-  tmux select-window -t "=$session:$new_window"
-}
+snapshot_pi_info
 
 # sessions, colour coded
 index=0
 while IFS= read -r session; do
   [[ -n "$session" ]] || continue
   color_index=$(($index % ${#colors[@]}))
-  ((color_index++))
   color=${colors[$color_index]}
 
   label=$(printf '\033[1;30;%sm %s \033[0m' "$color" "$session")
@@ -160,8 +150,6 @@ while IFS= read -r -d '' dir; do
   add_candidate "$relative" "$session" "$label"
 done < <(find -L "$base_dir" -mindepth 2 -maxdepth 2 -type d -print0 2>/dev/null || true)
 
-# Alacritty maps Ctrl-Enter to the Insert key sequence so fzf can
-# distinguish it from ordinary Enter.
 fzf_status=0
 selected_output=$(
   printf '%s\n' "${candidates[@]}" |
@@ -174,9 +162,9 @@ selected_output=$(
       --gap \
       --info=hidden \
       --layout=reverse \
-      --header $'\n\n[return] (⌐■_■)       [ctrl-enter] <|°_°|>       [ctrl-x] (x_x) \n\n\n' \
-      --expect=insert \
-      --bind 'ctrl-x:execute(bash "$HOME/.config/tmux/tmux-session-agent-launcher.sh" --close {3})+abort'
+      --header $'\n\n[return] (⌐■_■)       [ctrl-x] (x_x) \n\n\n' \
+      --expect=f1,f2,f3 \
+      --bind 'ctrl-x:execute(tmux kill-session -t {1})+abort' \
 ) || fzf_status=$?
 
 case "$fzf_status" in
@@ -215,14 +203,20 @@ else
   tmux new-session -ds "$session" -c "$dir"
 fi
 
-if [[ "$key" == insert ]]; then
-  if [[ "$pi_present" == 1 && -n "$pi_window" ]]; then
-    tmux select-window -t "=$session:$pi_window"
-  elif ! launch_pi "$session" "$dir"; then
-    tmux display-message "could not launch pi in session: $session"
-    exit 0
-  fi
-fi
+case "$key" in
+  f1 | f2 | f3)
+    case "$key" in
+      f1) window=1 ;;
+      f2) window=2 ;;
+      f3) window=3 ;;
+    esac
+    if ! tmux select-window -t "=$session:$window" 2>/dev/null; then
+      tmux display-message "window $window not found in session: $session"
+      tmux refresh-client -S
+      exit 0
+    fi
+    ;;
+esac
 
 tmux switch-client -t "$session"
 tmux refresh-client -S
