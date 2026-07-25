@@ -73,7 +73,7 @@ status_color_and_icon() {
       printf '33;5\t■'
       ;;
     done)
-      printf '32\t■'
+      printf '34\t■'
       ;;
     idle)
       printf '90\t■'
