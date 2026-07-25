@@ -6,6 +6,11 @@ cmd - space : open -a Alfred\ 5
 cmd - q : open -a Arc
 cmd - w : open -a Alacritty
 
+# function keys
+ctrl + alt - 1 : skhd -k 'f1'
+ctrl + alt - 2 : skhd -k 'f2'
+ctrl + alt - 3 : skhd -k 'f3'
+
 # lock screen
 cmd + alt - l : open -a ScreenSaverEngine
 
