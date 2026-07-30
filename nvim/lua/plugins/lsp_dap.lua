@@ -34,6 +34,8 @@ return {
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function()
+          vim.keymap.set('n', 'gd', require('fzf-lua').lsp_definitions)
+          vim.keymap.set('n', 'gr', require('fzf-lua').lsp_references)
           vim.keymap.set('n', '<M-R>', require('dap').continue)
           vim.keymap.set('n', '<M-r>', require('dap').step_over)
           vim.keymap.set('n', '<M-e>', require('dap').step_into)
