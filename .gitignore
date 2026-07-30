@@ -5,14 +5,15 @@ automatic_backups
 bk.yaml
 cagent
 cursor
+devin
 ftplugin
 gcloud
 gh
 gh-copilot
 gh-dash
 github-copilot
+k9s
 kube
 obsidian
 tfenv
 .jira
-devin
