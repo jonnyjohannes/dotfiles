@@ -163,7 +163,7 @@ selected_output=$(
       --info=hidden \
       --layout=reverse \
       --header $'\n\n[return] (⌐■_■)       [ctrl-x] (x_x) \n\n\n' \
-      --expect=f1,f2,f3 \
+      --expect=alt-1,alt-2,alt-3 \
       --bind 'ctrl-x:execute(tmux kill-session -t {1})+abort' \
 ) || fzf_status=$?
 
@@ -204,11 +204,11 @@ else
 fi
 
 case "$key" in
-  f1 | f2 | f3)
+  alt-1 | alt-2 | alt-3)
     case "$key" in
-      f1) window=1 ;;
-      f2) window=2 ;;
-      f3) window=3 ;;
+      alt-1) window=1 ;;
+      alt-2) window=2 ;;
+      alt-3) window=3 ;;
     esac
     if ! tmux select-window -t "=$session:$window" 2>/dev/null; then
       tmux display-message "window $window not found in session: $session"
