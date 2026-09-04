@@ -19,6 +19,7 @@ cmd + ctrl - h : skhd -k 'left'
 cmd + ctrl - j : skhd -k 'down'
 cmd + ctrl - k : skhd -k 'up'
 cmd + ctrl - l : skhd -k 'right'
+
 # pageup/down
 cmd + ctrl - u : skhd -k 'pageup'
 cmd + ctrl - d : skhd -k 'pagedown'
