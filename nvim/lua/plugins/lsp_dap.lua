@@ -77,6 +77,9 @@ return {
     config = function()
       require('conform').setup({
         formatters_by_ft = {
+          css  = { 'prettier' }, 
+          javascript = { 'prettier' }, 
+          typescript = { 'prettier' }, 
           markdown = { 'prettier' },
           python = { 'black' },
           sh = { 'beautysh' },
