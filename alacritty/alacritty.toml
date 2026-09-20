@@ -35,8 +35,5 @@ y = 10
 
 [keyboard]
 bindings = [
-  { key = "A", mode = "Vi|~Search", action = "ToggleSemanticSelection" },
-  { key = "I", mode = "Vi|~Search", action = "ToggleSemanticSelection" },
   { key = "Return", mods = "Shift", chars = "\u001b[13;2u" },
 ]
-

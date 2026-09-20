@@ -15,6 +15,10 @@ cmd + ctrl - j : skhd -k 'down'
 cmd + ctrl - k : skhd -k 'up'
 cmd + ctrl - l : skhd -k 'right'
 
+# pageup/down
+cmd + ctrl - u : skhd -k 'pageup'
+cmd + ctrl - d : skhd -k 'pagedown'
+
 # rectangle overrides
 cmd + ctrl + shift - h : open -g "rectangle://execute-action?name=left-half"
 cmd + ctrl + shift - j : open -g "rectangle://execute-action?name=bottom-half"
