@@ -9,14 +9,15 @@ return {
           left_pad = 2,
           right_pad = 2,
         },
+        heading = {
+          enabled = false,
+        },
+        custom_handlers = require('customs.markdown-constellation').handlers(),
       })
       require('treesitter-modules').setup({
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
-      })
-      vim.api.nvim_set_hl(0, 'RenderMarkdownCode', {
-        bg = '#111111',
       })
     end,
   },
