@@ -114,9 +114,9 @@ return {
       -- vim.keymap.set({ 'n' }, '<leader>*', fzfLua.grep_cword)
       -- vim.keymap.set({ 'x' }, '<leader>*', fzfLua.grep_visual)
       -- vim.keymap.set({ 'n', 'x' }, '<leader>f', unifiedFzfPicker)
-      vim.keymap.set({ 'n', 'x' }, '<leader>s', function()
-        fzfLua.combine({ pickers = 'buffers;files', line_query = true })
-      end)
+      -- vim.keymap.set({ 'n', 'x' }, '<leader>s', function()
+      --   fzfLua.combine({ pickers = 'buffers;files', line_query = true })
+      -- end)
     end,
   },
 }
