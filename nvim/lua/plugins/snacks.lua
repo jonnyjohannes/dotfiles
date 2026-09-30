@@ -44,7 +44,7 @@ return {
         win = {
           input = {
             keys = {
-              ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
+              -- ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
             },
           },
         },
@@ -165,8 +165,8 @@ return {
       vim.keymap.set({'n', 'x'}, '<leader>:', Snacks.picker.command_history)
       vim.keymap.set({'n', 'x'}, '<leader>/', Snacks.picker.grep)
       vim.keymap.set({'n', 'x'}, '<leader>*', Snacks.picker.grep_word)
-      vim.keymap.set({'n', 'x'}, '<leader>f', unifiedPickerSelector)
-      -- vim.keymap.set({'n', 'x'}, '<leader>s', Snacks.picker.smart)
+      vim.keymap.set({'n', 'x'}, '<leader>f', Snacks.picker.files)
+      vim.keymap.set({'n', 'x'}, '<leader>s', Snacks.picker.buffers)
     end,
   },
 }
