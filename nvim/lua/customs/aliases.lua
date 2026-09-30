@@ -30,4 +30,8 @@ return {
       })
     end,
   },
+  {
+    text = '[nvim init.lua] rElOaD',
+    action = function() vim.cmd(':source $MYVIMRC') end,
+  },
 }
