@@ -7,3 +7,13 @@
   path = config.local
 [pull]
   ff = only
+[alias]
+  wt = "!f() { \
+    if [ -z \"$1\" ]; then printf 'Usage: git wt <branch>\\n' >&2; return 1; fi; \
+    REPO_ROOT=$(git rev-parse --show-toplevel) || return; \
+    REPO_NAME=$(basename \"$REPO_ROOT\"); \
+    CLEAN_TREE=$(printf '%s' \"$1\" | tr '/' '-'); \
+    TARGET_PATH=\"$(dirname \"$REPO_ROOT\")/${REPO_NAME}-${CLEAN_TREE}\"; \
+    printf 'Creating worktree at %s for branch %s...\\n' \"$TARGET_PATH\" \"$1\"; \
+    git worktree add \"$TARGET_PATH\" -b \"$1\"; \
+  }; f"
