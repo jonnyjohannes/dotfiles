@@ -1,21 +1,4 @@
 return {
-  {
-    'zbirenbaum/copilot.lua',
-    cmd = 'Copilot',
-    event = 'InsertEnter',
-    config = function()
-      require('copilot').setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      })
-    end,
-  },
-  {
-    'zbirenbaum/copilot-cmp',
-    config = function()
-      require('copilot_cmp').setup({})
-    end,
-  },
   { 'hrsh7th/cmp-buffer' },
   { 'hrsh7th/cmp-cmdline' },
   { 'hrsh7th/cmp-path' },
@@ -50,7 +33,6 @@ return {
           end, { 'i', 's' }),
         }),
         sources = cmp.config.sources({
-          { name = 'copilot', group_index = 1 },
           { name = 'nvim_lsp' },
           { name = 'buffer' },
           { name = 'path' },

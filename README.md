@@ -75,8 +75,8 @@ ln -s ~/j2/dotfiles/zsh/zshrc ~/.zshrc
 |                                  | N/X   | \<leader\>:                  | Command history                           |
 |                                  | N/X   | \<leader\>/                  | Live grep (project-wide)                  |
 |                                  | N/X   | \<leader\>\*                 | Grep word under cursor / visual selection |
-|                                  | N/X   | \<leader\>f                  | Unified picker (aliases + pickers)        |
-|                                  | N/X   | \<leader\>s                  | Buffers + files picker                    |
+|                                  | N/X   | \<leader\>f                  | Files picker                              |
+|                                  | N/X   | \<leader\>s                  | Buffers picker                            |
 |                                  | N     | \<leader\>t                  | Toggle file tree @ current file           |
 |                                  | N     | \<leader\>N                  | Scratch toggle                            |
 |                                  | N     | \<leader\>T                  | Terminal toggle                           |
@@ -94,3 +94,5 @@ ln -s ~/j2/dotfiles/zsh/zshrc ~/.zshrc
 |                                  | N     | \<M-a/s/d/f\>                | Jump to harpoon file 1 / 2 / 3 / 4        |
 |                                  | cmd   | :F                           | Unified FZF picker (pickers + aliases)    |
 |                                  | cmd   | :S                           | Unified Snacks picker (pickers + aliases) |
+
+
