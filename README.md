@@ -76,6 +76,7 @@ ln -s ~/j2/dotfiles/zsh/zshrc ~/.zshrc
 |                                  | N/X   | \<leader\>/                  | Live grep (project-wide)                  |
 |                                  | N/X   | \<leader\>\*                 | Grep word under cursor / visual selection |
 |                                  | N/X   | \<leader\>f                  | Files picker                              |
+|                                  | N/X   | \<leader\>h                  | Unified picker                            |
 |                                  | N/X   | \<leader\>s                  | Buffers picker                            |
 |                                  | N     | \<leader\>t                  | Toggle file tree @ current file           |
 |                                  | N     | \<leader\>N                  | Scratch toggle                            |
