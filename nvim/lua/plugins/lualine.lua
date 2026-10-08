@@ -10,6 +10,24 @@ return {
       sections = {
         lualine_a = {
           {
+            'windows',
+            symbols = '',
+            use_mode_colors = true,
+          },
+        },
+        lualine_b = {
+        },
+        lualine_c = {
+          'diff',
+        },
+        lualine_x = {
+          'lsp_status',
+          'diagnostics',
+        },
+        lualine_y = {
+        },
+        lualine_z = {
+          {
             'progress',
             fmt = function()
               local current = vim.fn.line('.')
@@ -19,25 +37,6 @@ return {
               return chars[idx]
             end,
           },
-        },
-        lualine_b = {
-          {
-            'windows',
-            symbols = '',
-            use_mode_colors = true,
-          },
-        },
-        lualine_c = {
-        },
-        lualine_x = {
-          'lsp_status',
-          'diagnostics',
-          'branch',
-          'diff',
-        },
-        lualine_y = {
-        },
-        lualine_z = {
         },
       },
     },
