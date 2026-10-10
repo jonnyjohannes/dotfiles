@@ -1,11 +1,17 @@
 local vim = vim
 return {
   {
-    'mrjones2014/smart-splits.nvim',
+    'smart-splits-nvim/smart-splits.nvim',
     opts = {
+      mux = { backend = 'smart-splits-backend-tmux' },
+      move = { at_edge = 'split' },
     },
-    config = function()
+    dependencies = {
+      { 'smart-splits-nvim/backend-tmux', main = 'smart-splits-backend-tmux' },
+    },
+    config = function(_, opts)
       local smartSplits = require('smart-splits')
+      smartSplits.setup(opts)
 
       vim.keymap.set({ 'n', 't', 'x' }, '<C-h>', smartSplits.move_cursor_left)
       vim.keymap.set({ 'n', 't', 'x' }, '<C-j>', smartSplits.move_cursor_down)
