@@ -69,6 +69,9 @@ pi_info() {
 
 status_color_and_icon() {
   case "$1" in
+    needs-input)
+      printf '31\t■'
+      ;;
     working)
       printf '33;5\t■'
       ;;
