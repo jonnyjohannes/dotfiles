@@ -4,7 +4,7 @@ return {
     'smart-splits-nvim/smart-splits.nvim',
     opts = {
       mux = { backend = 'smart-splits-backend-tmux' },
-      move = { at_edge = 'split' },
+      move = { at_edge = 'wrap' },
     },
     dependencies = {
       { 'smart-splits-nvim/backend-tmux', main = 'smart-splits-backend-tmux' },
