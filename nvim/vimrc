@@ -16,6 +16,7 @@ set clipboard=unnamed       " share system clipboard
 set noshowmode              " no mode in command line
 set fillchars=eob:\         " blank end of buffers
 set cursorline              " highlight current line
+set guicursor=
 
 let mapleader = ' '
 
@@ -79,7 +80,8 @@ augroup END
 
 augroup TerminalModeOverrides
   autocmd!
+  autocmd TermEnter * setlocal nonumber norelativenumber
+  autocmd TermLeave * setlocal number relativenumber
   tnoremap <M-esc> <C-\><C-n>
 augroup END
-
 
