@@ -71,7 +71,7 @@ return {
         enabled = true,
         win = {
           position = 'right',
-          width = 0.3,
+          width = 0.5,
         },
       },
       zen = {
