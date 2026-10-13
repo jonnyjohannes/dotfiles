@@ -80,8 +80,7 @@ augroup END
 
 augroup TerminalModeOverrides
   autocmd!
-  autocmd TermEnter * setlocal nonumber norelativenumber
-  autocmd TermLeave * setlocal number relativenumber
   tnoremap <M-esc> <C-\><C-n>
+  autocmd TermOpen * setlocal scrollback=50000 cursorline
 augroup END
 

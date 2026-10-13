@@ -93,7 +93,16 @@ return {
       Snacks.setup(opts)
 
       vim.keymap.set({ 'n' }, '<leader>N', Snacks.scratch.open)
-      vim.keymap.set({ 'n' }, '<leader>T', Snacks.terminal.toggle)
+      vim.keymap.set({ 'n', 'x' }, '<M-t>', Snacks.terminal.focus)
+      vim.keymap.set({ 't' }, '<M-t>', '<C-\\><C-n>:b#<cr>')
+      vim.api.nvim_create_autocmd('TermOpen', {
+        callback = function(event)
+          vim.keymap.set('n', '<M-t>', '<Cmd>b#<CR>', {
+            buffer = event.buf,
+            desc = 'Switch to alternate buffer from terminal',
+          })
+        end,
+      })
       vim.keymap.set({ 'n' }, '<leader>Z', Snacks.zen.zoom)
 
       local aliases = require('customs.aliases')
@@ -162,11 +171,12 @@ return {
         end,
         desc = 'Call a Snacks.nvim picker by name or execute an alias',
       })
-      -- vim.keymap.set({'n', 'x'}, '<leader>:', Snacks.picker.command_history)
-      -- vim.keymap.set({'n', 'x'}, '<leader>/', Snacks.picker.grep)
-      -- vim.keymap.set({'n', 'x'}, '<leader>*', Snacks.picker.grep_word)
-      -- vim.keymap.set({'n', 'x'}, '<leader>f', Snacks.picker.files)
-      -- vim.keymap.set({'n', 'x'}, '<leader>s', Snacks.picker.buffers)
+      vim.keymap.set({'n', 'x'}, '<leader>:', Snacks.picker.command_history)
+      vim.keymap.set({'n', 'x'}, '<leader>/', Snacks.picker.grep)
+      vim.keymap.set({'n', 'x'}, '<leader>*', Snacks.picker.grep_word)
+      vim.keymap.set({'n', 't', 'x'}, '<M-s>', Snacks.picker.buffers)
+      vim.keymap.set({'n', 't', 'x'}, '<M-d>', unifiedPickerSelector)
+      vim.keymap.set({'n', 't', 'x'}, '<M-f>', Snacks.picker.files)
     end,
   },
 }
