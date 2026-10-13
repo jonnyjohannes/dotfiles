@@ -47,12 +47,12 @@ return {
           --     require('dap').set_breakpoint(cond)
           --   end)
           -- end)
-          vim.keymap.set('n', '<leader>D', require('dap-view').toggle)
+          vim.keymap.set('n', '<leader>DD', require('dap-view').toggle)
         end,
       })
 
       local diagnosticVirtualTextEnable = false
-      vim.keymap.set('n', '<leader>dd', function()
+      vim.keymap.set('n', '<leader>Dd', function()
         diagnosticVirtualTextEnable = not diagnosticVirtualTextEnable
         vim.diagnostic.config({ virtual_text = diagnosticVirtualTextEnable })
       end)
