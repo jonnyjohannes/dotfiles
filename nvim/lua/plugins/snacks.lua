@@ -69,14 +69,6 @@ return {
       },
       terminal = {
         enabled = true,
-        auto_insert = false,
-        win = {
-          position = 'current',
-          wo = {
-            winbar = '',
-            cursorline = true,
-          },
-        },
       },
       zen = {
         zoom = {
@@ -97,7 +89,7 @@ return {
       Snacks.setup(opts)
 
       vim.keymap.set({ 'n' }, '<leader>N', Snacks.scratch.open)
-      vim.keymap.set({ 'n', 'x' }, '<M-t>', Snacks.terminal.focus)
+      vim.keymap.set({ 'n' }, '<leader>T', Snacks.terminal.focus)
       vim.keymap.set({ 'n' }, '<leader>Z', Snacks.zen.zoom)
 
       local aliases = require('customs.aliases')
