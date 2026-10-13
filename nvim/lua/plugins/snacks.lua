@@ -69,9 +69,13 @@ return {
       },
       terminal = {
         enabled = true,
+        auto_insert = false,
         win = {
-          position = 'right',
-          width = 0.5,
+          position = 'current',
+          wo = {
+            winbar = '',
+            cursorline = true,
+          },
         },
       },
       zen = {
@@ -94,15 +98,6 @@ return {
 
       vim.keymap.set({ 'n' }, '<leader>N', Snacks.scratch.open)
       vim.keymap.set({ 'n', 'x' }, '<M-t>', Snacks.terminal.focus)
-      vim.keymap.set({ 't' }, '<M-t>', '<C-\\><C-n>:b#<cr>')
-      vim.api.nvim_create_autocmd('TermOpen', {
-        callback = function(event)
-          vim.keymap.set('n', '<M-t>', '<Cmd>b#<CR>', {
-            buffer = event.buf,
-            desc = 'Switch to alternate buffer from terminal',
-          })
-        end,
-      })
       vim.keymap.set({ 'n' }, '<leader>Z', Snacks.zen.zoom)
 
       local aliases = require('customs.aliases')
