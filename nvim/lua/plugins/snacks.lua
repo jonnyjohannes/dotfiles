@@ -169,9 +169,9 @@ return {
       vim.keymap.set({'n', 'x'}, '<leader>:', Snacks.picker.command_history)
       vim.keymap.set({'n', 'x'}, '<leader>/', Snacks.picker.grep)
       vim.keymap.set({'n', 'x'}, '<leader>*', Snacks.picker.grep_word)
-      vim.keymap.set({'n', 't', 'x'}, '<M-s>', Snacks.picker.buffers)
-      vim.keymap.set({'n', 't', 'x'}, '<M-d>', unifiedPickerSelector)
-      vim.keymap.set({'n', 't', 'x'}, '<M-f>', Snacks.picker.files)
+      vim.keymap.set({'n', 'x'}, '<leader>s', Snacks.picker.buffers)
+      vim.keymap.set({'n', 'x'}, '<leader>d', unifiedPickerSelector)
+      vim.keymap.set({'n', 'x'}, '<leader>f', Snacks.picker.files)
     end,
   },
 }

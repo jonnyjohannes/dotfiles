@@ -113,9 +113,9 @@ return {
       -- vim.keymap.set({'n', 'x'}, '<leader>/', fzfLua.live_grep)
       -- vim.keymap.set({'n'}, '<leader>*', fzfLua.grep_cword)
       -- vim.keymap.set({'x'}, '<leader>*', fzfLua.grep_visual)
-      -- vim.keymap.set({'n', 't', 'x'}, '<M-s>', fzfLua.buffers)
-      -- vim.keymap.set({'n', 't', 'x'}, '<M-d>', unifiedFzfPicker)
-      -- vim.keymap.set({'n', 't', 'x'}, '<M-f>', fzfLua.files)
+      -- vim.keymap.set({'n', 'x'}, '<leader>s', fzfLua.buffers)
+      -- vim.keymap.set({'n', 'x'}, '<leader>d', unifiedFzfPicker)
+      -- vim.keymap.set({'n', 'x'}, '<leader>f', fzfLua.files)
     end,
   },
 }
