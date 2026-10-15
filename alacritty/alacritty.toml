@@ -1,11 +1,8 @@
 [general]
-import = ['themes/catppuccin-mocha.toml']
+import = ['themes/rose-pine-main.toml']
 
 [colors.cursor]
 cursor = '#e068a5'
-
-[colors.vi_mode_cursor]
-cursor = '#fbf719'
 
 [colors.primary]
 background = '#1e1e1e'

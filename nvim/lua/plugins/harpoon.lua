@@ -83,6 +83,7 @@ return {
       harpoon:extend(harpoon_extensions.builtins.highlight_current_file())
       harpoon:extend({
         UI_CREATE = function(cx)
+          vim.wo[cx.win_id].cursorline = true
           vim.api.nvim_win_set_config(cx.win_id, {
             relative = 'editor',
             row = vim.o.lines - 12,
@@ -105,9 +106,7 @@ return {
       })
 
       vim.keymap.set('n', '<leader>a', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-      vim.keymap.set('n', '<leader><M-s>', function() harpoon:list():replace_at(2) end)
-      vim.keymap.set('n', '<leader><M-d>', function() harpoon:list():replace_at(3) end)
-      vim.keymap.set('n', '<leader><M-f>', function() harpoon:list():replace_at(4) end)
+      vim.keymap.set('n', '<leader>A', function() harpoon:list():add() end)
       vim.keymap.set({'n', 't'}, '<M-a>', pi_focus)
       vim.keymap.set({'n', 't'}, '<M-s>', function() harpoon:list():select(2) end)
       vim.keymap.set({'n', 't'}, '<M-d>', function() harpoon:list():select(3) end)

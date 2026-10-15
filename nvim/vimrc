@@ -16,7 +16,7 @@ set clipboard=unnamed       " share system clipboard
 set noshowmode              " no mode in command line
 set fillchars=eob:\         " blank end of buffers
 set cursorline              " highlight current line
-set guicursor=
+set guicursor=              " unset cursor animations
 
 let mapleader = ' '
 
@@ -80,7 +80,8 @@ augroup END
 
 augroup TerminalModeOverrides
   autocmd!
+  autocmd TermOpen * setlocal scrollback=50000
   tnoremap <M-esc> <C-\><C-n>
-  autocmd TermOpen * setlocal scrollback=50000 cursorline
+  tnoremap <C-u> <C-\><C-n><C-u>zz
 augroup END
 
