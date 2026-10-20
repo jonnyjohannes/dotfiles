@@ -21,10 +21,10 @@ Custom bindings in the checked-in configs.
 |                                  | N    | `<prefix>r`                   | Reload tmux config                         |
 |                                  | N    | `<prefix>v`                   | Enter copy mode                            |
 |                                  | N    | `<prefix>\|`                  | Split horizontally                         |
-|                                  | N    | `<prefix>\-`                  | Split vertically                           |
+|                                  | N    | `<prefix>-`                  | Split vertically                           |
 |                                  | N    | `<prefix>s`                   | Launch selector                            |
-|                                  | N    | `<prefix>\/`                  | Search forward                             |
-|                                  | N    | `<prefix>/?`                  | Search backward                            |
+|                                  | N    | `<prefix>/`                  | Search forward                             |
+|                                  | N    | `<prefix>?`                  | Search backward                            |
 |                                  | N    | `<prefix>b`                   | Break pane into a new window               |
 |                                  | N    | `<prefix>j`                   | Join pane to the (prompted) window         |
 |                                  | N    | `<prefix>L`                   | Switch to the last client                  |
