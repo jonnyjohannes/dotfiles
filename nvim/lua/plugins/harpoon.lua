@@ -106,7 +106,10 @@ return {
       })
 
       vim.keymap.set('n', '<leader>a', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-      vim.keymap.set('n', '<leader>A', function() harpoon:list():add() end)
+      vim.keymap.set('n', '<leader>A', function()
+        harpoon:list():add()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end)
       vim.keymap.set({'n', 't'}, '<M-a>', pi_focus)
       vim.keymap.set({'n', 't'}, '<M-s>', function() harpoon:list():select(2) end)
       vim.keymap.set({'n', 't'}, '<M-d>', function() harpoon:list():select(3) end)
