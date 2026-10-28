@@ -1,30 +1,29 @@
 local vim = vim
 
-local mode_color_groups = {
-  normal = '#6e6a86',
-  terminal = 'String',
-}
-
-local function apply_mode_colors()
-  for mode, source_group in pairs(mode_color_groups) do
-    local source_fg = source_group:match('^#%x%x%x%x%x%x$')
-    if not source_fg then
-      source_fg = vim.api.nvim_get_hl(0, { name = source_group, link = false }).fg
-    end
-    if source_fg then
-      local group = 'lualine_a_' .. mode
-      local colors = vim.api.nvim_get_hl(0, { name = group, link = false })
-      colors.bg = source_fg
-      vim.api.nvim_set_hl(0, group, colors)
-    end
-  end
-end
-
 return {
   {
     'nvim-lualine/lualine.nvim',
     opts = {
       options = {
+        theme = function()
+          package.loaded['lualine.themes.auto'] = nil
+          local theme = vim.deepcopy(require('lualine.themes.auto'))
+          local theme_overrides = {
+            normal = 'Comment',
+          }
+          for mode, highlight_group in pairs(theme_overrides) do
+            local fg = vim.api.nvim_get_hl(0, {
+              name = highlight_group,
+              link = false,
+            }).fg
+
+            if fg and theme[mode] and theme[mode].a then
+              theme[mode].a.bg = string.format('#%06x', fg)
+            end
+          end
+
+          return theme
+        end,
         section_separators = '',
         component_separators = '',
       },
@@ -66,12 +65,6 @@ return {
     },
     config = function(_, opts)
       require('lualine').setup(opts)
-      vim.schedule(apply_mode_colors)
-      vim.api.nvim_create_autocmd('ColorScheme', {
-        callback = function()
-          vim.schedule(apply_mode_colors)
-        end,
-      })
     end,
     init = function()
       vim.cmd('set laststatus=3')
